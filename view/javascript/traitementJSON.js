@@ -1,23 +1,23 @@
 // Opera 8.0+
-var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+let isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
 
 // Firefox 1.0+
-var isFirefox = typeof InstallTrigger !== 'undefined';
+let isFirefox = typeof InstallTrigger !== 'undefined';
 
 // Safari 3.0+ "[object HTMLElementConstructor]"
-var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+let isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 
 // Internet Explorer 6-11
-var isIE = /*@cc_on!@*/false || !!document.documentMode;
+let isIE = /*@cc_on!@*/false || !!document.documentMode;
 
 // Edge 20+
-var isEdge = !isIE && !!window.StyleMedia;
+let isEdge = !isIE && !!window.StyleMedia;
 
 // Chrome 1+
-var isChrome = !!window.chrome && !!window.chrome.webstore;
+let isChrome = !!window.chrome && !!window.chrome.webstore;
 
 // Blink engine detection
-var isBlink = (isChrome || isOpera) && !!window.CSS;
+let isBlink = (isChrome || isOpera) && !!window.CSS;
 
 /* VARIABLES GLOBALES */
 let data = getData(initJSON());
@@ -34,7 +34,7 @@ function getData(json) {
 
 function deleteOdd(data) {
     //console.log(data.length);
-    var tableau = [];
+	let tableau = [];
     for (i = 1; i < data.length-1; i = i + 2) {
         tableau.push(data[i]);
     }
@@ -45,24 +45,34 @@ data = deleteOdd(data);
 
 
 function draw(data) {
-    var ctx = document.getElementById("canvas").getContext('2d');
-    var canvas = document.getElementById("canvas");
-    var height = 150;
-    var width = window.innerWidth;
+	let ctx = document.getElementById("canvas").getContext('2d');
+	let canvas = document.getElementById("canvas");
+	let height = 150;
+	let width = window.innerWidth;
 
-    console.log(width);
-    console.log(data.length);
-    canvas.setAttribute("width","" + width);
-    canvas.setAttribute("height",""+ height);
+	console.log(width);
+	console.log(data.length);
+	canvas.setAttribute("width","" + width);
+	canvas.setAttribute("height",""+ height);
 
-    for (var i = 0; i < data.length; i++) {
-        ctx.lineWidth = 6;
-        ctx.beginPath();
-        ctx.moveTo((i*width/data.length),height);
-        ctx.lineTo((i*width/data.length),data[i]);
-        ctx.stroke();
-    }
+	for (let i = 0; i < data.length; i++) {
+		ctx.strokeStyle = "#C70039";
+		ctx.lineWidth = 3;
+		ctx.beginPath();
+		ctx.moveTo((i*width/data.length)+ctx.lineWidth+1,height);
+		ctx.lineTo((i*width/data.length)+ctx.lineWidth+1,data[i]);
+		ctx.stroke();
+
+		ctx.closePath();
+	}
 
 }
 
+function player() {
+	let musique = new Audio('nirvana.mp3');
+
+	//musique.play();
+}
+
 draw(data);
+player();
