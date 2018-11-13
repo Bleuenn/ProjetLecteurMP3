@@ -1,8 +1,1 @@
-dist: trusty
-# Required to run your project under the correct environment.
-language: php javascript python
-
-# Versions of PHP you want your project run with.
-php:
-- 7.0
-- hhvm
+language: javascript
