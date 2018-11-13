@@ -7,13 +7,6 @@ php:
 - 7.0
 - hhvm
 
-# Commands to be run before your environment runs.
-before_script:
-- composer self-update
-- composer install --prefer-source --no-interaction --dev
-
-
-
 addons:
   sonarcloud:
     organization: "Bleuenn_ProjetLecteurMP3"
