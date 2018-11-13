@@ -1,6 +1,6 @@
 dist: trusty
 # Required to run your project under the correct environment.
-language: php
+language: php javascript python
 
 # Versions of PHP you want your project run with.
 php:
