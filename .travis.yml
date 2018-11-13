@@ -1,7 +1,16 @@
+dist: trusty
 language: php
 php:
-- '5.4'
 - '5.6'
-- '7.0'
+- '7.1'
 - hhvm # on Trusty only
 - nightly
+
+addons:
+  sonarcloud:
+    organization: "Bleuenn_ProjetLecteurMP3"
+    token:
+      secure: test
+script:
+# other script steps might be done before running the actual analysis
+- sonar-scanner
