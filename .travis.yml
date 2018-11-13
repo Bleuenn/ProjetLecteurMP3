@@ -1,10 +1,13 @@
 dist: trusty
-language: php
+
+language: php,python
 php:
 - '5.6'
 - '7.1'
 - hhvm # on Trusty only
 - nightly
+python:
+- "3.6"
 
 addons:
   sonarcloud:
@@ -12,5 +15,6 @@ addons:
     token:
       secure: SjwEcBuhQ+FvxuLTeaL/dS2VFi10VCAv9/rBsCK3mxWF3K2E4JWZLv+0mPtlQTivS6p4TakvKDyi2XnY9+NG41cokTDOIlfza5HCWlFSpWgLdHqmCI50OhEPVt0Mgf+a5eEEW8G8DqWbV3kNbmFm0GDyRvoPmETivFdWttFjJSnhsGxTRejzomK5GK+Rq4rO+UUPUpwIdrg4HsbSY7vR60wxTROWn78X44M+6g5/o0V2ra757j+3WBTPHNOOtM762dDXtBNZIn3BKF3Vw+0KIP6hL2bv9DgBpYLx8iDGZN8yyKh+3dZu7oXz42KCdHyykO1BNJYoJrTJuPTQeh4dQH4Ik1aoHoOz0cz22uJ5eIqXul1JmTpZxaHRW21KMiYSSYPqs/xbg9WtqsnRNtriYLJCkcGNyjEOcVQvwQvPocj4zVbCoWxRJzckMFrznP9JZ89rAqthouIEub8TmwnBq6HH10G+liHLlVb2beYQ2MdJaLUv+dVafdNMgMUmsRA+SVewJuzAsN1v7PWppdHYGsKW7MpGLhCITNjSYc0zbAaV1Q9JRoW5KPexmI0kT39dcw+Q2VtP+ovCtCKlgPS+peZ7R7uaLkYMbT0CEpxE2v8I9zPmqSB6idP54lVxBlGnnyEaEmLHEjaY4qPGnwN4kk3Z7YBYd3bLnyRuTlwfMLI=
 script:
+- pytest
 # other script steps might be done before running the actual analysis
 - sonar-scanner
