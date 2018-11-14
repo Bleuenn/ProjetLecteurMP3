@@ -1,1 +1,26 @@
-language: javascript
+sudo: false
+
+pull_requests:
+  do_not_increment_build_number: true
+
+language: php
+
+
+php:
+- 7.1
+
+matrix:
+  allow_failures:
+  - php: master
+  fast_finish: true
+
+install:
+- travis_retry composer install --no-interaction --no-suggest
+- composer show --installed
+
+branches:
+  only: 'master'
+
+before_script:
+- travis_retry composer self-update
+
