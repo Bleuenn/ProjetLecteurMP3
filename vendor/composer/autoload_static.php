@@ -8,7 +8,6 @@ class ComposerStaticInitecfe6a0afc59ba5424156882ce4ec32c
 {
     public static $files = array (
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-        '3a37ebac017bc098e9a86b35401e7a68' => __DIR__ . '/..' . '/mongodb/mongodb/src/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -19,10 +18,6 @@ class ComposerStaticInitecfe6a0afc59ba5424156882ce4ec32c
         'W' => 
         array (
             'Webmozart\\Assert\\' => 17,
-        ),
-        'M' => 
-        array (
-            'MongoDB\\' => 8,
         ),
         'D' => 
         array (
@@ -41,10 +36,6 @@ class ComposerStaticInitecfe6a0afc59ba5424156882ce4ec32c
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
-        ),
-        'MongoDB\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/mongodb/mongodb/src',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
