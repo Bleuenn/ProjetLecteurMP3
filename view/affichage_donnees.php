@@ -5,7 +5,7 @@
 		<title>Lecteur mp3</title>
 		<link rel="stylesheet" type="text/css" href="view/css//style.css" />
 	</head>
-	
+
 	<body>
 		<h1>Lecteur mp3</h1>
 
@@ -31,5 +31,14 @@
                 </tbody>
             </table>
         </div>
+
+        <form>
+            <input type="text" id='saisie'>
+            <input type='submit' value='Recup Infos' onclick="afficheData(this.value)"/>
+        </form>
+
+
+
+        <script src="view/javascript/affichageDonnees.js"></script>
     </body>
 </html>

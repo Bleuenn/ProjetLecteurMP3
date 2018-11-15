@@ -31,4 +31,8 @@ class DAO {
     public function close(){
         curl_close($this->connection);
     }
+
+
+
+
 }
