@@ -18,7 +18,7 @@ try {
 
     print_r($stats);
 
-} catch (Mongo\Driver\Exception\Exception $e) {
+} catch (MongoDB\Driver\Exception\Exception $e) {
     echo $e->getMessage();
 
     $filename = basename(__FILE__);
@@ -29,6 +29,9 @@ try {
     echo "Exception:", $e->getMessage(), "\n";
     echo "In file:", $e->getFile(), "\n";
     echo "On line:", $e->getLine(), "\n";
+}
+finally{
+    $manager->close();
 }
 
 
