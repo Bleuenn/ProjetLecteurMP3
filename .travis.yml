@@ -10,9 +10,6 @@ branches:
   only:
     master
 
-before_script:
-- apt install php-curl
-
 script:
 - pwd
 - cd model && phpunit DAOTest.php
