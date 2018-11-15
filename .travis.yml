@@ -19,4 +19,5 @@ addons:
 script:
 - cd model
 - phpunit DAOTest.php
-- ../sonar-scanner
+- cd ..
+- sonar-scanner.
