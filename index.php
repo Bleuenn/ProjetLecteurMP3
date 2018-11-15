@@ -18,12 +18,11 @@ if(!is_null($titre)){
     if($titre == "all"){
         $json = $dao->getAll();
     }
-    else{
-        try{
+    else {
+        try {
             $titre = str_replace(" ", "+", $titre);
             $json = $dao->getByTitle($titre);
-        }
-        catch (Exception $e){
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
 
@@ -35,6 +34,6 @@ if(!is_null($titre)){
 
 }
 else{
-    echo "<h1>Bienvenue !</h1>";
+    include_once "view/affichage_donnees.php";
 }
 

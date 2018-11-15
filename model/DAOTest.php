@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 final class DAOTest extends TestCase
 {
+
     public function testGetAll()
     {
         try{
@@ -23,11 +24,23 @@ final class DAOTest extends TestCase
         }
     }
 
-    public function testGetByTitle()
+    public function testGetByTitleWithSpace()
     {
         try{
             $conn = new DAO();
             $this->assertJson($conn->getByTitle("Levan+Polka"));
+            $conn->close();
+        }
+        catch (Exception $e){
+            echo $e->getMessage();
+        }
+    }
+
+    public function testGetByTitleWithoutSpace()
+    {
+        try{
+            $conn = new DAO();
+            $this->assertJson($conn->getByTitle("lillies"));
             $conn->close();
         }
         catch (Exception $e){

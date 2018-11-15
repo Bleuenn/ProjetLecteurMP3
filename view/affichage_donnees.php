@@ -3,22 +3,33 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Lecteur mp3</title>
-		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="stylesheet" type="text/css" href="view/css//style.css" />
 	</head>
 	
 	<body>
-		<center><h1>Lecteur mp3</h1>
-	
-		<?php
+		<h1>Lecteur mp3</h1>
 
-			echo '<center><div class="liste"><table>';
-				echo '<tr>';
-					echo '<th class="thliste">Titre de la musique</th>';
-					echo '<th class="thliste">Nom de l\'artiste</th>';
-					echo '<th class="thliste">Année de mise en vente</th>';
-					echo '<th class="thliste">Genre de la musique</th>';
-					echo '<th class="thliste">Pays d\'origine de l\'artiste</th>';
-				echo '</tr>';
-		?> 
+        <div class="liste">
+            <table>
+                <thead>
+                <tr>
+                    <th>Titre de la musique</th>
+                    <th>Nom de l 'artiste</th>
+                    <th>Année de mise en vente</th>
+                    <th>Genre de la musique</th>
+                    <th>Pays d 'origine de l 'artiste</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>TitreEx</td>
+                        <td>NomEx</td>
+                        <td>AnnéeEx</td>
+                        <td>GenreEx</td>
+                        <td>PaysEx</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>

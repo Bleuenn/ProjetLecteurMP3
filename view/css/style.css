@@ -1,11 +1,4 @@
-body {
-	background-color:#C6E2DE;
-	
-}
-
-table {
- border-width:1px; 
- border-style:solid; 
- border-color:black;
- width:50%;
+table td, th {
+    border: solid 1px black;
+    padding : 10px;
 }
