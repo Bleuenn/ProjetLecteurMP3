@@ -1,49 +1,35 @@
 <?php
 /**
  * Classe d'accées aux données mongodb
+ * Les données sont récuperé via des requête curl à l'api restheart
  */
 
-require '../vendor/autoload.php';
+class DAO {
 
-$dbhost = "localhost:27017";
-$dbname = "morceau";
+    private $connection;
 
-try {
-    $manager = new MongoDB\Driver\Manager("mongodb://$dbhost");
+    public function __construct(){
+        $this->connection = curl_init();
+    }
 
-    $stats = new MongoDB\Driver\Command(["dbstats" => 1]);
-    $res = $manager->executeCommand("morceau", $stats);
+    public function getAll(){
+        curl_setopt($this->connection, CURLOPT_URL, "127.0.0.1:8080/morceau/morceau");
 
-    $stats = current($res->toArray());
+        curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1);
 
-    print_r($stats);
+        return curl_exec($this->connection);
+    }
 
-} catch (MongoDB\Driver\Exception\Exception $e) {
-    echo $e->getMessage();
+    public function getByTitle($title){
+        curl_setopt($this->connection, CURLOPT_URL, "127.0.0.1:8080/morceau/morceau/?filter={'titre':'$title'}");
 
-    $filename = basename(__FILE__);
+        curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1);
 
-    echo "The $filename script has experienced an error.\n";
-    echo "It failed with the following exception:\n";
+        return curl_exec($this->connection);
+    }
 
-    echo "Exception:", $e->getMessage(), "\n";
-    echo "In file:", $e->getFile(), "\n";
-    echo "On line:", $e->getLine(), "\n";
+    public function close(){
+        curl_close($this->connection);
+    }
+
 }
-finally{
-    $manager->close();
-}
-
-
-/*
-$db = $manager->$dbname;
-
-var_dump($db);
-
-$collection = $db->show();
-
-$cursor = $collection->find();
-
-foreach($cursor as $document){
-    var_dump($document);
-}*/
