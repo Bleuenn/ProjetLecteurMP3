@@ -1,28 +1,18 @@
-sudo: false
-
-pull_requests:
-  do_not_increment_build_number: true
-
 language: php
 
+
+git:
+  depth: 1
+
 php:
-- 7.1
-
-matrix:
-  allow_failures:
-  - php: master
-  fast_finish: true
-
-install:
-- travis_retry composer install --no-interaction --no-suggest
-- composer show --installed
+- 7.2
 
 branches:
-  only: master
+  only:
+    master
 
-before_script:
+before_install:
 - travis_retry composer self-update
+- composer install
 
-after_script:
-- cd vendor/myvendor/app
-- phpunit Tests/ --coverage-clover=coverage.xml
+script: phpunit /model/DAOTest.php
