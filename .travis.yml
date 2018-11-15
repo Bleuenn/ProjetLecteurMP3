@@ -1,5 +1,3 @@
-sudo: true
-
 language: php
 
 
@@ -13,8 +11,9 @@ branches:
   only:
     master
 
-before_install:
-- apt install php-curl -y
+before_script:
+- apt install php-curl
 
 script:
-- cd model/ && phpunit DAOTest.php
+- pwd
+- cd model && phpunit DAOTest.php
