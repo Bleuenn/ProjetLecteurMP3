@@ -1,5 +1,9 @@
 language: php
 
+
+git:
+  depth: 1
+
 php:
 - 7.2
 
@@ -10,5 +14,6 @@ branches:
 before_install:
 - travis_retry composer self-update
 - composer install
+- composer require --dev phpunit/phpunit ^6.5
 
 script: phpunit /model/DAOTest.php
