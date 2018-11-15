@@ -1,3 +1,4 @@
+dist: trusty
 language: php
 
 git:
@@ -10,6 +11,12 @@ branches:
   only:
     master
 
+addons:
+  sonarcloud:
+    organization: "bleuenn-github"
+    token:
+      secure: "tLoJVp1/uxc4ISyO+JHvYsCVRTTtckoKtMMN/bjP2/bMb3sko8FUxBR0/hkM5qI5NxuFT7/o0AZtvMkS6w4aTmTu4VOnsmLZYwx8biT++Px0CnhcuKOE5xSX/wlsGi1PN4/XwB54D0xYmH/qOQ8tfGMxxnZ6nDKv74TcdAdZt8c3/DziZtZNq2vg4PfKW1SS/GyU+V53s0KDHI/2MsfKHu223ZHLTbgJGV0goCSCag53pz74D5ey/nHRQiA4HmAuH052HgKS9l/8IKMpJR8QeXn65OUzvoSHszrUBtorssmsA61PAt+B/7Uu/NmhLBuyL+uokTe1RqUEkQm6DS7OUKwCxTjvWBpLFGTHQHhb6pNX5qrmaDK/0CgX3IZKC0fOCp5QJS7PqhyiTtUfTb3KxrGapwayLIWH7XG8T9BR/5EvDkm2Ce+ym1Fmg4YaA8krKyghXm64BmrrIATxNwkVuF7a/o23ADXUg/XyDVNbfsTNIMDx57A2YmSCzPaR7KTqrLxFPKEbQLNbvLFROguIzEuhCMnCCHAbL4coqyAZX8y2OMA4XFswH9A9Ni+15McprabWM/NGwNscHTMq3tMb+u2u/ZqJlE8rQmFwIjSYBxFFdI2Gbe8hLZaZPOwDXGmGPZ+knpgj6IutSgkA9LcKHgho8HD90FYuwH1vcuaj4l4="
+
 script:
-- pwd
 - cd model && phpunit DAOTest.php
+- sonar-scanner
