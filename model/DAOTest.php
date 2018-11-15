@@ -27,7 +27,7 @@ final class DAOTest extends TestCase
     {
         try{
             $conn = new DAO();
-            $this->assertJson($conn->getByTitle("lilies"));
+            $this->assertJson($conn->getByTitle("Levan+Polka"));
             $conn->close();
         }
         catch (Exception $e){

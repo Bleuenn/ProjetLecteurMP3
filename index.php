@@ -6,12 +6,35 @@
  * Time: 15:38
  */
 
-$action = $_GET['action'] ? $_GET['action'] : null;
+include_once "model/DAO.php";
 
-switch($action){
-    case "all" :
-        include_once'controller/affichageDonneesCtrl.php';
-        break;
-    default:
-        echo "<H1>Erreur page not found</H1>";
+$titre = $_GET['titre'] ? $_GET['titre'] : null;
+
+if(!is_null($titre)){
+
+    //Transfert de données à afficher
+    $dao = new DAO();
+
+    if($titre == "all"){
+        $json = $dao->getAll();
+    }
+    else{
+        try{
+            $titre = str_replace(" ", "+", $titre);
+            $json = $dao->getByTitle($titre);
+        }
+        catch (Exception $e){
+            echo $e->getMessage();
+        }
+
+    }
+
+    $dao->close();
+
+    echo $json;
+
 }
+else{
+    echo "<h1>Bienvenue !</h1>";
+}
+
