@@ -8,7 +8,7 @@
 
 include_once "model/DAO.php";
 
-$_GET['titre'] ? $titre = $_GET['titre'] : $titre = null;
+isset($_GET['titre']) ? $titre = $_GET['titre'] : $titre = null;
 
 if(!is_null($titre)){
 
