@@ -25,7 +25,7 @@ jdk:
 script:
 - cd model
 - phpunit DAOTest.php
-- cd ..
+- cd ../..
 - sonar-scanner
 
 cache:
