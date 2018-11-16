@@ -23,10 +23,10 @@ jdk:
 - oraclejdk8
 
 script:
-- cd model
-- phpunit DAOTest.php
-- cd ..
-- sonar-scanner
+  - cd model
+  - phpunit DAOTest.php
+  - cd ..
+  - sonar-scanner
 
 cache:
   directories:
