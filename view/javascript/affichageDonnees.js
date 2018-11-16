@@ -3,7 +3,9 @@ function afficheData() {
 	postAjax(data, function(json) {
 		let newJson = json['_embedded'];
 
-		console.log(newJson);
+		for (let i = 0; i < newJson.length; i++) {
+			console.log(newJson[i]);
+		}
 
 
 	});
