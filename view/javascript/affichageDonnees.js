@@ -1,7 +1,11 @@
 function afficheData() {
 	var data = document.getElementById('saisie').value;
 	postAjax(data, function(json) {
-		console.log(json);
+		let newJson = json['_embedded'];
+
+		console.log(newJson);
+
+
 	});
 }
 
@@ -18,7 +22,8 @@ function postAjax(value, callback){
 
 	http.onreadystatechange = function() {
 		if (http.readyState === 4 && http.status === 200) {
-			let json = http.responseText;
+			let jsonBrut = http.responseText;
+			let json = JSON.parse(jsonBrut);
 			return callback(json);
 		}
 	};
