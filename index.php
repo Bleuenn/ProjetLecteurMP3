@@ -12,7 +12,6 @@ isset($_GET['titre']) ? $titre = $_GET['titre'] : $titre = null;
 
 if(!is_null($titre)){
 
-    //Transfert de données à afficher
     $dao = new DAO();
 
     if($titre == "all"){
@@ -35,5 +34,6 @@ if(!is_null($titre)){
 }
 else{
     include_once "view/affichage_donnees.php";
+    include_once "view/maquette.php";
 }
 
