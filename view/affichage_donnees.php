@@ -37,6 +37,8 @@
             <input type='submit' value='Recup Infos' onclick="afficheData(this.value)"/>
         </form>
 
+        <p id="affichage"></p>
+
         <script src="view/javascript/affichageDonnees.js"></script>
     </body>
 </html>
