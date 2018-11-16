@@ -9,7 +9,7 @@ class DAO {
     private $connection;
 
     public function __construct(){
-        $this->connection = curl_init(); //TODO voir si curl fonctionne ...
+        $this->connection = curl_init();
     }
 
     public function getAll(){
@@ -17,7 +17,14 @@ class DAO {
 
         curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1);
 
-        return curl_exec($this->connection);
+        try {
+            return curl_exec($this->connection);
+        }
+        catch (Exception $e){
+            echo $e->getMessage();
+        }
+
+        return false;
     }
 
     public function getByTitle($title){
@@ -25,7 +32,14 @@ class DAO {
 
         curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1);
 
-        return curl_exec($this->connection);
+        try {
+            return curl_exec($this->connection);
+        }
+        catch (Exception $e){
+            echo $e->getMessage();
+        }
+
+        return false;
     }
 
     public function close(){
