@@ -9,7 +9,7 @@ class DAO {
     private $connection;
 
     public function __construct(){
-        $this->connection = curl_init();
+        $this->connection = curl_init(); //TODO voir si curl fonctionne ...
     }
 
     public function getAll(){
