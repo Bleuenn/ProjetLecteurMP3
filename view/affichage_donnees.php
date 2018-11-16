@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Lecteur mp3</title>
-		<link rel="stylesheet" type="text/css" href="view/css//style.css" />
+		<link rel="stylesheet" type="text/css" href="view/css/style.css" />
 	</head>
 
 	<body>
@@ -16,18 +16,11 @@
                     <th>Titre de la musique</th>
                     <th>Nom de l 'artiste</th>
                     <th>Année de mise en vente</th>
-                    <th>Genre de la musique</th>
-                    <th>Pays d 'origine de l 'artiste</th>
+                    <th>Nombre de like</th>
+                    <th>Chemin du MP3</th>
                 </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>TitreEx</td>
-                        <td>NomEx</td>
-                        <td>AnnéeEx</td>
-                        <td>GenreEx</td>
-                        <td>PaysEx</td>
-                    </tr>
+                <tbody id="bodyTableau">
                 </tbody>
             </table>
         </div>

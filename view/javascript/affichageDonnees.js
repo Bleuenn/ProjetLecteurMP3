@@ -1,10 +1,38 @@
 function afficheData() {
-	var data = document.getElementById('saisie').value;
+	let data = document.getElementById('saisie').value;
 	postAjax(data, function(json) {
-		console.log(json);
-		let p = document.getElementById('affichage');
-		p.innerText = json;
+		let body = document.getElementById('bodyTableau');
+		for (let i = 0; i < json.length; i++) {
+			let title = json[i].titre,
+				artiste = json[i].artiste.nom,
+				annee = json[i].annee,
+				nbLike = json[i].nbLike,
+				chemin = json[i].cheminMP3;
 
+			let tr = document.createElement('tr'),
+				tdTitle = document.createElement('td'),
+				tdArtiste = document.createElement('td'),
+				tdAnnee = document.createElement('td'),
+				tdLike = document.createElement('td'),
+				tdChemin = document.createElement('td');
+
+			tdTitle.innerText = title;
+			tdArtiste.innerText = artiste;
+			tdAnnee.innerText = annee;
+			tdLike.innerText = nbLike;
+			tdChemin.innerText = chemin;
+
+			if (tdTitle !== null) tr.appendChild(tdTitle);
+			if (tdArtiste !== null) tr.appendChild(tdArtiste);
+			if (tdAnnee !== null) tr.appendChild(tdAnnee);
+			if (tdLike !== null) tr.appendChild(tdLike);
+			if (tdChemin !== null) tr.appendChild(tdChemin);
+
+			if (tr.innerText !== "" ) body.appendChild(tr);
+		}
+
+		let p = document.getElementById('affichage');
+		p.innerText = JSON.stringify(json);
 	});
 }
 
@@ -24,7 +52,6 @@ function postAjax(value, callback){
 			let jsonBrut = http.responseText;
 			let json = JSON.parse(jsonBrut);
 			let newJson = json['_embedded'];
-			let test = {};
 			return callback(newJson);
 		}
 	};
