@@ -18,8 +18,15 @@ addons:
     token:
       secure: "U4HFQR2sXVX8W7G5gwgchIXFC83eoRpA0BwDGz9e6EEFsM3m9PUL07/m/zzDIQjjp0aIPMwgDpfA9RpOVGGNJdlUay9hQNpGnmr0+D3s3EEdhUmJHmENxtfFgSKiB/i2ao2gJpVvb9AIerPn9pkQ2Bxn6cUGPzQ7nyWNwrE1fe4/uT+1eoh+0H9C8b8Rf0o8uNleVh5X/wTzAFNqE7xWFGJ78ELWO5IwT0njBxIsPgxraX2pjoXAsML9zDdZkRTnx2WQ/Bktf64EBcNZEUXHRvGZEjm0uIWKB+QBiFOL+xNDv5lYtfnFqsAOYWnTRGe6SgS3awrZE7U12xmfrDtplJ8fih6fbAKzNVLLB5hUnuOwdNShAb7dVj4YHWdckyfyExtjwyEvA5JpsmLwH2+Y0SMoeSqBzBO2yRxvIvq7g+jDoCg7HFxvzAzNx1SlHATWYkZoWEa3wDDpRTTKxxB0aDycBZ0XmW0s8xV2hhm04ZVTPuoAEmaGE9X840AMo9YOMpnFfH8rSVjjiKm7tm4dw41IUxJO8i7QrxMKrMH0GJ6ifvdzECpvVyjkdld7AFNDzROlACcQzCunJQd1FNJKfcKK0Z5iLtEhOKOVZFt2dJqBvNDwMGQJZtpoOA/3c0jv/cR8AJix4wHHHq62N2DyCzaudEKQTjo75yZPckmRFWA="
 
+jdk:
+- oraclejdk8
+
 script:
 - cd model
 - phpunit DAOTest.php
 - cd ..
 - sonar-scanner
+
+cache:
+  directories:
+  - '$HOME/.sonar/cache'
