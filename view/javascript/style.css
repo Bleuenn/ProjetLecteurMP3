@@ -11,5 +11,24 @@
 }
 
 svg {
-    background: lightgrey;
+    background-image: -webkit-linear-gradient(right, #FC7864, #FDA366);
+    background-image: -moz-linear-gradient(right, #FC7864, #FDA366);
+    background-image: -o-linear-gradient(right, #FC7864, #FDA366);
+    background-image: -ms-linear-gradient(right, #FC7864, #FDA366);
+    background-image: linear-gradient(right, #FC7864, #FDA366);
 }
+
+rect:hover {
+    fill: orangered !important;
+    transition: fill .0s;
+}
+
+rect {
+    fill: white !important;
+    transition: fill 3s ease-in-out;
+}
+
+/*rect:hover::after {
+    fill: white !important;
+    transition-duration: 200ms;
+}*/

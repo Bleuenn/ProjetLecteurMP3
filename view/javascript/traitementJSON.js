@@ -60,9 +60,9 @@ function drawCanvas(data) {
  */
 function drawSvg(data) {
     let svg = document.getElementById('svg'),
-        height = 150,
-        width = 800,
-        largeurRect = 2,
+        height = 100,
+        width = 1920,
+        largeurRect = 5,
         w3c = "http://www.w3.org/2000/svg";
 
     svg.setAttribute("width", width + "px");
@@ -70,26 +70,25 @@ function drawSvg(data) {
 
     for (let i = 0; i < data.length; i++) {
         let rect = document.createElementNS(w3c, 'rect'),
-            value = data[i],
-            randomR = Math.floor(Math.random() * 256),
-            randomG = Math.floor(Math.random() * 256),
-            randomB = Math.floor(Math.random() * 256);
+            value = data[i];
         ;
 
         if (value === 0) {
-            value++;
+            value = 2;
         }
 
-        rect.setAttributeNS(null, "id", "barreNumero" + i);
+        //rect.setAttributeNS(null, "id", "barreNumero" + i);
+        //rect.setAttributeNS(null, "class", "barreSvg");
         rect.setAttributeNS(null, "x", i * width / data.length + largeurRect);
         rect.setAttributeNS(null, "y", height - value + "");
         rect.setAttributeNS(null, "width", largeurRect + "");
         rect.setAttributeNS(null, "height", value);
-        rect.setAttributeNS(null, "style", "fill: rgb(" + randomR + "," + randomG + "," + randomB + ")");
+        rect.setAttributeNS(null, "style", "fill: white");
 
         svg.appendChild(rect);
     }
 }
+
 
 /**
  * Joue la musique musique en paramètre.
