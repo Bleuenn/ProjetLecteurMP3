@@ -2,3 +2,65 @@ table td, th {
     border: solid 1px black;
     padding : 10px;
 }
+
+.audioplayer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-left: 15vw;
+    max-width: 850px;
+    max-height: 250px;
+    height: 15vw;
+    background: burlywood;
+}
+
+.visuel{
+    position: absolute;
+    width: 15vw;
+    height: 15vw;
+    max-width: 850px;
+    max-height: 250px;
+    left: 0;
+    background: url("../img/chansons.jpg") no-repeat;
+    background-size: contain;
+}
+
+.infos{
+    flex: 1 25%;
+    order: 1;
+    background-color: coral;
+    display: flex;
+}
+
+.controls{
+    order: 5;
+    background-colowr: brown;
+}
+
+.temps{
+    display: flex;
+    order: 4;
+    background-color: aqua;
+}
+
+.statistiques{
+    display: flex;
+    order: 6;
+    background-color: aquamarine;
+}
+
+.social{
+    display: flex;
+    order: 2;
+    flex: 1 25%;
+    background-color: darkmagenta;
+
+    justify-content: flex-end;
+}
+.waveform{
+    order: 3;
+    flex:1 100%;
+    height: 5vw;
+    background-color: cadetblue;
+}

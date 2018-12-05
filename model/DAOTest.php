@@ -24,6 +24,9 @@ final class DAOTest extends TestCase
         }
     }
 
+    /**
+     * Test de récuperation d'un titre avec un espace
+     */
     public function testGetByTitleWithSpace()
     {
         try{
@@ -36,6 +39,9 @@ final class DAOTest extends TestCase
         }
     }
 
+    /**
+     * Test de récuperation d'un titre sans espace
+     */
     public function testGetByTitleWithoutSpace()
     {
         try{

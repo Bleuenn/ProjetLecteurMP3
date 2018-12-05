@@ -33,7 +33,6 @@ if(!is_null($titre)){
 
 }
 else{
-    include_once "view/affichage_donnees.php";
     include_once "view/maquette.php";
 }
 
