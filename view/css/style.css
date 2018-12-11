@@ -15,18 +15,15 @@ body{
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: stretch;
-    max-height: 250px;
     height: 15vw;
-    background: burlywood;
+    background-color: brown;
 }
 
 .visuel{
     position: absolute;
-    width: 15vw;
+    width: 15%;
     height: 15vw;
-    max-width: 850px;
-    max-height: 250px;
-    background: url("../img/chansons.jpg") no-repeat;
+    background: url("../img/chansons.jpg") no-repeat crimson;
     background-size: contain;
 }
 
@@ -35,9 +32,8 @@ body{
     align-self: flex-start;
     flex: 1 25%;
     order: 1;
-    background-color: coral;
-    margin-left: 15vw;
-    height: 2vw;
+    margin-left: 15%;
+    height: 10%;
     max-height: 33px;
 }
 
@@ -45,19 +41,16 @@ body{
     display: flex;
     align-self: flex-end;
     order: 5;
-    background-color: brown;
-    height: 3vw;
+    height: 10%;
     max-height: 50px;
-
 }
 
 .temps{
     display: flex;
-    order: 4;
-    background-color: aqua;
-    margin-left: 15vw;
     align-self: flex-end;
-    height: 3vw;
+    order: 4;
+    margin-left: 15%;
+    height: 10%;
     max-height: 50px;
 }
 
@@ -65,8 +58,7 @@ body{
     display: flex;
     align-self: flex-end;
     order: 6;
-    background-color: aquamarine;
-    height: 3vw;
+    height: 10%;
     max-height: 50px;
 }
 
@@ -75,9 +67,8 @@ body{
     align-self: flex-start;
     order: 2;
     flex: 1 25%;
-    background-color: darkmagenta;
     justify-content: flex-end;
-    height: 2vw;
+    height: 10%;
     max-height: 33px;
 }
 
@@ -87,10 +78,9 @@ body{
     order: 3;
     flex:1 100%;
     flex-grow: 8;
-    background-color: cadetblue;
-    height: 10vw;
+    height: 70%;
     max-height: 167px;
-    margin-left: 15vw;
+    margin-left: 15%;
 }
 
 /* ---------------------------------------------------------------- */
@@ -102,7 +92,6 @@ body{
 
 svg {
     display: flex;
-    background-color: darkslategrey;
     width: 100%;
     height: 100%;
 }
@@ -114,5 +103,28 @@ rect:hover {
 
 rect {
     fill: white !important;
+    border: solid black 1px!important;
     transition: fill 1s ease-in-out;
+}
+
+@media all and (min-width: 1497px) {
+    .audioplayer{
+        max-height: 250px;
+    }
+
+    .visuel{
+        max-height: 250px;
+        max-width: 250px;
+    }
+    .waveform{
+        margin-left: 250px;
+    }
+
+    .infos{
+        margin-left: 250px;
+    }
+
+    .temps{
+        margin-left: 250px;
+    }
 }

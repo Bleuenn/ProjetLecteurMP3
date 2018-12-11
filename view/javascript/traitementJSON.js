@@ -104,13 +104,13 @@ function drawSvg(data) {
 	let svg = document.getElementById('svg'),
 		height = getheightWaveForm(),
 		width = getWidthWaveForm(),
-		largeurRect = 1,
+		largeurRect = 3,
 		w3c = "http://www.w3.org/2000/svg";
 
 	console.log(data.length);
 
 	let maxHBar = getMax();
-	let nombreDeBarre = 450;
+	let nombreDeBarre = 200;
 	for (let i = 0; i < nombreDeBarre; i++) {
 		let rect = document.createElementNS(w3c, 'rect'),
 			value = (getheightWaveForm() * data[i]) / maxHBar;
