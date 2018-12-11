@@ -16,6 +16,8 @@ svg {
     background-image: -o-linear-gradient(right, #FC7864, #FDA366);
     background-image: -ms-linear-gradient(right, #FC7864, #FDA366);
     background-image: linear-gradient(right, #FC7864, #FDA366);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 rect:hover {
@@ -28,7 +30,12 @@ rect {
     transition: fill 3s ease-in-out;
 }
 
-/*rect:hover::after {
-    fill: white !important;
-    transition-duration: 200ms;
-}*/
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    vertical-align: middle;
+    overflow: hidden;
+    text-align: center;
+}

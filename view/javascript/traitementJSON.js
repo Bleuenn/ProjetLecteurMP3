@@ -3,14 +3,16 @@
  * @returns {Array} tableau contenant les couples de données positives et négatives.
  */
 function getData() {
-    let json = {
-        "sample_rate": 48000,
-        "samples_per_pixel": 48000,
-        "bits": 8,
-        "length": 226,
-        "data": [0, 0, -8, 8, -7, 7, -10, 9, -8, 7, -11, 10, -9, 9, -9, 8, -9, 7, -43, 44, -44, 48, -37, 41, -40, 41, -36, 37, -36, 42, -41, 34, -42, 41, -39, 45, -71, 46, -35, 52, -37, 44, -46, 45, -45, 43, -52, 40, -37, 43, -40, 54, -40, 40, -49, 46, -37, 44, -42, 49, -44, 45, -43, 45, -48, 44, -36, 46, -48, 48, -40, 41, -39, 45, -36, 40, -43, 53, -41, 37, -44, 47, -39, 43, -44, 50, -47, 42, -37, 44, -47, 44, -35, 38, -38, 45, -60, 45, -38, 58, -58, 52, -49, 47, -58, 68, -49, 71, -60, 65, -49, 54, -55, 52, -59, 65, -46, 50, -55, 61, -64, 66, -55, 70, -55, 53, -44, 46, -54, 71, -43, 61, -57, 46, -44, 58, -37, 39, -47, 47, -37, 41, -50, 55, -44, 53, -42, 47, -37, 46, -43, 47, -40, 47, -43, 51, -45, 56, -54, 65, -42, 51, -47, 50, -54, 48, -46, 62, -70, 60, -60, 76, -55, 57, -50, 64, -75, 52, -59, 78, -51, 49, -48, 46, -61, 67, -65, 64, -47, 46, -48, 49, -62, 72, -68, 79, -51, 57, -53, 55, -41, 52, -47, 58, -50, 53, -49, 48, -50, 49, -56, 53, -54, 49, -58, 43, -47, 48, -43, 64, -44, 47, -47, 46, -48, 46, -41, 52, -62, 50, -50, 59, -51, 42, -47, 42, -47, 45, -46, 48, -57, 41, -43, 56, -40, 40, -55, 55, -47, 43, -43, 45, -46, 42, -52, 44, -53, 54, -40, 44, -47, 44, -52, 45, -40, 52, -56, 52, -53, 52, -44, 39, -38, 40, -51, 54, -39, 42, -44, 44, -45, 50, -50, 45, -38, 42, -51, 41, -42, 41, -46, 44, -47, 44, -43, 43, -43, 40, -47, 43, -46, 57, -38, 39, -56, 51, -46, 46, -43, 45, -57, 50, -58, 48, -52, 47, -47, 50, -53, 51, -55, 67, -46, 46, -51, 46, -52, 49, -52, 52, -55, 52, -46, 62, -71, 65, -60, 62, -60, 59, -52, 52, -57, 47, -43, 45, -53, 57, -55, 64, -54, 42, -39, 52, -46, 52, -42, 44, -43, 43, -46, 44, -56, 49, -44, 44, -46, 46, -51, 61, -51, 45, -44, 47, -47, 50, -52, 57, -41, 49, -52, 43, -56, 50, -43, 49, -51, 48, -45, 44, -52, 39, -40, 46, -52, 44, -52, 46, -39, 46, -45, 41, -56, 41, -47, 41, -41, 38, -45, 49, -50, 53, -44, 44, -39, 47, -57, 43, -27, 35, -24, 25, -19, 18, -11, 13, -10, 12, -7, 7, -3, 3, -1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    };
-    return deleteOdd(json.data);
+	let json = {
+		"version": 2,
+		"channels": 1,
+		"sample_rate": 48000,
+		"samples_per_pixel": 48000,
+		"bits": 8,
+		"length": 451,
+		"data": [-6, 6, -8, 9, -9, 7, -9, 9, -5, 5, -11, 10, -12, 11, -13, 10, -8, 8, -6, 6, -12, 11, -10, 8, -13, 11, -13, 11, -9, 8, -10, 9, -8, 9, -7, 6, -5, 6, -5, 4, -6, 5, -5, 5, -6, 5, -6, 7, -5, 6, -4, 4, -5, 4, -7, 7, -6, 8, -5, 6, -5, 5, -8, 7, -8, 9, -7, 7, -5, 5, -5, 4, -5, 5, -4, 4, -2, 2, -3, 3, -4, 3, -5, 5, -6, 7, -6, 6, -7, 7, -7, 8, -11, 11, -8, 8, -5, 4, -7, 7, -7, 8, -4, 2, -1, 2, -3, 3, -10, 11, -13, 14, -8, 8, -7, 8, -3, 3, -6, 6, -5, 5, -2, 2, -4, 4, -4, 3, -2, 1, 0, 0, 0, 0, -1, 1, -2, 2, -2, 2, -2, 1, -2, 2, -6, 5, -10, 9, -8, 8, -7, 5, -7, 7, -9, 8, -9, 8, -5, 6, -4, 3, -2, 3, -5, 5, -6, 6, -7, 8, -8, 9, -7, 7, -4, 4, -3, 3, -8, 8, -8, 10, -7, 8, -5, 7, -8, 10, -9, 9, -11, 9, -5, 4, -6, 6, -8, 7, -7, 7, -7, 7, -12, 12, -15, 15, -16, 14, -19, 19, -36, 28, -26, 24, -28, 25, -24, 26, -14, 15, -21, 18, -26, 27, -25, 29, -16, 19, -29, 23, -30, 29, -19, 21, -18, 18, -18, 19, -30, 28, -20, 20, -25, 24, -28, 26, -22, 25, -25, 25, -27, 26, -17, 15, -23, 20, -27, 28, -21, 19, -15, 13, -29, 26, -25, 26, -31, 27, -16, 19, -32, 29, -35, 31, -60, 35, -37, 40, -9, 11, -11, 11, -13, 12, -10, 11, -12, 9, -8, 8, -8, 10, -11, 13, -9, 9, -7, 6, -7, 6, -8, 7, -11, 9, -13, 14, -11, 12, -12, 13, -9, 7, -5, 7, -12, 15, -10, 11, -10, 9, -9, 8, -8, 10, -8, 10, -11, 11, -9, 7, -8, 11, -9, 9, -10, 10, -12, 10, -15, 14, -22, 24, -25, 23, -19, 22, -33, 30, -28, 29, -29, 23, -18, 21, -25, 26, -30, 33, -32, 28, -23, 23, -21, 24, -33, 32, -27, 31, -30, 30, -12, 13, -21, 20, -29, 30, -22, 25, -23, 22, -25, 23, -23, 24, -26, 31, -19, 23, -25, 20, -28, 24, -22, 24, -23, 19, -11, 13, -25, 19, -23, 25, -25, 23, -11, 12, -30, 23, -35, 35, -33, 33, -33, 33, -11, 10, -10, 10, -7, 8, -11, 11, -7, 6, -11, 9, -9, 9, -10, 9, -10, 10, -14, 13, -13, 15, -8, 9, -10, 9, -8, 9, -10, 12, -11, 10, -8, 8, -3, 4, -6, 6, -9, 8, -7, 8, -9, 9, -8, 7, -6, 7, -6, 6, -8, 9, -8, 8, -10, 12, -10, 10, -8, 8, -6, 7, -10, 8, -12, 11, -9, 9, -36, 33, -29, 26, -27, 28, -22, 24, -22, 22, -30, 35, -22, 17, -15, 18, -14, 18, -21, 23, -13, 12, -13, 11, -14, 12, -11, 12, -10, 11, -10, 11, -12, 12, -25, 21, -25, 29, -27, 22, -26, 33, -24, 24, -22, 21, -18, 22, -18, 26, -13, 16, -15, 13, -16, 19, -14, 16, -17, 17, -12, 16, -24, 17, -24, 27, -17, 15, -8, 10, -13, 12, -11, 10, -12, 10, -8, 8, -14, 13, -11, 12, -12, 13, -11, 14, -13, 16, -14, 12, -14, 12, -13, 11, -20, 20, -25, 24, -29, 26, -41, 37, -38, 42, -24, 31, -33, 37, -24, 28, -8, 8, -4, 5, -6, 7, -6, 5, -4, 6, -11, 9, -13, 16, -13, 13, -12, 11, -8, 9, -13, 14, -14, 17, -11, 14, -12, 10, -6, 8, -9, 9, -10, 13, -14, 16, -18, 20, -28, 24, -26, 25, -17, 19, -15, 15, -19, 14, -13, 12, -18, 13, -10, 8, -13, 12, -15, 14, -14, 14, -13, 13, -9, 9, -14, 16, -15, 12, -17, 17, -27, 29, -31, 31, -22, 22, -28, 33, -35, 33, -31, 28, -26, 31, -22, 21, -27, 20, -26, 29, -31, 28, -21, 21, -18, 19, -30, 25, -25, 31, -23, 24, -14, 18, -25, 23, -29, 29, -22, 22, -30, 26, -30, 26, -24, 24, -29, 27, -19, 19, -20, 19, -25, 23, -30, 31, -31, 26, -17, 18, -21, 24, -22, 22, -24, 28, -15, 17, -23, 25, -39, 40, -37, 42, -40, 42, -42, 40, -52, 61, -56, 76, -49, 48, -41, 45, -47, 50, -52, 49, -60, 53, -42, 36, -6, 9, -12, 14, -15, 15, -15, 13, -11, 12, -14, 17, -20, 19, -18, 17, -12, 16, -8, 8, -9, 9, -9, 11, -17, 15, -26, 30, -33, 37, -42, 37, -45, 39, -47, 48, -53, 60, -47, 42, -38, 39, -38, 41, -46, 49, -38, 43, -54, 41, -37, 46, -45, 36, -38, 37, -31, 34, -31, 29, -37, 35, -36, 33, -29, 30, -27, 26, -44, 39, -40, 39, -33, 37, -11, 10, -22, 19, -29, 29, -46, 44, -39, 51, -55, 66, -57, 53, -55, 57, -26, 26, -44, 54, -49, 41, -39, 45, -24, 25, -35, 34, -32, 31, -33, 31, -9, 8, -13, 17, -23, 24, -40, 29, -40, 43, -51, 49, -58, 50, -63, 59, -57, 48, -51, 55, -49, 56, -44, 46, -49, 55, -75, 65, -68, 64, -72, 75, -76, 64, -3, 3, 0, 0, 0, 0]
+	};
+	return deleteOdd(json.data);
 }
 
 /**
@@ -19,12 +21,13 @@ function getData() {
  * @returns {Array} tableau avec seulement des données positives.
  */
 function deleteOdd(data) {
-    //console.log(data.length);
-    let tableau = [];
-    for (let i = 1; i < data.length - 1; i = i + 2) {
-        tableau.push(data[i]);
-    }
-    return tableau;
+	console.log(data.length);
+	let tableau = [];
+	for (let i = 1; i < data.length - 1; i = i + 2) {
+		//console.log(data[i]);
+		tableau.push(Math.floor(data[i] * 2));
+	}
+	return tableau;
 }
 
 /**
@@ -32,26 +35,27 @@ function deleteOdd(data) {
  * du fichier JSON généré par audiowaveform.
  * @param data tableau contenant des données positives.
  */
-function drawCanvas(data) {
-    let ctx = document.getElementById("canvas").getContext('2d');
-    let canvas = document.getElementById("canvas");
-    let height = 150;
-    let width = window.innerWidth;
 
-    canvas.setAttribute("width", "" + width);
-    canvas.setAttribute("height", "" + height);
+/*function drawCanvas(data) {
+	let ctx = document.getElementById("canvas").getContext('2d');
+	let canvas = document.getElementById("canvas");
+	let height = 150;
+	let width = window.innerWidth;
 
-    for (let i = 0; i < data.length; i++) {
-        ctx.strokeStyle = "#C70039";
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.moveTo((i * width / data.length) + ctx.lineWidth + 1, height);
-        ctx.lineTo((i * width / data.length) + ctx.lineWidth + 1, data[i]);
-        ctx.stroke();
+	canvas.setAttribute("width", "" + width);
+	canvas.setAttribute("height", "" + height);
 
-        ctx.closePath();
-    }
-}
+	for (let i = 0; i < data.length; i++) {
+		ctx.strokeStyle = "#C70039";
+		ctx.lineWidth = 3;
+		ctx.beginPath();
+		ctx.moveTo((i * width / data.length) + ctx.lineWidth + 1, height);
+		ctx.lineTo((i * width / data.length) + ctx.lineWidth + 1, data[i]);
+		ctx.stroke();
+
+		ctx.closePath();
+	}
+}*/
 
 /**
  * Dessine dans une balise SVG les barres verticales d'une hauteur différente en
@@ -59,34 +63,35 @@ function drawCanvas(data) {
  * @param data
  */
 function drawSvg(data) {
-    let svg = document.getElementById('svg'),
-        height = 100,
-        width = 1920,
-        largeurRect = 5,
-        w3c = "http://www.w3.org/2000/svg";
+	let svg = document.getElementById('svg'),
+		height = 250,
+		width = 1000,
+		largeurRect = 1,
+		w3c = "http://www.w3.org/2000/svg";
 
-    svg.setAttribute("width", width + "px");
-    svg.setAttribute("height", height + "px");
+	svg.setAttribute("width", width + "px");
+	svg.setAttribute("height", height + "px");
 
-    for (let i = 0; i < data.length; i++) {
-        let rect = document.createElementNS(w3c, 'rect'),
-            value = data[i];
-        ;
+	let nombreDeBarre = 500;
+	for (let i = 0; i < nombreDeBarre; i++) {
+		let rect = document.createElementNS(w3c, 'rect'),
+			value = data[i];
+		;
 
-        if (value === 0) {
-            value = 2;
-        }
+		if (value === 0) {
+			value = 2;
+		}
 
-        //rect.setAttributeNS(null, "id", "barreNumero" + i);
-        //rect.setAttributeNS(null, "class", "barreSvg");
-        rect.setAttributeNS(null, "x", i * width / data.length + largeurRect);
-        rect.setAttributeNS(null, "y", height - value + "");
-        rect.setAttributeNS(null, "width", largeurRect + "");
-        rect.setAttributeNS(null, "height", value);
-        rect.setAttributeNS(null, "style", "fill: white");
+		rect.setAttributeNS(null, "id", "barreNumero" + i);
+		//rect.setAttributeNS(null, "class", "barreSvg");
+		rect.setAttributeNS(null, "x", i * width / nombreDeBarre + largeurRect);
+		rect.setAttributeNS(null, "y", height - value + "");
+		rect.setAttributeNS(null, "width", largeurRect + "");
+		rect.setAttributeNS(null, "height", value);
+		rect.setAttributeNS(null, "style", "fill: white");
 
-        svg.appendChild(rect);
-    }
+		svg.appendChild(rect);
+	}
 }
 
 
@@ -95,23 +100,23 @@ function drawSvg(data) {
  * @param chemin chemin de la musique.
  */
 function player(chemin) {
-    let musique = new Audio(chemin);
-    let boutonLecteur = document.getElementById('boutonLecteur');
-    let enLecture = false;
+	let musique = new Audio(chemin);
+	let boutonLecteur = document.getElementById('boutonLecteur');
+	let enLecture = false;
 
-    boutonLecteur.addEventListener('click', function () {
+	boutonLecteur.addEventListener('click', function () {
 
-        if (!enLecture) {
-            musique.play();
-            enLecture = true;
-            boutonLecteur.innerText = "Stop";
-        } else {
-            musique.pause();
-            enLecture = false;
-            musique.currentTime = 0;
-            boutonLecteur.innerText = "Play";
-        }
-    });
+		if (!enLecture) {
+			musique.play();
+			enLecture = true;
+			boutonLecteur.innerText = "Stop";
+		} else {
+			musique.pause();
+			enLecture = false;
+			musique.currentTime = 0;
+			boutonLecteur.innerText = "Play";
+		}
+	});
 
 }
 
@@ -119,10 +124,16 @@ function player(chemin) {
  * Fonction main...
  */
 function main() {
-    drawCanvas(getData());
-    drawSvg(getData());
-    player('../../python/flowers.mp3');
+	//drawCanvas(getData());
+	drawSvg(getData());
+	player('../../python/flowers.mp3');
 }
 
 
 main();
+
+let rect = document.querySelectorAll('rect');
+
+rect.addEventListener('click', function (e) {
+	console.log(e.target());
+});
