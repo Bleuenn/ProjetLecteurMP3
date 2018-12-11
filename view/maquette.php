@@ -26,10 +26,10 @@
                  preserveAspectRatio="xMinYMin meet" -->
         </div>
         <div class='controls'>
-            <button class='prev'>Précédent</button>
-            <button class='play-pause play'>Lecture</button>
-            <button class='next'>Suivant</button>
-            <button class='volume' data-vaue='90'>Volume</button>
+            <button class='prev'>0</button>
+            <button class='play-pause play'>4</button>
+            <button class='next'>2</button>
+            <button class='volume' data-vaue='90'>7</button>
         </div>
         <div class='temps'>
             <div class='en-cours'>1:31</div>
