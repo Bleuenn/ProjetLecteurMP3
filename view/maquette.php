@@ -20,7 +20,11 @@
             <div class='artiste'>Nom de l'artiste</div>
             <div class='titre'>Nom du morceau</div>
         </div>
-        <div class="waveform"></div>
+        <div class="waveform">
+            <svg xmlns="http://www.w3.org/2000/svg" id="svg"/>
+            <!-- viewBox="0 0 250 1000"
+                 preserveAspectRatio="xMinYMin meet" -->
+        </div>
         <div class='controls'>
             <button class='prev'>Précédent</button>
             <button class='play-pause play'>Lecture</button>
@@ -41,3 +45,7 @@
         </div>
     </div>
 </body>
+
+<script src="view/javascript/traitementJSON.js"></script>
+<script src="view/javascript/soundmanager2/soundmanager2.js"></script>
+

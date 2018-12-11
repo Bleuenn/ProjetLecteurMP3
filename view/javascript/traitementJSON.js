@@ -30,6 +30,44 @@ function deleteOdd(data) {
 	return tableau;
 }
 
+function getWidthWaveForm(){
+    let element = document.getElementsByClassName('waveform')[0];
+    let style = window.getComputedStyle(element);
+    let largeur = style.getPropertyValue('width');
+
+    return parseInt(largeur);
+}
+
+function getheightWaveForm(){
+    let element = document.getElementsByClassName('waveform')[0];
+    let style = window.getComputedStyle(element);
+    let height = style.getPropertyValue('height');
+
+    return parseInt(height);
+}
+
+function getMax(){
+    let tab = getData();
+    let max = 0;
+
+    for (let i = 1; i < tab.length; i++) {
+        if(tab[i] > max){
+            max = tab[i];
+        }
+    }
+
+    return max;
+}
+
+function resizeBar(){
+    let svg = document.getElementById('svg');
+    while (svg.firstChild) {
+        svg.removeChild(svg.firstChild);
+    }
+    
+    drawSvg(getData());
+}
+
 /**
  * Dessine dans un canvas des "barres" verticales en fonction des différentes valeurs
  * du fichier JSON généré par audiowaveform.
@@ -64,19 +102,18 @@ function deleteOdd(data) {
  */
 function drawSvg(data) {
 	let svg = document.getElementById('svg'),
-		height = 250,
-		width = 1000,
+		height = getheightWaveForm(),
+		width = getWidthWaveForm(),
 		largeurRect = 1,
 		w3c = "http://www.w3.org/2000/svg";
 
-	svg.setAttribute("width", width + "px");
-	svg.setAttribute("height", height + "px");
+	console.log(data.length);
 
-	let nombreDeBarre = 500;
+	let maxHBar = getMax();
+	let nombreDeBarre = 450;
 	for (let i = 0; i < nombreDeBarre; i++) {
 		let rect = document.createElementNS(w3c, 'rect'),
-			value = data[i];
-		;
+			value = (getheightWaveForm() * data[i]) / maxHBar;
 
 		if (value === 0) {
 			value = 2;
@@ -85,8 +122,8 @@ function drawSvg(data) {
 		rect.setAttributeNS(null, "id", "barreNumero" + i);
 		//rect.setAttributeNS(null, "class", "barreSvg");
 		rect.setAttributeNS(null, "x", i * width / nombreDeBarre + largeurRect);
-		rect.setAttributeNS(null, "y", height - value + "");
-		rect.setAttributeNS(null, "width", largeurRect + "");
+		rect.setAttributeNS(null, "y", height - value);
+		rect.setAttributeNS(null, "width", largeurRect);
 		rect.setAttributeNS(null, "height", value);
 		rect.setAttributeNS(null, "style", "fill: white");
 
@@ -94,14 +131,13 @@ function drawSvg(data) {
 	}
 }
 
-
 /**
  * Joue la musique musique en paramètre.
  * @param chemin chemin de la musique.
  */
 function player(chemin) {
 	let musique = new Audio(chemin);
-	let boutonLecteur = document.getElementById('boutonLecteur');
+	let boutonLecteur = document.getElementsByClassName('play')[0];
 	let enLecture = false;
 
 	boutonLecteur.addEventListener('click', function () {
@@ -114,7 +150,7 @@ function player(chemin) {
 			musique.pause();
 			enLecture = false;
 			musique.currentTime = 0;
-			boutonLecteur.innerText = "Play";
+			boutonLecteur.innerText = "Lecture";
 		}
 	});
 
@@ -126,14 +162,17 @@ function player(chemin) {
 function main() {
 	//drawCanvas(getData());
 	drawSvg(getData());
-	player('../../python/flowers.mp3');
+
+    window.addEventListener('resize', function(){
+        resizeBar()
+    }, true);
+
+    player('../../python/flowers.mp3');
 }
-
-
 main();
 
-let rect = document.querySelectorAll('rect');
+let rect = document.querySelectorAll('rect')[0];
 
 rect.addEventListener('click', function (e) {
-	console.log(e.target());
+
 });
