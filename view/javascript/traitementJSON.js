@@ -156,12 +156,12 @@ function player(chemin) {
 		if (!enLecture) {
 			musique.play();
 			enLecture = true;
-			boutonLecteur.innerText = "Stop";
+			boutonLecteur.innerText = "";
 		} else {
 			musique.pause();
 			enLecture = false;
 			musique.currentTime = 0;
-			boutonLecteur.innerText = "Lecture";
+			boutonLecteur.innerText = "";
 		}
 	});
 
@@ -184,7 +184,20 @@ function main() {
 main();
 
 let rect = document.querySelectorAll('rect')[0];
+let volume = document.getElementsByClassName('volume')[0];
+let range = null;
 
-rect.addEventListener('click', function (e) {
+volume.addEventListener('mouseover', function(e){
+    if(range === null){
+        range = document.createElement("input");
+        range.setAttribute("type", "range");
+        range.setAttribute("id", "range");
 
+        volume.parentNode.appendChild(range);
+
+        range.addEventListener("mouseout", function (e){
+           volume.parentNode.removeChild(range);
+           range = null;
+        });
+    }
 });

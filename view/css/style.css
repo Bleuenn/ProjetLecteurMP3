@@ -18,6 +18,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-family: sans-serif;
 }
 
 .audioplayer {
@@ -27,7 +28,8 @@ body {
     justify-content: space-between;
     align-content: stretch;
     height: 15vw;
-    box-shadow: black;
+    box-shadow: 5px 5px 15px #a3a6a3;
+    padding: 1%;
 }
 
 .visuel {
@@ -41,6 +43,7 @@ body {
 .infos {
     display: flex;
     align-self: flex-start;
+    align-items: center;
     flex: 1 25%;
     order: 1;
     margin-left: 15%;
@@ -48,8 +51,13 @@ body {
     max-height: 33px;
 }
 
-.infos .artiste {
+.infos > .artiste {
     color: #a3a6a3;
+    margin-right: 20px;
+}
+
+.infos > .titre {
+    font-size: 1.5em;
 }
 
 .controls {
@@ -67,21 +75,39 @@ body {
 }
 
 .controls > .play {
-    padding: 15px 15px 15px 17px;
+    padding: 13px 15px 13px 17px;
+    font-size: 1.5em;
 }
 
 .controls > .prev {
     padding: 7px 10px 7px 7px;
 }
 
-
 .temps {
     display: flex;
     align-self: flex-end;
+    align-items: baseline;
     order: 4;
     margin-left: 15%;
     height: 10%;
     max-height: 50px;
+}
+
+.temps > .en-cours::after{
+    color: #ff5825;
+    font-size: 1.3em;
+    content: "/" ;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.temps > .en-cours{
+    color: #d65b27;
+}
+
+.temps > .total{
+    color: #a3a6a3;
 }
 
 .statistiques {
@@ -95,7 +121,7 @@ body {
 
 .nb-commentaires::before {
     font-family: 'fontello', Fallback, sans-serif;
-    content: "1";
+    content: " ";
     margin-right: 10px;
 }
 
@@ -105,10 +131,9 @@ body {
 
 .nb-lectures::before {
     font-family: 'fontello', Fallback, sans-serif;
-    content: "5";
+    content: " ";
     margin-right: 10px;
 }
-
 
 .social {
     display: flex;
@@ -120,14 +145,22 @@ body {
     max-height: 33px;
 }
 
+.social > button{
+    color: black;
+    background-color: white;
+    border: #babdba 1px solid;
+    border-radius: 5%;
+    margin-left: 15px;
+}
+
 .like::before {
     font-family: 'fontello', Fallback, sans-serif;
-    content: "3 ";
+    content: " ";
 }
 
 .share::before {
     font-family: 'fontello', Fallback, sans-serif;
-    content: "6 ";
+    content: " ";
 }
 
 .waveform {
@@ -139,6 +172,17 @@ body {
     height: 70%;
     max-height: 167px;
     margin-left: 15%;
+}
+
+#range{
+    position: absolute;
+    border: 0;
+    margin-left: -25px;
+    height: 2px;
+    width: 50px;
+    background :#959799;
+    outline: none;
+    -webkit-transform:rotate(90deg);
 }
 
 /* ---------------------------------------------------------------- */
@@ -182,14 +226,14 @@ rect.reverse {
     }
 
     .waveform {
-        margin-left: 250px;
+        margin-left: 275px;
     }
 
     .infos {
-        margin-left: 250px;
+        margin-left: 275px;
     }
 
     .temps {
-        margin-left: 250px;
+        margin-left: 275px;
     }
 }
