@@ -2,6 +2,9 @@
  * Création d'un fichier JSON représentatif d'une sortie d'Audiowaveform.
  * @returns {Array} tableau contenant les couples de données positives et négatives.
  */
+
+var volume = "25";
+
 function getData() {
 	let json = {
 		"version": 2,
@@ -66,6 +69,23 @@ function resizeBar() {
 	}
 
 	drawSvg(getData());
+}
+
+function changeVolume(valeur){
+    let btnVolume = document.getElementsByClassName('volume')[0];
+    if(valeur == 0){
+        btnVolume.innerText = "";
+    }
+    else if(valeur <= 25){
+        btnVolume.innerText = "";
+    }
+    else if(valeur <= 50){
+        btnVolume.innerText = "";
+    }
+    else if(valeur <= 100){
+        btnVolume.innerText = "";
+    }
+    volume = valeur;
 }
 
 /**
@@ -184,20 +204,24 @@ function main() {
 main();
 
 let rect = document.querySelectorAll('rect')[0];
-let volume = document.getElementsByClassName('volume')[0];
+let btnVolume = document.getElementsByClassName('volume')[0];
 let range = null;
 
-volume.addEventListener('mouseover', function(e){
+btnVolume.addEventListener('mouseover', function(e){
     if(range === null){
         range = document.createElement("input");
         range.setAttribute("type", "range");
         range.setAttribute("id", "range");
+        range.setAttribute("value", volume);
 
-        volume.parentNode.appendChild(range);
+        btnVolume.parentNode.appendChild(range);
 
         range.addEventListener("mouseout", function (e){
-           volume.parentNode.removeChild(range);
-           range = null;
+            console.log(range.value);
+            console.log(volume);
+            changeVolume(range.value);
+            btnVolume.parentNode.removeChild(range);
+            range = null;
         });
     }
 });

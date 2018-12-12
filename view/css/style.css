@@ -66,6 +66,7 @@ body {
 }
 
 .controls > button {
+    color: white;
     font-family: 'fontello', Fallback, sans-serif;
     background-color: #ff5825;
     border: none;
@@ -82,6 +83,17 @@ body {
 .controls > .prev {
     padding: 7px 10px 7px 7px;
 }
+
+#range{
+    position: absolute;
+    border: 0;
+    height: 2px;
+    width: 60px;
+    background :#959799;
+    outline: none;
+    -webkit-transform:rotate(-90deg);
+}
+
 
 .temps {
     display: flex;
@@ -172,17 +184,6 @@ body {
     height: 70%;
     max-height: 167px;
     margin-left: 15%;
-}
-
-#range{
-    position: absolute;
-    border: 0;
-    margin-left: -25px;
-    height: 2px;
-    width: 50px;
-    background :#959799;
-    outline: none;
-    -webkit-transform:rotate(90deg);
 }
 
 /* ---------------------------------------------------------------- */
