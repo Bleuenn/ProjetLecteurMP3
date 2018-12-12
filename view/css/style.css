@@ -14,30 +14,25 @@ table td, th {
     padding: 10px;
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-family: sans-serif;
-}
-
 .audioplayer {
+    margin: auto 0;
     position:relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: stretch;
-    height: 15vw;
+    height: 250px;
     box-shadow: 5px 5px 15px #a3a6a3;
     padding: 1%;
+    font-family: sans-serif;
 }
 
 .visuel {
     position: absolute;
-    width: 15%;
-    height: 15vw;
-    background: url("../img/chansons.jpg") no-repeat crimson;
-    background-size: contain;
+    width: 250px;
+    height: 250px;
+    background: url("../img/chansons.jpg") no-repeat;
+    background-size: cover;
 }
 
 .infos {
@@ -46,8 +41,8 @@ body {
     align-items: center;
     flex: 1 25%;
     order: 1;
-    margin-left: 15%;
-    height: 10%;
+    margin-left: 265px;
+    height: 25px;
     max-height: 33px;
 }
 
@@ -103,7 +98,7 @@ body {
     align-self: flex-end;
     align-items: baseline;
     order: 4;
-    margin-left: 15%;
+    margin-left: 265px;
     height: 10%;
     max-height: 50px;
 }
@@ -186,7 +181,7 @@ body {
     flex-grow: 8;
     height: 70%;
     max-height: 167px;
-    margin-left: 15%;
+    margin-left: 265px;
 }
 
 /* ---------------------------------------------------------------- */
