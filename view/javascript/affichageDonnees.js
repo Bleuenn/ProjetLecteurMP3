@@ -22,11 +22,11 @@ function afficheData() {
 			tdLike.innerText = nbLike;
 			tdChemin.innerText = chemin;
 
-			if (tdTitle !== null) tr.appendChild(tdTitle);
-			if (tdArtiste !== null) tr.appendChild(tdArtiste);
-			if (tdAnnee !== null) tr.appendChild(tdAnnee);
-			if (tdLike !== null) tr.appendChild(tdLike);
-			if (tdChemin !== null) tr.appendChild(tdChemin);
+			if (tdTitle != null) tr.appendChild(tdTitle);
+			if (tdArtiste != null) tr.appendChild(tdArtiste);
+			if (tdAnnee != null) tr.appendChild(tdAnnee);
+			if (tdLike != null) tr.appendChild(tdLike);
+			if (tdChemin != null) tr.appendChild(tdChemin);
 
 			if (tr.innerText !== "") body.appendChild(tr);
 		}
