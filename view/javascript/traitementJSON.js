@@ -21,7 +21,7 @@ function getData() {
  * @returns {Array} tableau avec seulement des données positives.
  */
 function deleteOdd(data) {
-	console.log(data.length);
+	//console.log(data.length);
 	let tableau = [];
 	for (let i = 1; i < data.length - 1; i = i + 2) {
 		//console.log(data[i]);
@@ -30,42 +30,42 @@ function deleteOdd(data) {
 	return tableau;
 }
 
-function getWidthWaveForm(){
-    let element = document.getElementsByClassName('waveform')[0];
-    let style = window.getComputedStyle(element);
-    let largeur = style.getPropertyValue('width');
+function getWidthWaveForm() {
+	let element = document.getElementsByClassName('waveform')[0];
+	let style = window.getComputedStyle(element);
+	let largeur = style.getPropertyValue('width');
 
-    return parseInt(largeur);
+	return parseInt(largeur);
 }
 
-function getheightWaveForm(){
-    let element = document.getElementsByClassName('waveform')[0];
-    let style = window.getComputedStyle(element);
-    let height = style.getPropertyValue('height');
+function getheightWaveForm() {
+	let element = document.getElementsByClassName('waveform')[0];
+	let style = window.getComputedStyle(element);
+	let height = style.getPropertyValue('height');
 
-    return parseInt(height);
+	return parseInt(height);
 }
 
-function getMax(){
-    let tab = getData();
-    let max = 0;
+function getMax() {
+	let tab = getData();
+	let max = 0;
 
-    for (let i = 1; i < tab.length; i++) {
-        if(tab[i] > max){
-            max = tab[i];
-        }
-    }
+	for (let i = 1; i < tab.length; i++) {
+		if (tab[i] > max) {
+			max = tab[i];
+		}
+	}
 
-    return max;
+	return max;
 }
 
-function resizeBar(){
-    let svg = document.getElementById('svg');
-    while (svg.firstChild) {
-        svg.removeChild(svg.firstChild);
-    }
-    
-    drawSvg(getData());
+function resizeBar() {
+	let svg = document.getElementById('svg');
+	while (svg.firstChild) {
+		svg.removeChild(svg.firstChild);
+	}
+
+	drawSvg(getData());
 }
 
 /**
@@ -107,27 +107,38 @@ function drawSvg(data) {
 		largeurRect = 3,
 		w3c = "http://www.w3.org/2000/svg";
 
-	console.log(data.length);
+	//console.log(data.length);
 
 	let maxHBar = getMax();
-	let nombreDeBarre = 200;
+	let nombreDeBarre = 300;
 	for (let i = 0; i < nombreDeBarre; i++) {
 		let rect = document.createElementNS(w3c, 'rect'),
-			value = (getheightWaveForm() * data[i]) / maxHBar;
+			reverse = document.createElementNS(w3c, 'rect'),
+			value = (getheightWaveForm() * data[i]) / maxHBar,
+			horizon = (height * 2) / 3;
 
 		if (value === 0) {
-			value = 2;
+			value = 6;
 		}
 
-		rect.setAttributeNS(null, "id", "barreNumero" + i);
 		//rect.setAttributeNS(null, "class", "barreSvg");
+		//rect.setAttributeNS(null, "id", "barreNumero" + i);
 		rect.setAttributeNS(null, "x", i * width / nombreDeBarre + largeurRect);
-		rect.setAttributeNS(null, "y", height - value);
+		rect.setAttributeNS(null, "y", horizon - value);
 		rect.setAttributeNS(null, "width", largeurRect);
 		rect.setAttributeNS(null, "height", value);
-		rect.setAttributeNS(null, "style", "fill: white");
+		//rect.setAttributeNS(null, "style", "fill: white");
+
+		//reverse.setAttributeNS(null, "id", "reverseNumero" + i);
+		reverse.setAttributeNS(null, "class", "reverse");
+		reverse.setAttributeNS(null, "x", i * width / nombreDeBarre + largeurRect);
+		reverse.setAttributeNS(null, "y", horizon + largeurRect);
+		reverse.setAttributeNS(null, "width", largeurRect);
+		reverse.setAttributeNS(null, "height", value / 2);
+		//reverse.setAttributeNS(null, "style", "fill: red !important");
 
 		svg.appendChild(rect);
+		svg.appendChild(reverse);
 	}
 }
 
@@ -163,12 +174,13 @@ function main() {
 	//drawCanvas(getData());
 	drawSvg(getData());
 
-    window.addEventListener('resize', function(){
-        resizeBar()
-    }, true);
+	window.addEventListener('resize', function () {
+		resizeBar()
+	}, true);
 
-    player('../../python/flowers.mp3');
+	player('../../python/flowers.mp3');
 }
+
 main();
 
 let rect = document.querySelectorAll('rect')[0];

@@ -11,16 +11,16 @@
 
 table td, th {
     border: solid 1px black;
-    padding : 10px;
+    padding: 10px;
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.audioplayer{
+.audioplayer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -30,7 +30,7 @@ body{
     box-shadow: black;
 }
 
-.visuel{
+.visuel {
     position: absolute;
     width: 15%;
     height: 15vw;
@@ -38,7 +38,7 @@ body{
     background-size: contain;
 }
 
-.infos{
+.infos {
     display: flex;
     align-self: flex-start;
     flex: 1 25%;
@@ -48,16 +48,16 @@ body{
     max-height: 33px;
 }
 
-.infos .artiste{
+.infos .artiste {
     color: #a3a6a3;
 }
 
-.controls{
+.controls {
     align-self: flex-end;
     order: 5;
 }
 
-.controls > button{
+.controls > button {
     font-family: 'fontello', Fallback, sans-serif;
     background-color: #ff5825;
     border: none;
@@ -66,16 +66,16 @@ body{
     margin-right: 10px;
 }
 
-.controls > .play{
+.controls > .play {
     padding: 15px 15px 15px 17px;
 }
 
-.controls > .prev{
+.controls > .prev {
     padding: 7px 10px 7px 7px;
 }
 
 
-.temps{
+.temps {
     display: flex;
     align-self: flex-end;
     order: 4;
@@ -84,7 +84,7 @@ body{
     max-height: 50px;
 }
 
-.statistiques{
+.statistiques {
     display: flex;
     align-self: flex-end;
     order: 6;
@@ -93,22 +93,24 @@ body{
     color: #a3a6a3;
 }
 
-.nb-commentaires::before{
+.nb-commentaires::before {
     font-family: 'fontello', Fallback, sans-serif;
     content: "1";
     margin-right: 10px;
 }
-.nb-commentaires{ margin-left: 20px;}
 
-.nb-lectures::before{
+.nb-commentaires {
+    margin-left: 20px;
+}
+
+.nb-lectures::before {
     font-family: 'fontello', Fallback, sans-serif;
     content: "5";
     margin-right: 10px;
 }
 
 
-
-.social{
+.social {
     display: flex;
     align-self: flex-start;
     order: 2;
@@ -118,21 +120,21 @@ body{
     max-height: 33px;
 }
 
-.like::before{
+.like::before {
     font-family: 'fontello', Fallback, sans-serif;
     content: "3 ";
 }
 
-.share::before{
+.share::before {
     font-family: 'fontello', Fallback, sans-serif;
     content: "6 ";
 }
 
-.waveform{
+.waveform {
     display: flex;
     align-items: flex-end;
     order: 3;
-    flex:1 100%;
+    flex: 1 100%;
     flex-grow: 8;
     height: 70%;
     max-height: 167px;
@@ -159,28 +161,35 @@ rect:hover {
 
 rect {
     fill: #a3a6a3 !important;
-    border: solid black 1px!important;
+    border: solid black 1px !important;
+    transition: fill 1s ease-in-out;
+}
+
+rect.reverse {
+    fill: #a3a6a391 !important;
+    border: solid black 1px !important;
     transition: fill 1s ease-in-out;
 }
 
 @media all and (min-width: 1497px) {
-    .audioplayer{
+    .audioplayer {
         max-height: 250px;
     }
 
-    .visuel{
+    .visuel {
         max-height: 250px;
         max-width: 250px;
     }
-    .waveform{
+
+    .waveform {
         margin-left: 250px;
     }
 
-    .infos{
+    .infos {
         margin-left: 250px;
     }
 
-    .temps{
+    .temps {
         margin-left: 250px;
     }
 }
