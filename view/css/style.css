@@ -22,8 +22,8 @@ body {
 }
 
 .audioplayer {
+    position:relative;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: stretch;
@@ -61,6 +61,7 @@ body {
 }
 
 .controls {
+    position: relative;
     align-self: flex-end;
     order: 5;
 }
@@ -86,6 +87,8 @@ body {
 
 #range{
     position: absolute;
+    top : 0;
+    right: -45px;
     border: 0;
     height: 2px;
     width: 60px;
