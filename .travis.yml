@@ -1,8 +1,11 @@
 dist: trusty
 sudo: false
 install: true
-
 language: php
+
+git:
+  depth: 1000
+
 php:
   - 7.2
 
