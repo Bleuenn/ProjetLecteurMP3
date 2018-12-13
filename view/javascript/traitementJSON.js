@@ -41,7 +41,7 @@ function getWidthWaveForm() {
 	return parseInt(largeur);
 }
 
-function getheightWaveForm() {
+function getHeightWaveForm() {
 	let element = document.getElementsByClassName('waveform')[0];
 	let style = window.getComputedStyle(element);
 	let height = style.getPropertyValue('height');
@@ -71,22 +71,30 @@ function resizeBar() {
 	drawSvg(getData());
 }
 
-function changeVolume(valeur){
-    let btnVolume = document.getElementsByClassName('volume')[0];
-    if(valeur == 0){
-        btnVolume.innerText = "";
-    }
-    else if(valeur <= 25){
-        btnVolume.innerText = "";
-    }
-    else if(valeur <= 50){
-        btnVolume.innerText = "";
-    }
-    else if(valeur <= 100){
-        btnVolume.innerText = "";
-    }
-    volume = valeur;
+function changeVolume(valeur) {
+	let btnVolume = document.getElementsByClassName('volume')[0];
+	if (valeur === 0) {
+		btnVolume.innerText = "";
+	} else if (valeur <= 25) {
+		btnVolume.innerText = "";
+	} else if (valeur <= 50) {
+		btnVolume.innerText = "";
+	} else if (valeur <= 100) {
+		btnVolume.innerText = "";
+	}
+	volume = valeur;
 }
+
+/**
+ * Cette fonction permet de calculer le nombre de barre que doit posséder le SVG
+ * en fonction de la largeur de la fenêtre
+ * @returns nombreBarre le nombre de barre en fonction de la largeur de l'écran
+ */
+function getNombreBarresResponsive(largeurEcran) {
+	let nombreDeBarres = largeurEcran / 7;
+	return Math.round(nombreDeBarres);
+}
+
 
 /**
  * Dessine dans un canvas des "barres" verticales en fonction des différentes valeurs
@@ -122,28 +130,31 @@ function changeVolume(valeur){
  */
 function drawSvg(data) {
 	let svg = document.getElementById('svg'),
-		height = getheightWaveForm(),
+		height = getHeightWaveForm(),
 		width = getWidthWaveForm(),
-		largeurRect = 3,
+		largeurRect = Math.ceil(getNombreBarresResponsive(window.innerWidth) / 100),
 		w3c = "http://www.w3.org/2000/svg";
 
+	//console.log(largeurRect);
 	//console.log(data.length);
 
 	let maxHBar = getMax();
-	let nombreDeBarre = 300;
+	// let nombreDeBarre = getNombreBarresResponsive(window.innerWidth) > 6 ? getNombreBarresResponsive(window.innerWidth) : 5;
+	let nombreDeBarre = getNombreBarresResponsive(window.innerWidth);
+
 	for (let i = 0; i < nombreDeBarre; i++) {
 		let rect = document.createElementNS(w3c, 'rect'),
 			reverse = document.createElementNS(w3c, 'rect'),
-			value = (getheightWaveForm() * data[i]) / maxHBar,
-			horizon = (height * 2) / 3;
+			value = (getHeightWaveForm() * data[i]) / maxHBar,
+			horizon = (height * 2) / 3; // permet de remonter les barres pour insérer l'effet mirroir en dessous
 
 		if (value === 0) {
 			value = 6;
 		}
 
 		//rect.setAttributeNS(null, "class", "barreSvg");
-		//rect.setAttributeNS(null, "id", "barreNumero" + i);
-		rect.setAttributeNS(null, "x", i * width / nombreDeBarre + largeurRect);
+		rect.setAttributeNS(null, "id", "barreNumero" + i);
+		rect.setAttributeNS(null, "x", i * width / nombreDeBarre);
 		rect.setAttributeNS(null, "y", horizon - value);
 		rect.setAttributeNS(null, "width", largeurRect);
 		rect.setAttributeNS(null, "height", value);
@@ -151,8 +162,8 @@ function drawSvg(data) {
 
 		//reverse.setAttributeNS(null, "id", "reverseNumero" + i);
 		reverse.setAttributeNS(null, "class", "reverse");
-		reverse.setAttributeNS(null, "x", i * width / nombreDeBarre + largeurRect);
-		reverse.setAttributeNS(null, "y", horizon + largeurRect);
+		reverse.setAttributeNS(null, "x", i * width / nombreDeBarre);
+		reverse.setAttributeNS(null, "y", horizon + 3);
 		reverse.setAttributeNS(null, "width", largeurRect);
 		reverse.setAttributeNS(null, "height", value / 2);
 		//reverse.setAttributeNS(null, "style", "fill: red !important");
@@ -196,7 +207,7 @@ function main() {
 
 	window.addEventListener('resize', function () {
 		resizeBar()
-	}, true);
+	}, false);
 
 	player('../../python/flowers.mp3');
 }
@@ -207,21 +218,21 @@ let rect = document.querySelectorAll('rect')[0];
 let btnVolume = document.getElementsByClassName('volume')[0];
 let range = null;
 
-btnVolume.addEventListener('mouseover', function(e){
-    if(range === null){
-        range = document.createElement("input");
-        range.setAttribute("type", "range");
-        range.setAttribute("id", "range");
-        range.setAttribute("value", volume);
+btnVolume.addEventListener('mouseover', function (e) {
+	if (range === null) {
+		range = document.createElement("input");
+		range.setAttribute("type", "range");
+		range.setAttribute("id", "range");
+		range.setAttribute("value", volume);
 
-        btnVolume.parentNode.appendChild(range);
+		btnVolume.parentNode.appendChild(range);
 
-        range.addEventListener("mouseout", function (e){
-            console.log(range.value);
-            console.log(volume);
-            changeVolume(range.value);
-            btnVolume.parentNode.removeChild(range);
-            range = null;
-        });
-    }
+		range.addEventListener("mouseout", function (e) {
+			//console.log(range.value);
+			//console.log(volume);
+			changeVolume(range.value);
+			btnVolume.parentNode.removeChild(range);
+			range = null;
+		});
+	}
 });
