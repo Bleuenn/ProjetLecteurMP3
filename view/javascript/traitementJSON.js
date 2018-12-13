@@ -132,7 +132,7 @@ function drawSvg(data) {
 	let svg = document.getElementById('svg'),
 		height = getHeightWaveForm(),
 		width = getWidthWaveForm(),
-		largeurRect = Math.ceil(getNombreBarresResponsive(window.innerWidth) / 100),
+		largeurRect = Math.ceil(getNombreBarresResponsive(window.innerWidth) / 100 + 1),
 		w3c = "http://www.w3.org/2000/svg";
 
 	//console.log(largeurRect);
