@@ -1,13 +1,10 @@
 dist: trusty
 sudo: false
 install: true
+
 language: php
-
-git:
-  depth: 1
-
 php:
-- 7.2
+  - 7.2
 
 branches:
   only:
@@ -20,14 +17,10 @@ addons:
       secure: "30c2b84f460708d97c920681e5797748dfb3fde0"
 
 jdk:
-- oraclejdk8
+  - oraclejdk8
 
 script:
   - cd model
   - phpunit DAOTest.php
   - cd ..
   - sonar-scanner
-
-cache:
-  directories:
-  - '$HOME/.sonar/cache'
