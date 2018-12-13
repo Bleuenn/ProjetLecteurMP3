@@ -22,8 +22,6 @@
     </div>
     <div class="waveform">
         <svg xmlns="http://www.w3.org/2000/svg" id="svg"/>
-        <!-- viewBox="0 0 250 1000"
-             preserveAspectRatio="xMinYMin meet" -->
     </div>
     <div class='controls'>
         <button class='prev'></button>
