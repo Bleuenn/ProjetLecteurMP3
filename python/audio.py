@@ -75,9 +75,20 @@ def get_final_tab(content_positive, result):
 # Method that make the user download the mandatory package for the script
 def install_mandatory_packages ():
     cache = apt.Cache()
-    if not cache['audiowaveform'].is_installed:
+    try:
+        if not cache['audiowaveform'].is_installed:
+            os.system('sudo add-apt-repository -y ppa:chris-needham/ppa')
+            os.system('sudo apt-get update')
+            os.system('sudo apt-get install -y audiowaveform')
+    except KeyError:
+        os.system('sudo add-apt-repository -y ppa:chris-needham/ppa')
+        os.system('sudo apt-get update')
         os.system('sudo apt-get install -y audiowaveform')
-    if not cache['mediainfo'].is_installed:
+
+    try:
+        if not cache['mediainfo'].is_installed:
+            os.system('sudo apt-get install -y mediainfo')
+    except KeyError:
         os.system('sudo apt-get install -y mediainfo')
 
 # Main function that is launched at the beginning of the script
@@ -90,6 +101,7 @@ def main() :
     pgcd_value = pgcd(duration,stick_number)
     duration = duration * pgcd_value
     result = duration / stick_number
+    os.system('touch musique.json')
     os.system('audiowaveform -i ' + repr(filename) + ' -o musique.json -b 8 --pixels-per-second ' + repr(int(pgcd_value)))
     content = get_file_content('musique.json')
     content_positive = remove_negative_value(content)
