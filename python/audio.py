@@ -1,30 +1,32 @@
 import os
 import json
 import sys
+import apt
 from pprint import pprint
-#os.system('sudo apt-get install audiowaveform')
-#os.system('sudo apt-get install mp3info')
 
 # Method to get the duration in second of the mp3file
-def getDuration(filename):
+# filename : the name of the file
+def get_duration(filename):
     os.system('mediainfo --Inform="Audio;%Duration%" '+ repr(filename) + ' > musique.txt')
-    duration = readFirstLine('musique.txt')
+    duration = read_first_line('musique.txt')
     if duration == '':
         duration = 0
     else:
         duration = int(float(duration)/1000)
-    print duration
+    pprint(duration)
     return duration
 
-# Fonction qui permet de lire la premiere ligne d'un fichier
-# Parametre : nom du fichier
-def readFirstLine(nomFichier):
-    firstLine = ''
-    with open(nomFichier) as fichier:
-        firstLine = fichier.readline()
-    return firstLine
+# Method that read and return the first line of a file
+# filename : the name of the file
+def read_first_line(filename):
+    first_line = ''
+    with open(filename) as file:
+        first_line = file.readline()
+    return first_line
 
-# Fonction qui permet de retourner le PGCD des deux nombres en parametre
+# Method that found the smallest multiplier beetween to number
+# a : the first number
+# b : the second number
 def pgcd(a,b):
 	rep=0
 	if b==0:
@@ -37,56 +39,61 @@ def pgcd(a,b):
 	return rep
 
 # Method used to retrieve the content of the file as a Tab
-def getFileContent(filename):
+# filename : the name of the file
+def get_file_content(filename):
     with open(filename) as content_file:
         content = json.loads(content_file.read())
-        contentData = content["data"]
-        # pprint(content)
         return content
 
 # Method that turn the content of the json into a tab that contains all the curve value
-def removeNegativeValue(content):
+# content : the table of all the value generated from the audiowaveform command
+def remove_negative_value(content):
     i = 0
     y = 0
     content = content["data"]
-    contentPositive = content[0:len(content)/2]
+    content_positive = content[0:len(content)/2]
     for i in range (0, len(content)):
         if i%2 != 0:
-            contentPositive[y] = content[i]
+            content_positive[y] = content[i]
             y +=  1
-    # pprint(contentPositive)
-    # pprint(len(contentPositive))
-    return contentPositive
+    return content_positive
 
-# Create the final tab from the value of the tab with only positive value
-def getFinalTab(contentPositive, result):
-    finalContent = contentPositive[0:400]
+# Method that create the final tab from the value of the tab with only positive value
+# content_positive : the table that contains all the positive value from the table generated using the audiowaveform command
+# result : the number of value that need to be regrouped to get a final value for the final table
+def get_final_tab(content_positive, result):
+    final_content = content_positive[0:400]
     n = 0
     for i in range (0, 400):
         average = 0
         for y in range (0, result):
-            average = average + contentPositive[n]
+            average = average + content_positive[n]
             n += 1
-        finalContent[i] = average/result
-    pprint(finalContent)
-    pprint(len(finalContent))
-    return finalContent
+        final_content[i] = average/result
+    return final_content
 
-# Main function that is launched at the start
+# Method that make the user download the mandatory package for the script
+def install_mandatory_packages ():
+    cache = apt.Cache()
+    if not cache['audiowaveform'].is_installed:
+        os.system('sudo apt-get install -y audiowaveform')
+    if not cache['mediainfo'].is_installed:
+        os.system('sudo apt-get install -y mediainfo')
+
+# Main function that is launched at the beginning of the script
 def main() :
+    install_mandatory_packages()
     filename = sys.argv[1]
-    duration = getDuration(filename)
-    stickNumber = 400
-    pgcdValue = 0
-    pgcdValue = pgcd(duration,stickNumber)
-    duration = duration * pgcdValue
-    # print "Apres multiplication on obtient  " + repr(duration)
-    result = duration / stickNumber
-    #print "On recupere 1 point tout les " + repr(resultat) + "points"
-    os.system('audiowaveform -i ' + repr(filename) + ' -o musique.json -b 8 --pixels-per-second ' + repr(int(pgcdValue)))
-    content = getFileContent('musique.json')
-    contentPositive = removeNegativeValue(content)
-    contentFinal = getFinalTab(contentPositive, result)
+    duration = get_duration(filename)
+    stick_number = 400
+    pgcd_value = 0
+    pgcd_value = pgcd(duration,stick_number)
+    duration = duration * pgcd_value
+    result = duration / stick_number
+    os.system('audiowaveform -i ' + repr(filename) + ' -o musique.json -b 8 --pixels-per-second ' + repr(int(pgcd_value)))
+    content = get_file_content('musique.json')
+    content_positive = remove_negative_value(content)
+    contentFinal = get_final_tab(content_positive, result)
     content["data"] = contentFinal
     with open('musique.json', 'w') as outfile:
         json.dump(contentFinal, outfile)
