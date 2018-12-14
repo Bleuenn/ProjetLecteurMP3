@@ -99,6 +99,8 @@ def main() :
     stick_number = 400
     pgcd_value = 0
     pgcd_value = pgcd(duration,stick_number)
+    if duration * pgcd_value < stick_number:
+        pgcd_value = stick_number
     duration = duration * pgcd_value
     result = duration / stick_number
     os.system('touch musique.json')
