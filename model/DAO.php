@@ -1,8 +1,4 @@
 <?php
-/**
- * Classe d'accées aux données mongodb
- * Les données sont récuperé via des requête curl à l'api restheart
- */
 
 class DAO {
 
@@ -45,8 +41,6 @@ class DAO {
     public function close(){
         curl_close($this->connection);
     }
-
-
 
 
 }

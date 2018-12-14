@@ -1,11 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Leveque_m
- * Date: 16/11/18
- * Time: 16:32
- */
-?>
 <!DOCTYPE html>
 <html>
 <head>

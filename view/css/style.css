@@ -9,6 +9,10 @@
     font-style: normal;
 }
 
+body{
+    bottom: 0;
+}
+
 table td, th {
     border: solid 1px black;
     padding: 10px;
@@ -42,7 +46,6 @@ table td, th {
     flex: 1 25%;
     order: 1;
     margin-left: 265px;
-    height: 25px;
     max-height: 33px;
 }
 
@@ -80,8 +83,6 @@ table td, th {
     padding: 7px 10px 7px 7px;
 }
 
-
-/*********************   CANCEL DEFAULT CSS ON INPUT RANGE TYPE   *****************/
 input[type=range] {
     -webkit-appearance: none;
     margin: 18px 0;
@@ -103,11 +104,8 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 input[type=range]::-webkit-slider-thumb {
-    /*box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;*/
-    /*border: 1px solid #000000;*/
     height: 36px;
     width: 5px;
-    /*border-radius: 3px;*/
     background: #000000;
     cursor: pointer;
     -webkit-appearance: none;
@@ -180,8 +178,6 @@ input[type=range]:focus::-ms-fill-upper {
     background: #ff5825;
 }
 
-/*************************************************/
-
 #range {
     position: absolute;
     top: 0;
@@ -201,7 +197,6 @@ input[type=range]:focus::-ms-fill-upper {
     align-items: baseline;
     order: 4;
     margin-left: 265px;
-    height: 10%;
     max-height: 50px;
 }
 
@@ -226,7 +221,6 @@ input[type=range]:focus::-ms-fill-upper {
     display: flex;
     align-self: flex-end;
     order: 6;
-    height: 10%;
     max-height: 50px;
     color: #a3a6a3;
 }
@@ -253,7 +247,6 @@ input[type=range]:focus::-ms-fill-upper {
     order: 2;
     flex: 1 25%;
     justify-content: flex-end;
-    height: 10%;
     max-height: 33px;
 }
 
@@ -336,5 +329,46 @@ rect.reverse {
 
     .temps {
         margin-left: 275px;
+    }
+}
+
+@media all and (max-height: 300px){
+
+    html{100%}
+    body{height: 100%;}
+
+    .audioplayer{
+        background-color: #d65b27;
+        padding: 0;
+        height: 100%;
+    }
+
+    .visuel{
+        height: 100%;
+    }
+
+    .infos{
+        background-color: #2f6fad;
+    }
+
+    .social{
+        background-color: #b94a48;
+    }
+
+    .waveform{
+        background-color: cadetblue;
+        height: 100%;
+    }
+
+    .temps{
+        background-color: blueviolet;
+    }
+
+    .controls{
+        background-color: #a3a6a3;
+    }
+
+    .statistiques{
+        background-color: burlywood;
     }
 }
