@@ -23,8 +23,8 @@ class DAO {
         return false;
     }
 
-    public function getByTitle($title){
-        curl_setopt($this->connection, CURLOPT_URL, "127.0.0.1:8080/morceau/morceau/?filter={'titre':'$title'}");
+    public function getById(string $id){
+        curl_setopt($this->connection, CURLOPT_URL, '127.0.0.1:8080/morceau/morceau/'.$id);
 
         curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1);
 
@@ -36,6 +36,25 @@ class DAO {
         }
 
         return false;
+    }
+
+    public function getByTitle(string $title){
+        curl_setopt($this->connection, CURLOPT_URL, '127.0.0.1:8080/morceau/morceau/?filter={"title": "'.$title.'"}');
+
+        curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1);
+
+        try {
+            return curl_exec($this->connection);
+        }
+        catch (Exception $e){
+            echo $e->getMessage();
+        }
+
+        return false;
+    }
+
+    public function add($morceau){
+
     }
 
     public function close(){

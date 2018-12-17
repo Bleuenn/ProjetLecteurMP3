@@ -13,10 +13,65 @@ body{
     bottom: 0;
 }
 
-table td, th {
-    border: solid 1px black;
+h1 {
+    font-family: sans-serif;
+}
+
+h2{
+    font-family: sans-serif;
+    color: #d65b27;
+    border-bottom: solid #a3a6a3 1px;
+    padding-bottom: 10px;
+}
+
+table{
+    font-family: sans-serif;
+}
+
+th{
+    border-bottom: solid 2px #d65b27;
     padding: 10px;
 }
+
+td{
+    border-bottom: solid 1px #a3a6a3;
+    padding: 10px;
+}
+
+form{
+    display: flex;
+    padding : 20px;
+    width: 25%;
+    flex-direction: column;
+}
+
+form input{
+    margin-bottom: 25px;
+}
+
+form label, form sub{
+    margin-bottom: 5px;
+}
+
+form .submit{
+    width: 100px;
+}
+
+.chemin{
+    font-size: 0.75em;
+    padding-bottom: 5px;
+    border-bottom: solid #a3a6a3 1px;
+}
+
+.undefined{
+    background-color: #eeeeee;
+}
+
+/* ---------------------------------------------------------------- */
+
+/* --------------------------------------- *
+ * ----------- Style du player ----------- *
+ * --------------------------------------- */
 
 .audioplayer {
     margin: auto 0;
@@ -280,6 +335,11 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 /* ---------------------------------------------------------------- */
+
+/* ---------------------------------------------- *
+ * ------------ Style de ma weaveform ----------- *
+ * ---------------------------------------------- */
+
 #canvas {
     display: block;
     margin: 0 auto;
@@ -308,6 +368,12 @@ rect.reverse {
     border: solid black 1px !important;
     transition: fill 1s ease-in-out;
 }
+
+/* ---------------------------------------------------------------- */
+
+/* ------------------------------------ *
+ * ------------ Responsive ------------ *
+ * ------------------------------------ */
 
 @media all and (min-width: 1497px) {
     .audioplayer {

@@ -8,31 +8,35 @@
 
 include_once "model/DAO.php";
 
+isset($_GET['page']) ? $page = $_GET['page'] : $page = null;
+
+if($page === null){
+    include_once "view/maquette.php";
+}
+else{
+    switch ($page){
+        case "admin" :
+            include_once "controller/admin.ctrl.php";
+            break;
+        case "edit" :
+            include_once "controller/admin.edit.ctrl.php";
+            break;
+        default :
+            include_once "view/maquette.php";
+    }
+}
+
+/*
+
 isset($_GET['titre']) ? $titre = $_GET['titre'] : $titre = null;
 
 if(!is_null($titre)){
 
-    $dao = new DAO();
 
-    if($titre == "all"){
-        $json = $dao->getAll();
-    }
-    else {
-        try {
-            $titre = str_replace(" ", "+", $titre);
-            $json = $dao->getByTitle($titre);
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
-
-    }
-
-    $dao->close();
-
-    echo $json;
 
 }
 else{
     include_once "view/maquette.php";
 }
+*/
 
