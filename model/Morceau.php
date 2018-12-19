@@ -14,16 +14,18 @@ class Morceau
 
         if(is_array($mp3)){
 
-            if(!self::upload("mp3"))
+            if(!self::upload("mp3")) {
                 throw new Exception("Echec lors de l'upload de fichier mp3");
+            }
         }
 
         $this->cover = $cover;
 
         if(is_array($cover)){
 
-            if(!self::upload("cover"))
+            if(!self::upload("cover")) {
                 throw new Exception("Echec lors de l'upload de fichier png");
+            }
         }
 
         $this->generateWeaveForm();

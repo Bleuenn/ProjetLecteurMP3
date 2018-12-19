@@ -7,8 +7,13 @@ include_once("model/Morceau.php");
 !empty($_POST['artiste']) ? $artiste = $_POST['artiste'] : $artiste = null;
 !empty($_POST['album']) ? $album = $_POST['album'] : $album = null;
 !empty($_POST['genre']) ? $genre = $_POST['genre'] : $genre = null;
-!empty($_FILES['mp3']['name']) ? $mp3 = $_FILES['mp3'] : ( !empty($_POST['old_mp3']) ? $mp3 = $_POST['old_mp3'] : $mp3 = null );
-!empty($_FILES['cover']['name']) ? $cover = $_FILES['cover'] : ( !empty($_POST['old_cover']) ? $cover = $_POST['old_cover'] : $cover = null );
+
+!empty($_FILES['mp3']['name']) ? $mp3 = $_FILES['mp3'] : $mp3 = null ;
+!empty($_POST['old_cover']) ? $cover = $_POST['old_cover'] : $cover = null;
+
+!empty($_POST['old_mp3']) ? $mp3 = $_POST['old_mp3'] : $mp3 = null;
+!empty($_FILES['cover']['name']) ? $cover = $_FILES['cover'] : $mp3 = null ;
+
 
 if($id !== null) {
 

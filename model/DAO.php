@@ -53,10 +53,6 @@ class DAO {
         return false;
     }
 
-    public function update($morceau){
-
-    }
-
     public function close(){
         curl_close($this->connection);
     }

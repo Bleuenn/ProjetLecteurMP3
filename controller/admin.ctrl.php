@@ -7,14 +7,10 @@ $dao->close();
 $morceaux = json_decode($json);
 
 foreach ($morceaux->_embedded as $morceau){
-    //var_dump( $morceau->_id->{'$oid'});
 
     $titre = $morceau->titre;
-
     $album = $morceau->album;
-
     $artiste = $morceau->artiste;
-
     $date = $morceau->annee;
 
     $TABLEAU .= "<tr>";
