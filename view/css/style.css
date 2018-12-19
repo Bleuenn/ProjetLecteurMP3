@@ -90,7 +90,7 @@ form .submit{
     position: absolute;
     width: 250px;
     height: 250px;
-    background: url("../img/chansons.jpg") no-repeat;
+    background: url("../img/Monde libre.jpg") no-repeat;
     background-size: cover;
 }
 
@@ -400,7 +400,7 @@ rect.reverse {
 
 @media all and (max-height: 300px){
 
-    html{100%}
+    html{:100%;}
     body{height: 100%;}
 
     .audioplayer{
