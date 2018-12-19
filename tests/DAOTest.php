@@ -5,7 +5,7 @@
  * Date: 15/11/18
  * Time: 14:45
  */
-include_once "DAO.php";
+include_once "../model/DAO.php";
 
 use PHPUnit\Framework\TestCase;
 
