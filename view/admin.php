@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="view/css/style.css"/>
 </head>
 <body>
-    <h1>Gestion des musiques</h1>
+    <h1>Administration</h1>
     <table>
         <thead>
             <th>Titre</th>
@@ -20,5 +20,5 @@
             <?php echo $TABLEAU; ?>
         </tbody>
     </table>
-    <label><a href="">Ajouter une nouvelle musique</a></label>
+    <label><a href="?page=add">Ajouter une nouvelle musique</a></label>
 </body>

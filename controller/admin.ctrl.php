@@ -1,5 +1,4 @@
 <?php
-
 $dao = new DAO();
 $json = $dao->getAll();
 $dao->close();

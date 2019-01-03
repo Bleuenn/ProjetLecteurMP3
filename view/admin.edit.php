@@ -6,11 +6,9 @@
     <link rel="stylesheet" type="text/css" href="view/css/style.css"/>
 </head>
 <body>
-    <h1>Modification de la musique</h1>
-
+    <h1>Administration</h1>
     <form method="post" id="form_edit" enctype="multipart/form-data">
-
-        <h2><?php echo $TITRE ?></h2>
+        <h2>Modification : <?php echo $TITRE ?></h2>
 
         <label>Titre</label>
         <input type="text" name="titre" value="<?php echo $TITRE ?>" required/>

@@ -4,7 +4,7 @@ class Morceau
 {
     private $id, $titre, $artiste, $album, $duree, $annee, $listePoint, $genre, $mp3, $cover;
 
-    public function __construct($id, $titre, $artiste, $album, $genre, $mp3, $cover){
+    public function __construct($titre, $artiste, $album, $genre, $mp3, $cover, $id = null){
         $this->id = $id;
         $this->titre = $titre;
         $this->artiste = $artiste;
@@ -24,12 +24,12 @@ class Morceau
 
         $this->generateWeaveForm();
 
-        //---------------------------------*
-        //Contenu temp test d'insertion bdd
-        //---------------------------------*
+        //-----------------------------------------*
+        //Contenu temporaire : test d'insertion bdd
+        //-----------------------------------------*
         $this->annee = 2000;
         $this->duree = 275;
-        //---------------------------------*
+        //-----------------------------------------*
     }
 
     public function getId()
@@ -129,14 +129,13 @@ class Morceau
     private function generateWeaveForm(){
 
         //---------------------------------------------------------*
-        //Contenu temporaire pour test d'enregristrement dans la bdd
+        //Contenu temporaire pour test d'enregistrement dans la bdd
         //---------------------------------------------------------*
-        $tab = "[";
+
         for($i = 0; $i < 400; $i++){
             $tab .= ",".rand ( 2 , 100 );
         }
         $tab = substr($tab, 1);
-        $tab .= "]";
         $this->listePoint = $tab;
 
         //---------------------------------------------------------*

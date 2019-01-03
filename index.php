@@ -12,6 +12,9 @@ else{
         case "admin" :
             include_once "controller/admin.ctrl.php";
             break;
+        case "add" :
+            include_once "controller/admin.add.ctrl.php";
+            break;
         case "edit" :
             include_once "controller/admin.edit.ctrl.php";
             break;
