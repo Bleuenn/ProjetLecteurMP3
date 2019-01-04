@@ -18,6 +18,9 @@ else{
         case "edit" :
             include_once "controller/admin.edit.ctrl.php";
             break;
+        case "delete" :
+            include_once "controller/admin.delete.ctrl.php";
+            break;
         default :
             include_once "view/maquette.php";
     }

@@ -123,6 +123,9 @@ class Morceau
         $extension = substr($file['name'], $pos);
         $fichier = $this->titre . $extension;
 
+        if($type == "mp3") $this->mp3 = $dossier.$fichier;
+        else $this->cover = $dossier.$fichier;
+
         return move_uploaded_file($file['tmp_name'], $dossier . $fichier);
     }
 

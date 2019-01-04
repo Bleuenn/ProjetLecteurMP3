@@ -83,6 +83,15 @@ class DAO {
         return curl_exec($this->connection);
     }
 
+    public function delete($id){
+        /* DELETE /db/coll/*?filter={<filter_query>} */
+        curl_setopt($this->connection, CURLOPT_URL,            "http://localhost:8080/morceau/morceau/".$id);
+        curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1 );
+        curl_setopt($this->connection, CURLOPT_CUSTOMREQUEST, 'DELETE');
+
+        return curl_exec($this->connection);
+    }
+
     public function close(){
         curl_close($this->connection);
     }

@@ -21,7 +21,7 @@ foreach ($morceaux->_embedded as $morceau){
         $TABLEAU .= "<td>$album</td>";
     }
     $TABLEAU .= "<td>$artiste</td>";
-    $TABLEAU .= "<td>$date</td><td><a href='?page=edit&id=".$morceau->_id->{'$oid'}."'>Modifer</a></td><td><a href=''>Supprimer</a></td>";
+    $TABLEAU .= "<td>$date</td><td><a href='?page=edit&id=".$morceau->_id->{'$oid'}."'>Modifer</a></td><td><a href='?page=delete&id=".$morceau->_id->{'$oid'}."'>Supprimer</a></td>";
     $TABLEAU .= "</tr>";
 }
 
