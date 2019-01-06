@@ -1,5 +1,4 @@
 <?php
-
 class Morceau
 {
     private $id, $titre, $artiste, $album, $duree, $annee, $listePoint, $genre, $mp3, $cover;
