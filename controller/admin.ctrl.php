@@ -4,6 +4,7 @@ $json = $dao->getAll();
 $dao->close();
 
 $morceaux = json_decode($json);
+$TABLEAU = null;
 
 foreach ($morceaux->_embedded as $morceau){
 
