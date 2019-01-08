@@ -22,8 +22,10 @@ addons:
 jdk:
   - oraclejdk8
 
+before_script:
+  - wget -O phpunit https://phar.phpunit.de/phpunit-7.phar
+  - chmod +x phpunit
+
 script:
-  - cd model
-  - phpunit ~/tests/php/DAOTest.php
-  - cd ..
+  - phpunit /tests/php/*
   - sonar-scanner
