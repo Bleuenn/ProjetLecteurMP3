@@ -1,4 +1,6 @@
 <?php
+use Model\DAO;
+
 $dao = new DAO();
 $json = $dao->getAll();
 $dao->close();

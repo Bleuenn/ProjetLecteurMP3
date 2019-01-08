@@ -5,6 +5,7 @@
  * Date: 15/11/18
  * Time: 21:28
  */
+use Model\DAO;
 
 require_once 'DAO.php';
 

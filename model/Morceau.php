@@ -13,13 +13,45 @@ class Morceau
         $this->genre = $genre;
         $this->mp3 = $mp3;
 
+        /*
+         * Test de l'entrée utilisateur pour le fichier MP3.
+         * On verifie la taille et le type de fichier.
+         */
         if(is_array($mp3)){
+            //Verification du type de fichier.
+            $extension = strrchr($this->mp3['name'], '.');
+
+            if ($extension !== "mp3" && $extension !== "flac") //Si l'extension n'est pas dans le tableau
+            {
+                throw new \Exception('Vous devez uploader un fichier de type MP3 ou FLAC');
+            }
+
+            //Verification de la taille du fichier
+            if($this->mp3['size'] >= 10000000){
+                throw new \Exception('Vous devez uploader un fichier inferieur à 10Mo');
+            }
+
             self::upload("mp3");
         }
 
         $this->cover = $cover;
 
         if(is_array($cover)){
+            $extensions = array('.png', '.gif', '.jpg', '.jpeg');
+
+            //Verification du type de fichier.
+            $extension = strrchr($this->cover['name'], '.');
+
+            if (!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
+            {
+                throw new \Exception('Vous devez uploader un fichier de type PNG, GIF, JPG, JPEG');;
+            }
+
+            //Verification de la taille du fichier
+            if ($this->mp3['size'] >= 2000000) {
+                throw new \Exception('Vous devez uploader un fichier inferieur à 2Mo');
+            }
+
             self::upload("cover");
         }
 

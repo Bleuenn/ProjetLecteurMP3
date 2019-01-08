@@ -1,5 +1,7 @@
 <?php
 include_once("model/Morceau.php");
+use Model\DAO;
+use Model\Morceau;
 
 !empty($_GET['id']) ? $id = $_GET['id'] : $id = null;
 

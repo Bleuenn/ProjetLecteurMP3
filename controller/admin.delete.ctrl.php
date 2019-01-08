@@ -1,4 +1,6 @@
 <?php
+use Model\DAO;
+
 !empty($_GET['id']) ? $id = $_GET['id'] : $id = null;
 
 if(!is_null($id)){
