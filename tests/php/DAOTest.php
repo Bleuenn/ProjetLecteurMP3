@@ -1,6 +1,7 @@
 <?php
-include_once "../../model/DAO.php";
+include_once "model/DAO.php";
 
+use Model\DAO;
 use PHPUnit\Framework\TestCase;
 
 final class DAOTest extends TestCase

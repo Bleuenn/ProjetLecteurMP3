@@ -1,6 +1,6 @@
 <?php
-include_once "../../model/Morceau.php";
-
+include_once "model/Morceau.php";
+use Model\Morceau;
 use PHPUnit\Framework\TestCase;
 
 final class MorceauTest extends TestCase
@@ -41,7 +41,7 @@ final class MorceauTest extends TestCase
     {
         $morceau = new Morceau("Roule", "Lomepal", "Cette foutue perle", "RAP", "musique/mp3/roule.mp3", $this->testFile);
         $this->assertSame($morceau->getCover(), "view/img/Roule.jpg");
-        $this->assertTrue(file_exists("../../view/img/test.jpg"));
-        unlink("../../view/img/test.jpg");
+        $this->assertTrue(file_exists("view/img/test.jpg"));
+        unlink("view/img/test.jpg");
     }
 }
