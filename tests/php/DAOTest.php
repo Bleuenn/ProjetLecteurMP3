@@ -1,5 +1,5 @@
 <?php
-include_once "model/DAO.php";
+include_once "../../model/DAO.php";
 
 use PHPUnit\Framework\TestCase;
 
