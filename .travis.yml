@@ -22,10 +22,10 @@ addons:
 jdk:
   - oraclejdk8
 
-before_script:
-  - wget -O phpunit https://phar.phpunit.de/phpunit-7.phar
-  - chmod +x phpunit
+#before_script:
+#  - wget -O phpunit https://phar.phpunit.de/phpunit-7.phar
+#  - chmod +x phpunit
 
 script:
-  - phpunit /tests/php/*
+  - phpunit
   - sonar-scanner
