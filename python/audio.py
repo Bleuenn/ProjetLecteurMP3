@@ -94,7 +94,7 @@ def install_mandatory_packages ():
 
 # Main function that is launched at the beginning of the script
 def main() :
-    install_mandatory_packages()
+    #install_mandatory_packages()
     filename = sys.argv[1]
     duration = get_duration(filename)
     stick_number = 400
