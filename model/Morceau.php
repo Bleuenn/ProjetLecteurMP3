@@ -12,6 +12,7 @@ class Morceau
         $this->album = $album;
         $this->genre = $genre;
         $this->mp3 = $mp3;
+        $this->cover = $cover;
 
         /*
          * Test de l'entrée utilisateur pour le fichier MP3.
@@ -21,20 +22,13 @@ class Morceau
             //Verification du type de fichier.
             $extension = strrchr($this->mp3['name'], '.');
 
-            if ($extension !== "mp3" && $extension !== "flac") //Si l'extension n'est pas dans le tableau
+            if ($extension !== ".mp3" && $extension !== ".flac") //Si l'extension n'est pas dans le tableau
             {
                 throw new \Exception('Vous devez uploader un fichier de type MP3 ou FLAC');
             }
 
-            //Verification de la taille du fichier
-            if($this->mp3['size'] >= 10000000){
-                throw new \Exception('Vous devez uploader un fichier inferieur à 10Mo');
-            }
-
             self::upload("mp3");
         }
-
-        $this->cover = $cover;
 
         if(is_array($cover)){
             $extensions = array('.png', '.gif', '.jpg', '.jpeg');
@@ -45,11 +39,6 @@ class Morceau
             if (!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
             {
                 throw new \Exception('Vous devez uploader un fichier de type PNG, GIF, JPG, JPEG');;
-            }
-
-            //Verification de la taille du fichier
-            if ($this->mp3['size'] >= 2000000) {
-                throw new \Exception('Vous devez uploader un fichier inferieur à 2Mo');
             }
 
             self::upload("cover");
@@ -139,7 +128,7 @@ class Morceau
         $this->mp3 = $mp3;
     }
 
-    private function upload($type)
+    public function upload($type)
     {
         //Gestion du type de fichier
         if ($type == "mp3"){
@@ -159,6 +148,9 @@ class Morceau
         if($type == "mp3") $this->mp3 = $dossier.$fichier;
         else $this->cover = $dossier.$fichier;
 
+        var_dump($file['tmp_name']);
+        echo "\n";
+        var_dump($dossier.$fichier);
         return move_uploaded_file($file['tmp_name'], $dossier . $fichier);
     }
 
@@ -173,6 +165,7 @@ class Morceau
         }
         $tab = substr($tab, 1);
         $this->listePoint = $tab;
+
         //---------------------------------------------------------*
     }
 }
