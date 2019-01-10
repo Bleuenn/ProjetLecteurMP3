@@ -25,9 +25,20 @@ if($mp3 === null){
 
 if($id !== null) {
 
-    if(!is_null($id) AND  !is_null($titre) AND !is_null($artiste) AND !is_null($album) AND !is_null($annee) AND !is_null($genre) AND !is_null($mp3) AND !is_null($cover)){
+    if(!is_null($id) &&  !is_null($titre) && !is_null($artiste) && !is_null($album) && !is_null($annee) && !is_null($genre) && !is_null($mp3) && !is_null($cover)){
         try{
-            $morceau = new Morceau($titre, $artiste, $album, $genre, $mp3, $cover, $id);
+            $morceau = new Morceau($titre, $artiste, $album, $annee, $genre, $mp3, $cover, $id);
+
+            if(is_array($cover)){
+                $morceau->upload("cover");
+            }
+
+            if(is_array($mp3)){
+                $morceau->upload("mp3");
+            }
+
+            $morceau->generateWeaveForm();
+
             $dao = new DAO();
             $dao->update($morceau);
             $dao->close();

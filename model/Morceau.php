@@ -149,8 +149,10 @@ class Morceau
      */
     public function generateWeaveForm(){
 
-         system("python python/audio.py ".$this->mp3);
-         $listPoint = file_get_contents("musique.json");
-         $this->listePoint = json_decode($listPoint);
+        system("python python/audio.py ".$this->mp3);
+        $infosMp3 = file_get_contents("musique.json");
+        $infosMp3 = json_decode($infosMp3);
+        $this->listePoint = $infosMp3->values;
+        $this->duree = $infosMp3->duration;
     }
 }

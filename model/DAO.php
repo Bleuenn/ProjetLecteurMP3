@@ -57,9 +57,9 @@ class DAO {
     public function update(Morceau $morceau){
 
         // Construction du corps de la requête avec les informations de l'objet Morceau
-        $body = array("titre" => $morceau->getTitre(), "artiste" => $morceau->getArtiste(), "album" => $morceau->getAlbum(), "listePoint" => [$morceau->getListePoint()], "duree" => $morceau->getDuree(), "annee" => $morceau->getAnnee(), "cheminMP3" => $morceau->getMp3(), "cover" => $morceau->getCover(), "genre" => $morceau->getGenre() );
+        $body = array("titre" => $morceau->getTitre(), "artiste" => $morceau->getArtiste(), "album" => $morceau->getAlbum(), "listePoint" => $morceau->getListePoint(), "duree" => $morceau->getDuree(), "annee" => $morceau->getAnnee(), "cheminMP3" => $morceau->getMp3(), "cover" => $morceau->getCover(), "genre" => $morceau->getGenre() );
 
-        // Construction de la requête
+        //Construction de la requête
         curl_setopt($this->connection, CURLOPT_URL,            "http://localhost:8080/morceau/morceau/".$morceau->getId());
         curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1 );
         curl_setopt($this->connection, CURLOPT_CUSTOMREQUEST, 'PATCH');
