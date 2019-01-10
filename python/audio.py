@@ -9,7 +9,7 @@ from pprint import pprint
 def get_duration(filename):
     os.system('mediainfo --Inform="Audio;%Duration%" '+ repr(filename) + ' > musique.txt')
     duration = read_first_line('musique.txt')
-    if duration == '':
+    if duration == '\n':
         duration = 0
     else:
         duration = int(float(duration)/1000)
@@ -20,22 +20,23 @@ def get_duration(filename):
 # filename : the name of the file
 def read_first_line(filename):
     first_line = ''
-    with open(filename) as file:
-        first_line = file.readline()
+    try:
+        with open(filename) as file:
+            first_line = file.readline()
+    except IOError:
+        first_line = 'IOError'
     return first_line
 
 # Method that found the smallest multiplier beetween to number
 # a : the first number
 # b : the second number
 def pgcd(a,b):
-	rep=0
-	if b==0:
-		rep=a
-	elif b == 1:
-			rep=400
+	rep = 0
+	if b == 0:
+		rep = a
 	else:
-		r=a%b
-		rep=pgcd(b,r)
+		r = a%b
+		rep = pgcd(b, r)
 	return rep
 
 # Method used to retrieve the content of the file as a Tab
@@ -98,20 +99,22 @@ def main() :
     duration = get_duration(filename)
     stick_number = 400
     pgcd_value = 0
-    pgcd_value = pgcd(duration,stick_number)
+    pgcd_value = pgcd(duration, stick_number)
     if duration * pgcd_value < stick_number:
         pgcd_value = stick_number
     duration = duration * pgcd_value
     result = duration / stick_number
-    os.system('touch musique.json')
+    os.system('touch musiques.json')
     os.system('audiowaveform -i ' + repr(filename) + ' -o musique.json -b 8 --pixels-per-second ' + repr(int(pgcd_value)))
     content = get_file_content('musique.json')
     content_positive = remove_negative_value(content)
     contentFinal = get_final_tab(content_positive, result)
     content["data"] = contentFinal
     with open('musique.json', 'w') as outfile:
+        outfile.write('{"duration":' + repr(get_duration(filename)) + ',"values":')
         json.dump(contentFinal, outfile)
+        outfile.write('}')
     os.system('rm musique.txt')
 
-
-main()
+if __name__ == '__main__':
+    main()
