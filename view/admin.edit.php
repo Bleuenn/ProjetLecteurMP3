@@ -19,6 +19,9 @@
         <label>Album</label>
         <input type="text"  name="album" value="<?php echo $ALBUM ?>" required/>
 
+        <label>Annee</label>
+        <input type="text"  name="annee" value="<?php echo $ANNEE ?>" required/>
+
         <label>MP3</label>
         <sub class="chemin">Actuel : <?php echo $MP3 ?></sub>
         <input type="hidden" name="old_mp3" value="<?php echo $MP3 ?>">

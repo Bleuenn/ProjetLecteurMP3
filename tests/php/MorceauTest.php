@@ -5,15 +5,18 @@ use PHPUnit\Framework\TestCase;
 
 final class MorceauTest extends TestCase
 {
-    public $testPNG = array(
+    private $titre = "test", $artiste="ArtisteTest", $album="AlbumTest", $annee=2000, $genre="GenreTest",
+            $mp3="musique/mp3/test.mp3", $cover= "view/img/test.png", $id=0;
+
+    private $testJPG = array(
         'name'=>'test.jpg',
-        'tmp_name'=>'./tests/php/test.jpg',
+        'tmp_name'=>'tests/php/test.jpg',
         'type'=>'image/jpeg',
         'size'=>1472190,
         'error'=>0
     );
 
-    public $testMP3 = array(
+    private $testMP3 = array(
         'name'=>'test.mp3',
         'tmp_name'=>'./tests/php/test.mp3',
         'type'=>'audio/mpeg',
@@ -21,53 +24,31 @@ final class MorceauTest extends TestCase
         'error'=>0
     );
 
-    public function testConstructeurSansId()
-    {
-        $morceau = new Morceau("Roule", "Lomepal", "Cette foutue perle", "RAP", "musique/mp3/roule.mp3", "img/roule.png");
-        $this->assertSame($morceau->getTitre(), "Roule");
-        $this->assertSame($morceau->getArtiste(), "Lomepal");
-        $this->assertSame($morceau->getAlbum(), "Cette foutue perle");
-        $this->assertSame($morceau->getGenre(), "RAP");
-        $this->assertSame($morceau->getMp3(), "musique/mp3/roule.mp3");
-        $this->assertSame($morceau->getCover(), "img/roule.png");
-        $this->assertSame($morceau->getId(), null);
-    }
-
+    /*
+     * Test du contructeur de la classe Morceau
+     */
     public function testConstructeurAvecId()
     {
-        $morceau = new Morceau("Roule", "Lomepal", "Cette foutue perle", "RAP", "musique/mp3/roule.mp3", "img/roule.png", 1);
-        $this->assertSame($morceau->getTitre(), "Roule");
-        $this->assertSame($morceau->getArtiste(), "Lomepal");
-        $this->assertSame($morceau->getAlbum(), "Cette foutue perle");
-        $this->assertSame($morceau->getGenre(), "RAP");
-        $this->assertSame($morceau->getMp3(), "musique/mp3/roule.mp3");
-        $this->assertSame($morceau->getCover(), "img/roule.png");
-        $this->assertSame($morceau->getId(), 1);
+        $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->mp3, $this->cover, $this->id);
+        $this->assertSame("test", $morceau->getTitre());
+        $this->assertSame("ArtisteTest", $morceau->getArtiste());
+        $this->assertSame("AlbumTest", $morceau->getAlbum());
+        $this->assertSame(2000, $morceau->getAnnee());
+        $this->assertSame("GenreTest", $morceau->getGenre());
+        $this->assertSame("musique/mp3/test.mp3", $morceau->getMp3());
+        $this->assertSame("view/img/test.png", $morceau->getCover());
+        $this->assertSame(0, $morceau->getId());
     }
 
-    public function testUploadFilePNG()
+    public function testConstructSansId()
     {
-        $morceau = new Morceau("Roule", "Lomepal", "Cette foutue perle", "RAP", "musique/mp3/roule.mp3", $this->testPNG);
-        $this->assertSame($morceau->getCover(), "view/img/Roule.jpg");
-        $this->assertTrue(file_exists("view/img/test.jpg"));
-        unlink("view/img/test.jpg");
+        $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->mp3, $this->cover);
+        $this->assertSame(null, $morceau->getId());
     }
 
-//    public function testUploadFileMP3()
-//    {
-//        $morceau = new Morceau("Roule", "Lomepal", "Cette foutue perle", "RAP", $this->testMP3, "img/roule.png");
-//        $this->assertSame($morceau->getMP3(), "musique/mp3/Roule.mp3");
-//        $this->assertTrue(file_exists("musique/mp3/test.mp3"));
-//        unlink("musique/mp3/test.mp3");
-//    }
-//
-//    public function testUploadFilesMp3Png(){
-//        $morceau = new Morceau("Roule", "Lomepal", "Cette foutue perle", "RAP", $this->testMP3, $this->testPNG);
-//        $this->assertSame($morceau->getMP3(), "musique/mp3/Roule.mp3");
-//        $this->assertSame($morceau->getCover(), "view/img/Roule.jpg");
-//        $this->assertTrue(file_exists("musique/mp3/test.mp3"));
-//        $this->assertTrue(file_exists("view/img/test.jpg"));
-//        unlink("musique/mp3/test.mp3");
-//        unlink("view/img/test.jpg");
-//    }
+    public function testUpload(){
+        $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->testMP3, $this->testJPG);
+        $this->assertTrue( $morceau->upload("cover") );
+        $this->assertSame("view/img/test.jpg", $morceau->getCover());
+    }
 }

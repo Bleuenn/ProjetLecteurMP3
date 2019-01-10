@@ -18,6 +18,9 @@
         <label>Album</label>
         <input type="text"  name="album" required/>
 
+        <label>Annee</label>
+        <input type="text"  name="annee" required/>
+
         <label>MP3</label>
         <sub>(Selectionner un fichier)</sub>
         <input type="file" name="mp3"/>

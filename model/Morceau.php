@@ -5,54 +5,29 @@ class Morceau
 {
     private $id, $titre, $artiste, $album, $duree, $annee, $listePoint, $genre, $mp3, $cover;
 
-    public function __construct($titre, $artiste, $album, $genre, $mp3, $cover, $id = null){
-        $this->id = $id;
-        $this->titre = $titre;
-        $this->artiste = $artiste;
-        $this->album = $album;
-        $this->genre = $genre;
-        $this->mp3 = $mp3;
-        $this->cover = $cover;
-
-        /*
-         * Test de l'entrée utilisateur pour le fichier MP3.
-         * On verifie la taille et le type de fichier.
-         */
-        if(is_array($mp3)){
-            //Verification du type de fichier.
-            $extension = strrchr($this->mp3['name'], '.');
-
-            if ($extension !== ".mp3" && $extension !== ".flac") //Si l'extension n'est pas dans le tableau
-            {
-                throw new \Exception('Vous devez uploader un fichier de type MP3 ou FLAC');
-            }
-
-            self::upload("mp3");
-        }
-
-        if(is_array($cover)){
-            $extensions = array('.png', '.gif', '.jpg', '.jpeg');
-
-            //Verification du type de fichier.
-            $extension = strrchr($this->cover['name'], '.');
-
-            if (!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
-            {
-                throw new \Exception('Vous devez uploader un fichier de type PNG, GIF, JPG, JPEG');;
-            }
-
-            self::upload("cover");
-        }
-
-        $this->generateWeaveForm();
+    /*
+     * Constructeur de classe Morceau
+     */
+    public function __construct($titre, $artiste, $album, $annee, $genre, $mp3, $cover, $id = null){
+        $this->setId($id);
+        $this->setTitre($titre);
+        $this->setArtiste($artiste);
+        $this->setAlbum($album);
+        $this->setGenre($genre);
+        $this->setMp3($mp3);
+        $this->setCover($cover);
+        $this->setAnnee($annee);
 
         //-----------------------------------------*
         //Contenu temporaire : test d'insertion bdd
         //-----------------------------------------*
-        $this->annee = 2000;
         $this->duree = 275;
         //-----------------------------------------*
     }
+
+    /* -------------------------------------------------- *
+     *                  Méthodes GET                      *
+     * -------------------------------------------------- */
 
     public function getId()
     {
@@ -104,7 +79,10 @@ class Morceau
         return $this->cover;
     }
 
-    public function setId($id){
+    /* -------------------------------------------------- *
+     *                  Méthodes SET                      *
+     * -------------------------------------------------- */
+    public function setId($id = null){
         $this->id = $id;
     }
 
@@ -120,14 +98,28 @@ class Morceau
         $this->album = $album;
     }
 
+    public function setAnnee($annee)
+    {
+        $this->annee = $annee;
+    }
+
     public function setGenre(string $genre){
         $this->genre = $genre;
+    }
+
+    public function setCover($cover){
+        $this->cover = $cover;
     }
 
     public function setMp3($mp3){
         $this->mp3 = $mp3;
     }
 
+    /*
+     * Méthode Upload de fichier
+     * Cette méthode sert à uploader sur
+     * le serveur les fichiers img et mp3
+     */
     public function upload($type)
     {
         //Gestion du type de fichier
@@ -148,24 +140,17 @@ class Morceau
         if($type == "mp3") $this->mp3 = $dossier.$fichier;
         else $this->cover = $dossier.$fichier;
 
-        var_dump($file['tmp_name']);
-        echo "\n";
-        var_dump($dossier.$fichier);
         return move_uploaded_file($file['tmp_name'], $dossier . $fichier);
     }
 
-    private function generateWeaveForm(){
+    /*
+     * Méthode de génération de la Weaveform selon
+     * le fichier MP3 upload.
+     */
+    public function generateWeaveForm(){
 
-        //---------------------------------------------------------*
-        //Contenu temporaire pour test d'enregistrement dans la bdd
-        //---------------------------------------------------------*  3
-        $tab = null;
-        for($i = 0; $i < 400; $i++){
-            $tab .= ",".rand ( 2 , 100 );
-        }
-        $tab = substr($tab, 1);
-        $this->listePoint = $tab;
-
-        //---------------------------------------------------------*
+         system("python python/audio.py ".$this->mp3);
+         $listPoint = file_get_contents("musique.json");
+         $this->listePoint = json_decode($listPoint);
     }
 }
