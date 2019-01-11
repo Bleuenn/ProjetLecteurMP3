@@ -34,7 +34,8 @@
         <button class='share'>Partager</button>
     </div>
 </div>
-</body>
-
 <script src="view/javascript/traitementJSON.js"></script>
 <script src="view/javascript/soundmanager2/soundmanager2.js"></script>
+</body>
+
+
