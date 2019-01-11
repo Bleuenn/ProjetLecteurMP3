@@ -77,7 +77,7 @@ function changeVolume(valeur) {
 		btnVolume.innerText = "";
 	} else if (valeur <= 50) {
 		btnVolume.innerText = "";
-	} else if (valeur <= 100) {
+	} else if (valeur <= 75) {
 		btnVolume.innerText = "";
 	}
 	volume = valeur;

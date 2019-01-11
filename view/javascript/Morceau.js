@@ -1,8 +1,8 @@
 /**
  * Constructeur de l'objet représentant un morceau de musique
  */
-function Morceau (nameMusique,nameArtiste) {
-    id=0;
+function Morceau(nameMusique,nameArtiste) {
+    id=null;
     name=nameMusique;
     artiste=nameArtiste;
     cover = "";
@@ -15,6 +15,10 @@ function Morceau (nameMusique,nameArtiste) {
     // playList=false; // a voir si on l'intègre...
 }
 
+/**
+ * Attribue le chemin de la pochette d'album de la musique
+ * @param path chemin de la musique
+ */
 Morceau.prototype.setCover = function(path) {
     this.cover = path;
 }
@@ -28,7 +32,7 @@ Morceau.prototype.setNbLike = function(newNbLike) {
 }
 
 Morceau.prototype.addOneLike = function() {
-    setNbLike(getNbLike() + 1);
+
 }
 
 Morceau.prototype.setNbPartage = function(newNbPartage) {
@@ -36,33 +40,41 @@ Morceau.prototype.setNbPartage = function(newNbPartage) {
 }
 
 Morceau.prototype.getNbPartage = function() {
-    setNbPartage(getNbPartage() + 1);
+
 }
 
 Morceau.prototype.addOnePartage = function() {
-    
+
+}
+
+Morceau.prototype.setNbPlay = function(newNbPlay) {
+    this.nbPlay = newNbPlay;
 }
 
 Morceau.prototype.getNbPlay = function() {
-    
+
 }
 
 Morceau.prototype.addOnePlay = function() {
-    
+
+}
+
+Morceau.prototype.setNbComment = function(newNbComment) {
+    this.nbComment = newNbComment;
 }
 
 Morceau.prototype.getNbComment = function() {
-    
+
 }
 
 Morceau.prototype.addOneComment = function() {
-    
+
 }
 
 Morceau.prototype.getName = function() {
-    
+    return this.name;
 }
 
 Morceau.prototype.getArtiste = function() {
-    
+    return this.artiste;
 }
