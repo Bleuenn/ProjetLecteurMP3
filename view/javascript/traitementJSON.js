@@ -65,10 +65,7 @@ function getMax() {
 
 function resizeBar() {
 	let svg = document.getElementById('svg');
-	while (svg.firstChild) {
-		svg.removeChild(svg.firstChild);
-	}
-
+	svg.innerHTML ="";
 	drawSvg(getData());
 }
 
@@ -80,7 +77,7 @@ function changeVolume(valeur) {
 		btnVolume.innerText = "";
 	} else if (valeur <= 50) {
 		btnVolume.innerText = "";
-	} else if (valeur <= 100) {
+	} else if (valeur <= 75) {
 		btnVolume.innerText = "";
 	}
 	volume = valeur;
@@ -95,34 +92,6 @@ function getNombreBarresResponsive(largeurEcran) {
 	let nombreDeBarres = largeurEcran / 7;
 	return Math.round(nombreDeBarres);
 }
-
-
-/**
- * Dessine dans un canvas des "barres" verticales en fonction des différentes valeurs
- * du fichier JSON généré par audiowaveform.
- * @param data tableau contenant des données positives.
- */
-
-/*function drawCanvas(data) {
-	let ctx = document.getElementById("canvas").getContext('2d');
-	let canvas = document.getElementById("canvas");
-	let height = 150;
-	let width = window.innerWidth;
-
-	canvas.setAttribute("width", "" + width);
-	canvas.setAttribute("height", "" + height);
-
-	for (let i = 0; i < data.length; i++) {
-		ctx.strokeStyle = "#C70039";
-		ctx.lineWidth = 3;
-		ctx.beginPath();
-		ctx.moveTo((i * width / data.length) + ctx.lineWidth + 1, height);
-		ctx.lineTo((i * width / data.length) + ctx.lineWidth + 1, data[i]);
-		ctx.stroke();
-
-		ctx.closePath();
-	}
-}*/
 
 /**
  * Dessine dans une balise SVG les barres verticales d'une hauteur différente en
@@ -204,7 +173,6 @@ function player(chemin) {
  * Fonction main...
  */
 function main() {
-	//drawCanvas(getData());
 	drawSvg(getData());
 
 	window.addEventListener('resize', function () {
