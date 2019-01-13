@@ -4,13 +4,14 @@ namespace Model;
 class DAO {
 
     private $connection;
+    const URL = "127.0.0.1:8080/morceau/morceau/";
 
     public function __construct(){
         $this->connection = curl_init();
     }
 
     public function getAll(){
-        curl_setopt($this->connection, CURLOPT_URL, "127.0.0.1:8080/morceau/morceau");
+        curl_setopt($this->connection, CURLOPT_URL, self::URL);
 
         curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1);
 
@@ -25,7 +26,7 @@ class DAO {
     }
 
     public function getById(string $id){
-        curl_setopt($this->connection, CURLOPT_URL, '127.0.0.1:8080/morceau/morceau/'.$id);
+        curl_setopt($this->connection, CURLOPT_URL, self::URL.$id);
 
         curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1);
 
@@ -40,7 +41,7 @@ class DAO {
     }
 
     public function getByTitle(string $title){
-        curl_setopt($this->connection, CURLOPT_URL, '127.0.0.1:8080/morceau/morceau/?filter={"title": "'.$title.'"}');
+        curl_setopt($this->connection, CURLOPT_URL, self::URL.'?filter={"title": "'.$title.'"}');
 
         curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1);
 
@@ -60,7 +61,7 @@ class DAO {
         $body = array("titre" => $morceau->getTitre(), "artiste" => $morceau->getArtiste(), "album" => $morceau->getAlbum(), "listePoint" => $morceau->getListePoint(), "duree" => $morceau->getDuree(), "annee" => $morceau->getAnnee(), "cheminMP3" => $morceau->getMp3(), "cover" => $morceau->getCover(), "genre" => $morceau->getGenre() );
 
         //Construction de la requête
-        curl_setopt($this->connection, CURLOPT_URL,            "http://localhost:8080/morceau/morceau/".$morceau->getId());
+        curl_setopt($this->connection, CURLOPT_URL,            self::URL.$morceau->getId());
         curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1 );
         curl_setopt($this->connection, CURLOPT_CUSTOMREQUEST, 'PATCH');
         curl_setopt($this->connection, CURLOPT_POSTFIELDS,     json_encode($body) );
@@ -74,8 +75,7 @@ class DAO {
         // Construction du corps de la requête avec les informations de l'objet Morceau
         $body = array("titre" => $morceau->getTitre(), "artiste" => $morceau->getArtiste(), "album" => $morceau->getAlbum(), "listePoint" => [$morceau->getListePoint()], "duree" => $morceau->getDuree(), "annee" => $morceau->getAnnee(), "cheminMP3" => $morceau->getMp3(), "cover" => $morceau->getCover(), "genre" => $morceau->getGenre() );
 
-        /* PUT /db/coll/docid */
-        curl_setopt($this->connection, CURLOPT_URL,            "http://localhost:8080/morceau/morceau/");
+        curl_setopt($this->connection, CURLOPT_URL,            self::URL);
         curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1 );
         curl_setopt($this->connection, CURLOPT_POST,           1);
         curl_setopt($this->connection, CURLOPT_POSTFIELDS,     json_encode($body) );
@@ -85,8 +85,8 @@ class DAO {
     }
 
     public function delete($id){
-        /* DELETE /db/coll/*?filter={<filter_query>} */
-        curl_setopt($this->connection, CURLOPT_URL,            "http://localhost:8080/morceau/morceau/".$id);
+
+        curl_setopt($this->connection, CURLOPT_URL,            self::URL.$id);
         curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1 );
         curl_setopt($this->connection, CURLOPT_CUSTOMREQUEST, 'DELETE');
 

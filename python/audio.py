@@ -104,7 +104,7 @@ def main() :
         pgcd_value = stick_number
     duration = duration * pgcd_value
     result = duration / stick_number
-    os.system('touch musiques.json')
+    os.system('touch musique.json')
     os.system('audiowaveform -i ' + repr(filename) + ' -o musique.json -b 8 --pixels-per-second ' + repr(int(pgcd_value)))
     content = get_file_content('musique.json')
     content_positive = remove_negative_value(content)
@@ -114,7 +114,7 @@ def main() :
         outfile.write('{"duration":' + repr(get_duration(filename)) + ',"values":')
         json.dump(contentFinal, outfile)
         outfile.write('}')
-    os.system('rm musique.txt')
+    os.system('sudo rm musique.txt')
 
 if __name__ == '__main__':
     main()

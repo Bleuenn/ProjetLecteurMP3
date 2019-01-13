@@ -13,7 +13,7 @@ use Model\Morceau;
 
 !empty($_FILES['cover']['name']) ? $cover = $_FILES['cover'] : $cover = null;
 
-if(!is_null($titre) AND !is_null($artiste) AND !is_null($album) AND !is_null($annee) AND !is_null($genre) AND !is_null($mp3) AND !is_null($cover)){
+if(!is_null($titre) && !is_null($artiste) && !is_null($album) && !is_null($annee) && !is_null($genre) && !is_null($mp3) && !is_null($cover)){
 
     try {
 

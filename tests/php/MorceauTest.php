@@ -1,19 +1,20 @@
 <?php
 include_once "model/Morceau.php";
+
 use Model\Morceau;
 use PHPUnit\Framework\TestCase;
 
 final class MorceauTest extends TestCase
 {
     private $titre = "test", $artiste="ArtisteTest", $album="AlbumTest", $annee=2000, $genre="GenreTest",
-            $mp3="tests/php/test.mp3", $cover= "tests/php/test.jpg", $id=0;
+            $mp3="tests/php/test.mp3", $cover= "tests/php/test.jpg", $id="2ea5f125e548a6";
 
     /*
      * L'attribut testJPG simule un
      * $_FILE d'une image.
      */
     private $testJPG = array(
-        'name'=>'test.jpg',
+      'name'=>'test.jpg',
         'tmp_name'=>'tests/php/test.jpg',
         'type'=>'image/jpeg',
         'size'=>1472190,
@@ -46,7 +47,7 @@ final class MorceauTest extends TestCase
         $this->assertSame("GenreTest", $morceau->getGenre());
         $this->assertSame("tests/php/test.mp3", $morceau->getMp3());
         $this->assertSame("tests/php/test.jpg", $morceau->getCover());
-        $this->assertSame(0, $morceau->getId());
+        $this->assertSame("2ea5f125e548a6", $morceau->getId());
     }
 
     /*
@@ -73,6 +74,54 @@ final class MorceauTest extends TestCase
         $this->assertSame( "musique/mp3/test.mp3", $morceau->getMp3() );
     }
 
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testIdNonString(){
+        $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->mp3, $this->cover);
+        $morceau->setId(20);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testAnneeNonInt(){
+        $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->mp3, $this->cover);
+        $morceau->setAnnee("2005");
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testAnneeNegative(){
+        $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->mp3, $this->cover);
+        $morceau->setAnnee(-20);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testGenreNonString(){
+        $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->mp3, $this->cover);
+        $morceau->setGenre(20);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testCoverInt(){
+        $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->mp3, $this->cover);
+        $morceau->setCover(20);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testMp3(){
+        $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->mp3, $this->cover);
+        $morceau->setMp3(20);
+    }
+
     /*
      * Test de la méthode GenerateWeaveform
      * Vérification de la récupération des points
@@ -81,6 +130,8 @@ final class MorceauTest extends TestCase
     public function testGenerateWeaveForm(){
         $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->mp3, $this->cover, $this->id);
         $morceau->generateWeaveForm();
-        $this->assertJsonStringEqualsJsonFile("musique.json", json_encode( $morceau->getListePoint() ) );
+        $infosMp3 = json_decode( file_get_contents("musique.json") );
+        $listePoint = $infosMp3->values;
+        $this->assertSame(json_encode( $listePoint ), json_encode( $morceau->getListePoint() ) );
     }
 }
