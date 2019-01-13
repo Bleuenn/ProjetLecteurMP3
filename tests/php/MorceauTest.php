@@ -36,6 +36,15 @@ final class MorceauTest extends TestCase
     /*
      * Test du contructeur de la classe Morceau avec l'id
      * du morceau renseigné.
+     * @covers Morceau::__construct
+     * @covers Morceau::getTitre
+     * @covers Morceau::getArtiste
+     * @covers Morceau::getAlbum
+     * @covers Morceau::getAnnee
+     * @covers Morceau::getGenre
+     * @covers Morceau::getMp3
+     * @covers Morceau::getCover
+     * @covers Morceau::getId
      */
     public function testConstructeurAvecId()
     {
@@ -130,7 +139,7 @@ final class MorceauTest extends TestCase
     public function testGenerateWeaveForm(){
         $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->mp3, $this->cover, $this->id);
         $morceau->generateWeaveForm();
-        $infosMp3 = json_decode( file_get_contents("musique.json") );
+        $infosMp3 = json_decode( file_get_contents("./musique.json") );
         $listePoint = $infosMp3->values;
         $this->assertSame(json_encode( $listePoint ), json_encode( $morceau->getListePoint() ) );
     }
