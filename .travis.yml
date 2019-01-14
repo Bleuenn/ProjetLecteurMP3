@@ -27,5 +27,5 @@ script:
   - sonar-scanner
 
 after_success:
-  - travis_retry php vendor/bin/php-coveralls -v
+  - php vendor/bin/php-coveralls -v
 
