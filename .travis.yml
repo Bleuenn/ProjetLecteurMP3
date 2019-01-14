@@ -26,6 +26,6 @@ script:
   - ./vendor/bin/phpunit
   - sonar-scanner
 
-after_success:
-  - php vendor/bin/php-coveralls -v
+after_script:
+  - php vendor/bin/php-coveralls
 
