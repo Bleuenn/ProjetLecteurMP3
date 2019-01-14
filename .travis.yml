@@ -1,6 +1,5 @@
 dist: trusty
 sudo: false
-install: true
 language: php
 
 git:
@@ -12,6 +11,9 @@ php:
 branches:
   only:
     master
+
+install:
+  - php composer.phar install --dev --no-interaction
 
 addons:
   sonarcloud:

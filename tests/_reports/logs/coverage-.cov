@@ -1,0 +1,694 @@
+<?php
+$coverage = new SebastianBergmann\CodeCoverage\CodeCoverage;
+$coverage->setData(array (
+  '/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/model/Morceau.php' => 
+  array (
+    12 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    13 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    14 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    15 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    16 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    17 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    18 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    19 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    24 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    26 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    34 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+    ),
+    35 => NULL,
+    39 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+    ),
+    40 => NULL,
+    44 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+    ),
+    45 => NULL,
+    49 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+    ),
+    50 => NULL,
+    54 => 
+    array (
+    ),
+    55 => NULL,
+    59 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+    ),
+    60 => NULL,
+    64 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+    ),
+    65 => NULL,
+    69 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testUpload',
+    ),
+    70 => NULL,
+    74 => 
+    array (
+    ),
+    75 => NULL,
+    79 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testUpload',
+    ),
+    80 => NULL,
+    86 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    87 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    88 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    91 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    92 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    95 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    96 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    99 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    100 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    103 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    104 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    105 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    106 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    109 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    110 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    111 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    114 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    115 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    116 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    119 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    120 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    121 => 
+    array (
+      0 => 'MorceauTest::testConstructeurAvecId',
+      1 => 'MorceauTest::testConstructSansId',
+      2 => 'MorceauTest::testUpload',
+      3 => 'MorceauTest::testIdNonString',
+      4 => 'MorceauTest::testAnneeNonInt',
+      5 => 'MorceauTest::testAnneeNegative',
+      6 => 'MorceauTest::testGenreNonString',
+      7 => 'MorceauTest::testCoverInt',
+      8 => 'MorceauTest::testMp3',
+    ),
+    131 => 
+    array (
+      0 => 'MorceauTest::testUpload',
+    ),
+    132 => 
+    array (
+      0 => 'MorceauTest::testUpload',
+    ),
+    133 => 
+    array (
+      0 => 'MorceauTest::testUpload',
+    ),
+    136 => 
+    array (
+      0 => 'MorceauTest::testUpload',
+    ),
+    137 => 
+    array (
+      0 => 'MorceauTest::testUpload',
+    ),
+    141 => 
+    array (
+      0 => 'MorceauTest::testUpload',
+    ),
+    142 => 
+    array (
+      0 => 'MorceauTest::testUpload',
+    ),
+    143 => 
+    array (
+      0 => 'MorceauTest::testUpload',
+    ),
+    145 => 
+    array (
+      0 => 'MorceauTest::testUpload',
+    ),
+    146 => 
+    array (
+      0 => 'MorceauTest::testUpload',
+    ),
+    148 => 
+    array (
+      0 => 'MorceauTest::testUpload',
+    ),
+    149 => NULL,
+    156 => 
+    array (
+    ),
+    157 => 
+    array (
+    ),
+    158 => 
+    array (
+    ),
+    159 => 
+    array (
+    ),
+    160 => 
+    array (
+    ),
+    161 => 
+    array (
+    ),
+  ),
+  '/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/model/DAO.php' => 
+  array (
+    10 => 
+    array (
+    ),
+    11 => 
+    array (
+    ),
+    14 => 
+    array (
+    ),
+    16 => 
+    array (
+    ),
+    19 => 
+    array (
+    ),
+    21 => 
+    array (
+    ),
+    22 => 
+    array (
+    ),
+    25 => 
+    array (
+    ),
+    26 => NULL,
+    29 => 
+    array (
+    ),
+    31 => 
+    array (
+    ),
+    34 => 
+    array (
+    ),
+    36 => 
+    array (
+    ),
+    37 => 
+    array (
+    ),
+    40 => 
+    array (
+    ),
+    41 => NULL,
+    44 => 
+    array (
+    ),
+    46 => 
+    array (
+    ),
+    49 => 
+    array (
+    ),
+    51 => 
+    array (
+    ),
+    52 => 
+    array (
+    ),
+    55 => 
+    array (
+    ),
+    56 => NULL,
+    61 => 
+    array (
+    ),
+    64 => 
+    array (
+    ),
+    65 => 
+    array (
+    ),
+    66 => 
+    array (
+    ),
+    67 => 
+    array (
+    ),
+    68 => 
+    array (
+    ),
+    70 => 
+    array (
+    ),
+    71 => NULL,
+    76 => 
+    array (
+    ),
+    78 => 
+    array (
+    ),
+    79 => 
+    array (
+    ),
+    80 => 
+    array (
+    ),
+    81 => 
+    array (
+    ),
+    82 => 
+    array (
+    ),
+    84 => 
+    array (
+    ),
+    85 => NULL,
+    89 => 
+    array (
+    ),
+    90 => 
+    array (
+    ),
+    91 => 
+    array (
+    ),
+    93 => 
+    array (
+    ),
+    94 => NULL,
+    97 => 
+    array (
+    ),
+    98 => 
+    array (
+    ),
+  ),
+));
+$coverage->setTests(array (
+  'UNCOVERED_FILES_FROM_WHITELIST' => 
+  array (
+    'size' => 'unknown',
+    'status' => NULL,
+  ),
+  'MorceauTest::testConstructeurAvecId' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'MorceauTest::testConstructSansId' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'MorceauTest::testUpload' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'MorceauTest::testIdNonString' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'MorceauTest::testAnneeNonInt' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'MorceauTest::testAnneeNegative' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'MorceauTest::testGenreNonString' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'MorceauTest::testCoverInt' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'MorceauTest::testMp3' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+));
+
+$filter = $coverage->filter();
+$filter->setWhitelistedFiles(array (
+  '/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/model/DAO.php' => true,
+  '/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/model/Morceau.php' => true,
+));
+
+return $coverage;
