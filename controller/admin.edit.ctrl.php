@@ -8,7 +8,7 @@ use Model\Morceau;
 !empty($_POST['titre']) ? $titre = $_POST['titre'] : $titre = null;
 !empty($_POST['artiste']) ? $artiste = $_POST['artiste'] : $artiste = null;
 !empty($_POST['album']) ? $album = $_POST['album'] : $album = null;
-!empty($_POST['annee']) ? $annee = $_POST['annee'] : $annee = null;
+!empty($_POST['annee']) ? $annee= intval($_POST['annee']) : $annee = null;
 !empty($_POST['genre']) ? $genre = $_POST['genre'] : $genre = null;
 
 !empty($_FILES['mp3']['name']) ? $mp3 = $_FILES['mp3'] : $mp3 = null ;

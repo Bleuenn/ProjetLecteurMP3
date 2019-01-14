@@ -83,7 +83,7 @@ class Morceau
      *                  Méthodes SET                      *
      * -------------------------------------------------- */
     public function setId($id = null){
-        if(!is_string($id) && !is_null($id)) throw new \InvalidArgumentException("string excepted");
+        if(!is_string($id) && !is_null($id)) throw new \InvalidArgumentException("ID : string excepted");
         $this->id = $id;
     }
 
@@ -100,23 +100,23 @@ class Morceau
     }
 
     public function setAnnee($annee){
-        if(!is_int($annee) && !is_null($annee)) throw new \InvalidArgumentException("integer excepted");
-        else if($annee < 0) throw new \InvalidArgumentException("integer > 0 excepted");
+        if(!is_int($annee) && !is_null($annee)) throw new \InvalidArgumentException("Annee : integer excepted");
+        else if($annee < 0) throw new \InvalidArgumentException("Annee : integer > 0 excepted");
         $this->annee = $annee;
     }
 
     public function setGenre($genre){
-        if(!is_string($genre) && !is_null($genre)) throw new \InvalidArgumentException("String excepted");
+        if(!is_string($genre) && !is_null($genre)) throw new \InvalidArgumentException("Genre : String excepted");
         $this->genre = $genre;
     }
 
     public function setCover($cover){
-        if(!is_array($cover) && !is_string($cover)) throw new \InvalidArgumentException("String or array excepted");
+        if(!is_array($cover) && !is_string($cover)) throw new \InvalidArgumentException("Cover : String or array excepted");
         $this->cover = $cover;
     }
 
     public function setMp3($mp3){
-        if(!is_array($mp3) && !is_string($mp3)) throw new \InvalidArgumentException("String or array excepted");
+        if(!is_array($mp3) && !is_string($mp3)) throw new \InvalidArgumentException("Mp3 : String or array excepted");
         $this->mp3 = $mp3;
     }
 
