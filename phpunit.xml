@@ -3,6 +3,12 @@
         <directory>./tests/php/</directory>
     </testsuite>
 
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">model/</directory>
+        </whitelist>
+    </filter>
+
     <logging>
         <log type="coverage-clover" target="tests/_reports/logs/clover.xml"/>
         <log type="coverage-html" target="tests/_reports/coverage" charset="UTF-8" yui="true" highlight="true" lowUpperBound="35" highLowerBound="70" />
