@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1547469270">
-  <project timestamp="1547469270">
+<coverage generated="1547477997">
+  <project timestamp="1547477997">
     <package name="Model">
       <file name="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/model/DAO.php">
         <class name="Model\DAO" namespace="Model">
