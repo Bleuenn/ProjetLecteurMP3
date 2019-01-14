@@ -1,0 +1,11 @@
+Morceau
+ [x] Constructeur avec id
+ [x] Construct sans id
+ [x] Upload
+ [x] Id non string
+ [x] Annee non int
+ [x] Annee negative
+ [x] Genre non string
+ [x] Cover int
+ [x] Mp 3
+
