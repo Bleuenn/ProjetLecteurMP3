@@ -53,34 +53,11 @@ FileEcoute.prototype.addMorceau = function(morceau) {
 	this.liste.push(morceau);
 };
 
-/*FileEcoute.prototype.deleteMorceau = function(){
-	this.liste.delete[arguments[0] id ];
-}*/
+FileEcoute.prototype.deleteMorceau = function(idSelection){
 
-FileEcoute.prototype.test = function() {
-
-	console.log("Création des listes, file écoute et morceau")
-	var listeRap = ["FF","IAM"];
-	var listeRap2 = ["Scred Connexion, Oxmo Puccino"]
-	var fileEcoute1 = new FileEcoute("Rap",listeRap);	
-	var newMusique = "Kery James";
-
-	console.log("Test get/set name");
-	//fileEcoute1.setNamePlaylist("Rap2Ouf");
-	fileEcoute1.getNamePlaylist();
-
-	console.log("Test get/set Morceau");
-	//fileEcoute1.setListeMorceau(listeRap2);
-	//console.log(fileEcoute1.getListeMorceau());
-
-	console.log("Test getId");
-	//fileEcoute1.getId();
-
-	console.log("Test addMorceau");
-	//fileEcoute1.addMorceau(newMusique);
-	//console.log(fileEcoute1.getListeMorceau());
-
-	console.log("Test deleteMorceau");
-	//fileEcoute1.deleteMorceau(0);
-	//console.log(fileEcoute1.getListeMorceau());
-};
+	this.liste.forEach((element) => { 
+		if (element.id==idMorceau){
+			console.log("ok");
+		};
+	});
+}
