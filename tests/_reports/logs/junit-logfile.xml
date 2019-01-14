@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="unit" tests="9" assertions="17" errors="0" failures="0" skipped="0" time="0.006901">
-    <testsuite name="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" tests="9" assertions="17" errors="0" failures="0" skipped="0" time="0.006901">
-      <testcase name="testConstructeurAvecId" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="49" assertions="8" time="0.001290"/>
-      <testcase name="testConstructSansId" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="67" assertions="1" time="0.000580"/>
-      <testcase name="testUpload" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="78" assertions="2" time="0.000672"/>
-      <testcase name="testIdNonString" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="89" assertions="1" time="0.000723"/>
-      <testcase name="testAnneeNonInt" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="97" assertions="1" time="0.000733"/>
-      <testcase name="testAnneeNegative" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="105" assertions="1" time="0.000700"/>
-      <testcase name="testGenreNonString" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="113" assertions="1" time="0.000772"/>
-      <testcase name="testCoverInt" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="121" assertions="1" time="0.000741"/>
-      <testcase name="testMp3" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="129" assertions="1" time="0.000690"/>
+  <testsuite name="unit" tests="9" assertions="17" errors="0" failures="0" skipped="0" time="0.008923">
+    <testsuite name="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" tests="9" assertions="17" errors="0" failures="0" skipped="0" time="0.008923">
+      <testcase name="testConstructeurAvecId" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="49" assertions="8" time="0.003109"/>
+      <testcase name="testConstructSansId" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="67" assertions="1" time="0.000591"/>
+      <testcase name="testUpload" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="78" assertions="2" time="0.000654"/>
+      <testcase name="testIdNonString" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="89" assertions="1" time="0.000921"/>
+      <testcase name="testAnneeNonInt" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="97" assertions="1" time="0.000821"/>
+      <testcase name="testAnneeNegative" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="105" assertions="1" time="0.000717"/>
+      <testcase name="testGenreNonString" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="113" assertions="1" time="0.000641"/>
+      <testcase name="testCoverInt" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="121" assertions="1" time="0.000698"/>
+      <testcase name="testMp3" class="MorceauTest" classname="MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="129" assertions="1" time="0.000771"/>
     </testsuite>
   </testsuite>
 </testsuites>
