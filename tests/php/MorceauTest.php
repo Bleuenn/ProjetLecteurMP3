@@ -1,4 +1,6 @@
 <?php
+namespace Model\Tests;
+
 include_once "model/Morceau.php";
 
 use Model\Morceau;
@@ -74,6 +76,7 @@ final class MorceauTest extends TestCase
      * Test de la méthode Upload.
      * Vérification de l'assignation de l'attribut cover.
      * Vérification de l'assignation de l'attribut mp3.
+     * @covers Morceau::upload
      */
     public function testUpload(){
         $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->testMP3, $this->testJPG);
@@ -135,12 +138,13 @@ final class MorceauTest extends TestCase
      * Test de la méthode GenerateWeaveform
      * Vérification de la récupération des points
      * du spectre audio d'un fichier MP3.
+     * @covers Morceau::generateWeaveForm
      */
-//    public function testGenerateWeaveForm(){
-//        $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->mp3, $this->cover, $this->id);
-//        $morceau->generateWeaveForm();
-        //$infosMp3 = json_decode( file_get_contents("./musique.json") );
-        //$listePoint = $infosMp3->values;
-        //$this->assertSame(json_encode( $listePoint ), json_encode( $morceau->getListePoint() ) );
-//    }
+    public function testGenerateWeaveForm(){
+        $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->mp3, $this->cover, $this->id);
+        $morceau->generateWeaveForm();
+        $infosMp3 = json_decode( file_get_contents("./musique.json") );
+        $listePoint = $infosMp3->values;
+        $this->assertSame(json_encode( $listePoint ), json_encode( $morceau->getListePoint() ) );
+    }
 }
