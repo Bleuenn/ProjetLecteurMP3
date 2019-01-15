@@ -74,6 +74,7 @@ form .submit{
  * --------------------------------------- */
 
 .audioplayer {
+    overflow: auto;
     margin: auto 0;
     position: relative;
     display: flex;
@@ -97,8 +98,7 @@ form .submit{
 .infos {
     display: flex;
     align-self: flex-start;
-    align-items: center;
-    flex: 1 25%;
+    align-items: baseline;
     order: 1;
     margin-left: 265px;
     max-height: 33px;
@@ -114,6 +114,7 @@ form .submit{
 }
 
 .controls {
+    margin: 0 10px 0 10px;
     position: relative;
     align-self: flex-end;
     order: 5;
@@ -294,7 +295,6 @@ input[type=range]:focus::-ms-fill-upper {
     display: flex;
     align-self: flex-start;
     order: 2;
-    flex: 1 25%;
     justify-content: flex-end;
     max-height: 33px;
 }
@@ -392,6 +392,130 @@ rect.reverse {
     }
 }
 
+@media all and (max-width: 776px) {
+    .statistiques {
+        order: 6;
+    }
+
+    .social {
+        order: 7;
+    }
+}
+
+@media all and (max-width: 732px) {
+    .audioplayer {
+        max-width: 250px;
+        max-height: 250px;
+        margin: 0 auto; /* centre visuel page */
+        justify-content: flex-end;
+    }
+
+    .visuel {
+        z-index: -1;
+        filter: opacity(0.32);
+        -webkit-filter: opacity(0.40);
+        background-color: white;
+    }
+
+    .infos, .waveform, .temps {
+        margin-left: 0;
+    }
+
+    .infos > .artiste {
+        font-weight: 900;
+        font-size: 13px;
+        color: black;
+    }
+
+    .infos > .titre {
+        font-size: 12px;
+    }
+
+    .infos {
+        margin: 15px 0 0 10px;
+        width: 100%;
+    }
+
+    .waveform {
+        max-height: 100px;
+    }
+
+    rect, rect.reverse {
+      fill: dimgray !important;
+        stroke: white;
+        stroke-width: 0.1;
+    }
+
+    .controls {
+        order: 4;
+        margin-bottom: 15px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .controls button {
+        padding: 0;
+        width: 25px;
+        height: 25px;
+        border: 1px solid white;
+    }
+
+    .controls button:nth-child(2) {
+        padding: 0;
+        width: 35px;
+        height: 35px;
+        font-size: 15px;
+    }
+
+    #range {
+        top: -30px;
+        right: 5px;
+    }
+
+    .temps {
+        order: 5;
+        position: absolute;
+        left: 25px;
+        bottom: 15px;
+        font-size: 12px;
+    }
+
+    .temps .en-cours {
+        background-color: black;
+    }
+
+    .temps > .en-cours::after {
+        background: none;
+    }
+
+    .statistiques, .social {
+        margin-right: 5px;
+    }
+
+    .statistiques {
+        padding: 2px 0px 2px 10px;
+        width: 130px;
+        font-size: 11px;
+        background-color: white;
+    }
+
+    .social {
+        margin-top: 5px;
+    }
+
+    .social button {
+        padding: 5px 10px 5px 10px;
+        font-size: 10px;
+    }
+
+    .social button:last-child {
+        margin-left: 5px;
+    }
+}
+
+/*
 @media all and (max-height: 300px){
 
     html{:100%;}
@@ -431,4 +555,4 @@ rect.reverse {
     .statistiques{
         background-color: burlywood;
     }
-}
+}*/
