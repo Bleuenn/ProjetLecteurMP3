@@ -3,7 +3,7 @@ namespace Model\Tests;
 
 use Model\DAO;
 use Model\Morceau;
-use PHPUnit\Framework\testCase;
+use PHPUnit\Framework\TestCase;
 
 
 class DaoTest extends testCase
