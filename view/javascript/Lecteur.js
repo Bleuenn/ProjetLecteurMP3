@@ -4,10 +4,9 @@
 function Lecteur () {
     currentMorceau=null;
     currentTime=null;
-    volume=50;
+    volume=25;
     // playList=false; // a voir si on l'intègre...
 }
-
 
 /**
  * Retourne le temps courant du morceau
@@ -77,22 +76,27 @@ Lecteur.prototype.getHeightWaveForm = function() {
     return parseInt(height);
 }
 
+/**
+ * Retourne la valeur maximale entre toutes les données récupérées du fichier JSON générée par Audiowaveform
+ * @returns {number} valeur maximale du JSON
+ */
 Lecteur.prototype.getMax = function() {
-    let tab = getData(),
-        max = 0;
+	let tab = this.currentMorceau.getValuesWaveform();
+	let max = 0;
 
-    for (let i = 0; i < tab.length; i++) {
-        if (tab[i] > max) {
-            max = tab[i];
-        }
-    }
+	for (let i = 1; i < tab.length; i++) {
+		if (tab[i] > max) {
+			max = tab[i];
+		}
+	}
 
-    return max;
+	return max;
 }
 
 /**
- * Dessine en SVG les différentes barres verticales.
- * @param {*} values liste des valeurs générées avec AudioWaveForm
+ * Dessine dans une balise SVG les barres verticales d'une hauteur différente en
+ * fonction des différentes valeurs du fichier JSON généré par audiowaveform
+ * @param values
  */
 Lecteur.prototype.drawSVG = function(values) {
     let svg = document.getElementById('svg'),
@@ -140,3 +144,41 @@ Lecteur.prototype.drawSVG = function(values) {
     }
 }
 
+Lecteur.prototype.resizeBar = function() {
+	let svg = document.getElementById('svg');
+	svg.innerHTML ="";
+	drawSvg(Morceau.getValuesWaveform());
+}
+
+Lecteur.prototype.changeVolume = function(valeur) {
+	let btnVolume = document.getElementsByClassName('volume')[0];
+	if (valeur === 0) {
+		btnVolume.innerText = "";
+	} else if (valeur <= 25) {
+		btnVolume.innerText = "";
+	} else if (valeur <= 50) {
+		btnVolume.innerText = "";
+	} else if (valeur <= 75) {
+		btnVolume.innerText = "";
+	}
+	this.Lecteur.setVolume(valeur);
+}
+
+/**
+ * Cette fonction permet de calculer le nombre de barre que doit posséder le SVG
+ * en fonction de la largeur de la fenêtre
+ * @returns nombreBarre le nombre de barre en fonction de la largeur de l'écran
+ */
+Lecteur.prototype.getNombreBarresResponsive = function(largeurEcran) {
+	let nombreDeBarres = largeurEcran / 7; // divisé par 7 pour avoir un ratio pour un juste milieu en trop et pas assez de barres
+	return Math.round(nombreDeBarres);
+}
+
+Lecteur.prototype.main = function() {
+		this.drawSvg(this.currentMorceau.getValuesWaveform());
+		window.addEventListener('resize', function () {
+			resizeBar()
+		}, false);
+
+		player(this.currentMorceau.get);
+}

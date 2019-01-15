@@ -14,11 +14,10 @@ branches:
 
 install:
   - php composer.phar install --dev --no-interaction
-  - sudo add-apt-repository ppa:chris-needham/ppa
-  - sudo apt-get update
-  - sudo apt-get install audiowaveform
-  - sudo apt-get install mediainfo
-  - sudo apt-get ffmpeg
+  - sudo add-apt-repository ppa:chris-needham/ppa -y
+  - sudo apt-get update -y
+  - sudo apt-get install audiowaveform -y
+  - sudo apt-get install mediainfo -y
 
 addons:
   sonarcloud:
