@@ -1,5 +1,5 @@
 dist: trusty
-sudo: false
+sudo: true
 language: php
 
 git:
@@ -14,6 +14,11 @@ branches:
 
 install:
   - php composer.phar install --dev --no-interaction
+  - add-apt-repository ppa:chris-needham/ppa
+  - apt-get update
+  - apt-get install audiowaveform
+  - apt-get install mediainfo
+  - apt-get ffmpeg
 
 addons:
   sonarcloud:
