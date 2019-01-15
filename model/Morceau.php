@@ -148,6 +148,7 @@ class Morceau
         return move_uploaded_file($file['tmp_name'], $dossier . $fichier);
     }
 
+
     /*
      * Méthode de génération de la Weaveform selon
      * le fichier MP3 upload.

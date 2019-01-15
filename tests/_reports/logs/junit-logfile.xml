@@ -1,24 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="unit" tests="15" assertions="23" errors="0" failures="0" skipped="0" time="1.282208">
-    <testsuite name="Model\Tests\DaoTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/DaoTest.php" tests="5" assertions="5" errors="0" failures="0" skipped="0" time="0.022099">
-      <testcase name="testConstructeur" class="Model\Tests\DaoTest" classname="Model.Tests.DaoTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/DaoTest.php" line="21" assertions="1" time="0.001035"/>
-      <testcase name="testGetAll" class="Model\Tests\DaoTest" classname="Model.Tests.DaoTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/DaoTest.php" line="33" assertions="1" time="0.006783"/>
-      <testcase name="testGetById" class="Model\Tests\DaoTest" classname="Model.Tests.DaoTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/DaoTest.php" line="46" assertions="1" time="0.007329"/>
-      <testcase name="testUpdate" class="Model\Tests\DaoTest" classname="Model.Tests.DaoTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/DaoTest.php" line="59" assertions="1" time="0.004165"/>
-      <testcase name="testDelete" class="Model\Tests\DaoTest" classname="Model.Tests.DaoTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/DaoTest.php" line="74" assertions="1" time="0.002787"/>
+  <testsuite name="unit" tests="15" assertions="23" errors="0" failures="4" skipped="0" time="7.385479">
+    <testsuite name="Model\Tests\DaoTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/DaoTest.php" tests="5" assertions="5" errors="0" failures="4" skipped="0" time="0.018579">
+      <testcase name="testConstructeur" class="Model\Tests\DaoTest" classname="Model.Tests.DaoTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/DaoTest.php" line="21" assertions="1" time="0.000945"/>
+      <testcase name="testGetAll" class="Model\Tests\DaoTest" classname="Model.Tests.DaoTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/DaoTest.php" line="33" assertions="1" time="0.006430">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">Model\Tests\DaoTest::testGetAll
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'HTTP://127.0.0.1:8080/morceau/morceau/'
++'http://127.0.0.1:8080/morceau/morceau/'
+
+/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/DaoTest.php:37
+</failure>
+      </testcase>
+      <testcase name="testGetById" class="Model\Tests\DaoTest" classname="Model.Tests.DaoTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/DaoTest.php" line="46" assertions="1" time="0.004012">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">Model\Tests\DaoTest::testGetById
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'HTTP://127.0.0.1:8080/morceau/morceau/5c37b38d214fb37593d7c3af'
++'http://127.0.0.1:8080/morceau/morceau/5c37b38d214fb37593d7c3af'
+
+/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/DaoTest.php:50
+</failure>
+      </testcase>
+      <testcase name="testUpdate" class="Model\Tests\DaoTest" classname="Model.Tests.DaoTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/DaoTest.php" line="59" assertions="1" time="0.004163">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">Model\Tests\DaoTest::testUpdate
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'HTTP://127.0.0.1:8080/morceau/morceau/e25rz845ef4q5'
++'http://127.0.0.1:8080/morceau/morceau/e25rz845ef4q5'
+
+/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/DaoTest.php:64
+</failure>
+      </testcase>
+      <testcase name="testDelete" class="Model\Tests\DaoTest" classname="Model.Tests.DaoTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/DaoTest.php" line="74" assertions="1" time="0.003028">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">Model\Tests\DaoTest::testDelete
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'HTTP://127.0.0.1:8080/morceau/morceau/e25rz845ef4q5'
++'http://127.0.0.1:8080/morceau/morceau/e25rz845ef4q5'
+
+/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/DaoTest.php:78
+</failure>
+      </testcase>
     </testsuite>
-    <testsuite name="Model\Tests\MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" tests="10" assertions="18" errors="0" failures="0" skipped="0" time="1.260108">
-      <testcase name="testConstructeurAvecId" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="51" assertions="8" time="0.000993"/>
-      <testcase name="testConstructSansId" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="69" assertions="1" time="0.000710"/>
-      <testcase name="testUpload" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="81" assertions="2" time="0.000938"/>
-      <testcase name="testIdNonString" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="92" assertions="1" time="0.000880"/>
-      <testcase name="testAnneeNonInt" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="100" assertions="1" time="0.000908"/>
-      <testcase name="testAnneeNegative" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="108" assertions="1" time="0.000752"/>
-      <testcase name="testGenreNonString" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="116" assertions="1" time="0.000794"/>
-      <testcase name="testCoverInt" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="124" assertions="1" time="0.000742"/>
-      <testcase name="testMp3" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="132" assertions="1" time="0.000794"/>
-      <testcase name="testGenerateWeaveForm" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="143" assertions="1" time="1.252597"/>
+    <testsuite name="Model\Tests\MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" tests="10" assertions="18" errors="0" failures="0" skipped="0" time="7.366901">
+      <testcase name="testConstructeurAvecId" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="51" assertions="8" time="0.000939"/>
+      <testcase name="testConstructSansId" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="69" assertions="1" time="0.000612"/>
+      <testcase name="testUpload" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="81" assertions="2" time="0.000694"/>
+      <testcase name="testIdNonString" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="92" assertions="1" time="0.000832"/>
+      <testcase name="testAnneeNonInt" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="100" assertions="1" time="0.000722"/>
+      <testcase name="testAnneeNegative" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="108" assertions="1" time="0.000714"/>
+      <testcase name="testGenreNonString" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="116" assertions="1" time="0.000714"/>
+      <testcase name="testCoverInt" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="124" assertions="1" time="0.000806"/>
+      <testcase name="testMp3" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="132" assertions="1" time="0.000711"/>
+      <testcase name="testGenerateWeaveForm" class="Model\Tests\MorceauTest" classname="Model.Tests.MorceauTest" file="/home/captainad-hoc/Projets/Web/ProjetLecteurMP3/tests/php/MorceauTest.php" line="143" assertions="1" time="7.360157"/>
     </testsuite>
   </testsuite>
 </testsuites>
