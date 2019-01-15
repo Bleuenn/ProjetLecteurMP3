@@ -40,6 +40,7 @@ class DAO {
         return false;
     }
 
+    /* Méthode inutile *
     public function getByTitle(string $title){
         curl_setopt($this->connection, CURLOPT_URL, self::URL.'?filter={"title": "'.$title.'"}');
 
@@ -54,6 +55,7 @@ class DAO {
 
         return false;
     }
+    */
 
     public function update(Morceau $morceau){
 
@@ -91,6 +93,10 @@ class DAO {
         curl_setopt($this->connection, CURLOPT_CUSTOMREQUEST, 'DELETE');
 
         return curl_exec($this->connection);
+    }
+
+    public function getInfo(){
+        return curl_getinfo($this->connection);
     }
 
     public function close(){
