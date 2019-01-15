@@ -177,8 +177,8 @@ Lecteur.prototype.getNombreBarresResponsive = function(largeurEcran) {
 Lecteur.prototype.main = function() {
 		this.drawSvg(this.currentMorceau.getValuesWaveform());
 		window.addEventListener('resize', function () {
-			resizeBar()
+			this.resizeBar();
 		}, false);
 
-		player(this.currentMorceau.get);
+		player(this.currentMorceau.getPath());
 }
