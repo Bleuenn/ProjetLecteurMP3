@@ -34,7 +34,7 @@ class DaoTest extends testCase
         $cnx = new DAO();
         $cnx->getAll();
         $infos = $cnx->getInfo();
-        $this->assertSame("http://127.0.0.1:8080/morceau/morceau/", $infos['url']);
+        $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/", $infos['url']);
     }
 
     /*
@@ -47,7 +47,7 @@ class DaoTest extends testCase
         $cnx = new DAO();
         $cnx->getById("5c37b38d214fb37593d7c3af");
         $infos = $cnx->getInfo();
-        $this->assertSame("http://127.0.0.1:8080/morceau/morceau/5c37b38d214fb37593d7c3af", $infos['url']);
+        $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/5c37b38d214fb37593d7c3af", $infos['url']);
     }
 
     /*
@@ -61,7 +61,7 @@ class DaoTest extends testCase
         $cnx = new DAO();
         $cnx->update($morceau);
         $infos = $cnx->getInfo();
-        $this->assertSame("http://127.0.0.1:8080/morceau/morceau/e25rz845ef4q5", $infos['url']);
+        $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/e25rz845ef4q5", $infos['url']);
     }
 
     /*
@@ -75,6 +75,6 @@ class DaoTest extends testCase
         $cnx = new DAO();
         $cnx->delete("e25rz845ef4q5");
         $infos = $cnx->getInfo();
-        $this->assertSame("http://127.0.0.1:8080/morceau/morceau/e25rz845ef4q5", $infos['url']);
+        $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/e25rz845ef4q5", $infos['url']);
     }
 }
