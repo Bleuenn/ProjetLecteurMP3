@@ -14,11 +14,12 @@ class DaoTest extends testCase
     /*
      * Test du contructeur de la classe DAO :
      * initialisation de la requête CURL
+     * @test
      * @before
      * @covers DAO::__construct
      * @covers DAO::close
      */
-    public function testConstructeur(){
+    public function constructeur(){
         $cnx= new DAO();
         $this->assertNotFalse($cnx);
         $cnx->close();
@@ -26,11 +27,12 @@ class DaoTest extends testCase
 
     /*
      * Test de la méthode getAll :
+     * @test
      * @covers DAO::getAll
      * @covers DAO::getInfo
      * @depends testConstructeur
      */
-    public function testGetAll(){
+    public function getAll(){
         $cnx = new DAO();
         $cnx->getAll();
         $infos = $cnx->getInfo();
@@ -39,11 +41,12 @@ class DaoTest extends testCase
 
     /*
      * Test de la méthode getById :
+     * @test
      * @covers DAO::getById
      * @covers DAO::getInfo
      * @depends testConstructeur
      */
-    public function testGetById(){
+    public function getById(){
         $cnx = new DAO();
         $cnx->getById("5c37b38d214fb37593d7c3af");
         $infos = $cnx->getInfo();
@@ -52,11 +55,12 @@ class DaoTest extends testCase
 
     /*
     * Test de la méthode Add :
+     * @test
      * @covers DAO::add
      * @covers DAO::getInfo
      * @depends testConstructeur
      */
-    public function testAdd(){
+    public function add(){
         $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->mp3, $this->cover, "e25rz845ef4q5");
         $cnx = new DAO();
         $cnx->add($morceau);
@@ -66,11 +70,12 @@ class DaoTest extends testCase
 
     /*
      * Test de la méthode Update :
+     * @test
      * @covers DAO::update
      * @covers DAO::getInfo
      * @depends testConstructeur
      */
-    public function testUpdate(){
+    public function update(){
         $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->mp3, $this->cover, "e25rz845ef4q5");
         $cnx = new DAO();
         $cnx->update($morceau);
@@ -80,12 +85,13 @@ class DaoTest extends testCase
 
     /*
      * Test de la classe delete :
+     * @test
      * @covers DAO::delete
      * @covers DAO::getInfo
      * @depends testConstructeur
      * @depends testUpdate
      */
-    public function testDelete(){
+    public function delete(){
         $cnx = new DAO();
         $cnx->delete("e25rz845ef4q5");
         $infos = $cnx->getInfo();
