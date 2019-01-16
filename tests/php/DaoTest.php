@@ -32,7 +32,7 @@ class DaoTest extends testCase
      * @covers DAO::getInfo
      * @depends testConstructeur
      */
-    public function getAll(){
+    public function testGetAll(){
         $cnx = new DAO();
         $cnx->getAll();
         $infos = $cnx->getInfo();
