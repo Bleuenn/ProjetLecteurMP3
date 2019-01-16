@@ -51,6 +51,20 @@ class DaoTest extends testCase
     }
 
     /*
+    * Test de la méthode Add :
+     * @covers DAO::add
+     * @covers DAO::getInfo
+     * @depends testConstructeur
+     */
+    public function testAdd(){
+        $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->mp3, $this->cover, "e25rz845ef4q5");
+        $cnx = new DAO();
+        $cnx->add($morceau);
+        $infos = $cnx->getInfo();
+        $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/e25rz845ef4q5", $infos['url']);
+    }
+
+    /*
      * Test de la méthode Update :
      * @covers DAO::update
      * @covers DAO::getInfo

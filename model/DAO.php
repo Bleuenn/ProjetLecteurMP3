@@ -15,14 +15,7 @@ class DAO {
 
         curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1);
 
-        try {
-            return curl_exec($this->connection);
-        }
-        catch (Exception $e){
-            echo $e->getMessage();
-        }
-
-        return false;
+        return curl_exec($this->connection);
     }
 
     public function getById(string $id){
@@ -30,32 +23,8 @@ class DAO {
 
         curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1);
 
-        try {
-            return curl_exec($this->connection);
-        }
-        catch (Exception $e){
-            echo $e->getMessage();
-        }
-
-        return false;
+        return curl_exec($this->connection);
     }
-
-    /* Méthode inutile *
-    public function getByTitle(string $title){
-        curl_setopt($this->connection, CURLOPT_URL, self::URL.'?filter={"title": "'.$title.'"}');
-
-        curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1);
-
-        try {
-            return curl_exec($this->connection);
-        }
-        catch (Exception $e){
-            echo $e->getMessage();
-        }
-
-        return false;
-    }
-    */
 
     public function update(Morceau $morceau){
 
