@@ -61,7 +61,7 @@ class DaoTest extends testCase
         $cnx = new DAO();
         $cnx->add($morceau);
         $infos = $cnx->getInfo();
-        $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/e25rz845ef4q5", $infos['url']);
+        $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/", $infos['url']);
     }
 
     /*
