@@ -60,6 +60,10 @@ Lecteur.prototype.createSound = function() {
     
 }
 
+/**
+ *
+ * @returns {number}
+ */
 Lecteur.prototype.getWidthWaveForm = function() {
     let element = document.getElementsByClassName('waveform')[0],
         style = window.getComputedStyle(element),
@@ -68,6 +72,10 @@ Lecteur.prototype.getWidthWaveForm = function() {
     return parseInt(width);
 }
 
+/**
+ *
+ * @returns {number}
+ */
 Lecteur.prototype.getHeightWaveForm = function() {
     let element = document.getElementsByClassName('waveform')[0],
         style = window.getComputedStyle(element),
@@ -91,6 +99,21 @@ Lecteur.prototype.getMax = function() {
 	}
 
 	return max;
+}
+
+/**
+ * Supprime les indices impairs du tableau en paramètre.
+ * @param data tableau contenant les couples de données positives et négatives.
+ * @returns {Array} tableau avec seulement des données positives.
+ */
+function deleteOdd(data) {
+	//console.log(data.length);
+	let tableau = [];
+	for (let i = 1; i < data.length - 1; i = i + 2) {
+		//console.log(data[i]);
+		tableau.push(Math.floor(data[i] * 2));
+	}
+	return tableau;
 }
 
 /**
@@ -174,11 +197,77 @@ Lecteur.prototype.getNombreBarresResponsive = function(largeurEcran) {
 	return Math.round(nombreDeBarres);
 }
 
-Lecteur.prototype.main = function() {
-		this.drawSvg(this.currentMorceau.getValuesWaveform());
-		window.addEventListener('resize', function () {
-			this.resizeBar();
-		}, false);
+/**
+ * Joue la musique musique en paramètre.
+ * @param chemin chemin de la musique.
+ */
+Lecteur.prototype.player = function(chemin) {
+	let musique = new Audio(chemin);
+	let boutonLecteur = document.getElementsByClassName('play')[0];
+	let enLecture = false;
 
-		player(this.currentMorceau.getPath());
+	boutonLecteur.addEventListener('click', function () {
+
+		if (!enLecture) {
+			musique.play();
+			enLecture = true;
+			boutonLecteur.innerText = "";
+		} else {
+			musique.pause();
+			enLecture = false;
+			musique.currentTime = 0;
+			boutonLecteur.innerText = "";
+		}
+	});
 }
+
+/**
+ * Permet de faire l'initialisation des éléments du lecteur
+ */
+Lecteur.prototype.initialisation = function() {
+	let rect = document.querySelectorAll('rect')[0];
+	let btnVolume = document.getElementsByClassName('volume')[0];
+	let range = null;
+
+	btnVolume.addEventListener('mouseover', function (e) {
+		if (range === null) {
+			range = document.createElement("input");
+			range.setAttribute("type", "range");
+			range.setAttribute("id", "range");
+			range.setAttribute("value", this.currentMorceau.getVolume());
+
+			btnVolume.parentNode.appendChild(range);
+
+			range.addEventListener("mouseout", function (e) {
+				//console.log(range.value);
+				//console.log(volume);
+				changeVolume(range.value);
+				btnVolume.parentNode.removeChild(range);
+				range = null;
+			});
+		}
+	});
+}
+
+Lecteur.prototype.main = function() {
+	Lecteur.prototype.initialisation;
+
+	let morceau = new Morceau("Doing Yoga", "Kazy Lambist");
+	let lecteur = new Lecteur();
+	lecteur.setCurrentMorceau(morceau);
+	let data = morceau.getData();
+	morceau.setValuesWaveform(data);
+	// morceau.getValuesWaveform(this.currentMorceau.getValuesWaveform())
+	console.log("data: "+ data);
+	console.log("nblike: "+this.currentMorceau.getNbLike());
+	console.log("values: "+this.getValuesWaveform());
+
+	this.drawSvg(this.getValuesWaveform);
+	window.addEventListener('resize', function () {
+		this.resizeBar();
+	}, false);
+
+	this.player(this.currentMorceau.getPath());
+}
+
+Lecteur.prototype.main();

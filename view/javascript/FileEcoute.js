@@ -56,7 +56,7 @@ FileEcoute.prototype.addMorceau = function(morceau) {
 FileEcoute.prototype.deleteMorceau = function(idSelection){
 
 	this.liste.forEach((element) => { 
-		if (element.id==idMorceau){
+		if (element.id===idMorceau){
 			console.log("ok");
 		};
 	});

@@ -19,7 +19,7 @@ function TestFileEcoute() {
 	console.log(fileEcoute1.getId()===0);
 
     console.log("Test getNamePlaylist");
-    console.log(fileEcoute1.getNamePlaylist()===("Rap"));
+    console.log();
 
     console.log("Test setNamePlaylist");
     fileEcoute1.setNamePlaylist("Rap2Ouf");
