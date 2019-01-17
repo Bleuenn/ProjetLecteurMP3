@@ -16,23 +16,18 @@ use Model\Morceau;
 if(!is_null($titre) && !is_null($artiste) && !is_null($album) && !is_null($annee) && !is_null($genre) && !is_null($mp3) && !is_null($cover)){
 
     try {
-
         $morceau = new Morceau($titre, $artiste, $album, $annee, $genre, $mp3, $cover);
-
         $morceau->upload("cover");
         $morceau->upload("mp3");
         $morceau->generateWaveForm();
-
         $dao = new DAO();
         $dao->add($morceau);
         $dao->close();
-
         header("Location: index.php?page=admin");
     }
     catch (Exception $e) {
         echo $e->getMessage();
     }
-
 }
 else{
     include_once "view/admin.add.php";
