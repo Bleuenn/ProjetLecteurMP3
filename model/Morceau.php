@@ -164,9 +164,8 @@ class Morceau
     /*
      * Méthode de génération de la Weaveform selon
      * le fichier MP3 upload.
-     * @codeCoverageIgnore
      */
-    public function generateWeaveForm(){
+    public function generateWaveForm(){
         exec("python python/audio.py ".$this->mp3);
         $infosMp3 = file_get_contents("musique.json");
         $infosMp3 = json_decode($infosMp3);

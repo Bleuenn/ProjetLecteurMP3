@@ -21,7 +21,7 @@ if(!is_null($titre) && !is_null($artiste) && !is_null($album) && !is_null($annee
 
         $morceau->upload("cover");
         $morceau->upload("mp3");
-        $morceau->generateWeaveForm();
+        $morceau->generateWaveForm();
 
         $dao = new DAO();
         $dao->add($morceau);

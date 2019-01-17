@@ -37,7 +37,7 @@ if($id !== null) {
                 $morceau->upload("mp3");
             }
 
-            $morceau->generateWeaveForm();
+            $morceau->generateWaveForm();
 
             $dao = new DAO();
             $dao->update($morceau);
