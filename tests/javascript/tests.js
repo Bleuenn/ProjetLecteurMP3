@@ -43,10 +43,10 @@ describe('Lecteur', function () {
             expect(fileEcoute1.deleteMorceau(42)).to.equal(0);
         });
     })
-})
+});
 
 describe('Morceau', function () {
     it("should delete morceau", function() {
         expect(fileEcoute1.deleteMorceau(42)).to.equal(0);
     });
-})
+});

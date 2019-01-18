@@ -4,7 +4,7 @@ let morceau = new Morceau("Doing Yoga", "Kazy Lambist"),
 
 lecteur.setCurrentMorceau(morceau);
 morceau.setValuesWaveform(data);
-// morceau.getValuesWaveform(this.currentMorceau.getValuesWaveform())
+// morceau.getValuesWaveform(this.currentMorceau.getValuesWaveform()) //
 console.log("data: "+ data);
 console.log("nblike: "+lecteur.currentMorceau.getNbLike());
 console.log("values: "+lecteur.currentMorceau.getValuesWaveform());
