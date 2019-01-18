@@ -12,7 +12,7 @@ function Morceau (nameMusique,nameArtiste) {
     this.nbPlay=0;
     this.nbComment=0;
     this.valuesWaveform=[];
-    this.path = null;
+	this.path = null;
     // playList=false; // a voir si on l'intègre...
 }
 

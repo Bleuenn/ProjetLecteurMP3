@@ -123,23 +123,23 @@ function deleteOdd(data) {
  */
 Lecteur.prototype.drawSVG = function(values) {
     let svg = document.getElementById('svg'),
-		height = getHeightWaveForm(),
-		width = getWidthWaveForm(),
-		largeurRect = Math.ceil(getNombreBarresResponsive(window.innerWidth) / 100 + 1),
+		height = this.getHeightWaveForm(),
+		width = this.getWidthWaveForm(),
+		largeurRect = Math.ceil(this.getNombreBarresResponsive(window.innerWidth) / 100 + 1),
 		w3c = "http://www.w3.org/2000/svg";
 
 	//console.log(largeurRect);
 	//console.log(data.length);
 
-	let maxHBar = getMax();
+	let maxHBar = this.getMax();
 	// let nombreDeBarre = getNombreBarresResponsive(window.innerWidth) > 6 ? getNombreBarresResponsive(window.innerWidth) : 5;
-	let nombreDeBarre = getNombreBarresResponsive(window.innerWidth);
+	let nombreDeBarre = this.getNombreBarresResponsive(window.innerWidth);
 
 
 	for (let i = 0; i < values.length; i++) {
 		let rect = document.createElementNS(w3c, 'rect'),
 			reverse = document.createElementNS(w3c, 'rect'),
-			value = (getHeightWaveForm() * values[i]) / maxHBar,
+			value = (this.getHeightWaveForm() * values[i]) / maxHBar,
 			horizon = (height * 2) / 3; // permet de remonter les barres pour insérer l'effet mirroir en dessous
 
 		if (value === 0) {
@@ -170,7 +170,7 @@ Lecteur.prototype.drawSVG = function(values) {
 Lecteur.prototype.resizeBar = function() {
 	let svg = document.getElementById('svg');
 	svg.innerHTML ="";
-	drawSvg(Morceau.getValuesWaveform());
+	this.drawSVG(this.currentMorceau.getValuesWaveform());
 }
 
 Lecteur.prototype.changeVolume = function(valeur) {
@@ -184,7 +184,7 @@ Lecteur.prototype.changeVolume = function(valeur) {
 	} else if (valeur <= 75) {
 		btnVolume.innerText = "";
 	}
-	this.Lecteur.setVolume(valeur);
+	this.setVolume(valeur);
 }
 
 /**
@@ -248,26 +248,3 @@ Lecteur.prototype.initialisation = function() {
 		}
 	});
 }
-
-Lecteur.prototype.main = function() {
-	Lecteur.prototype.initialisation;
-
-	let morceau = new Morceau("Doing Yoga", "Kazy Lambist");
-	let lecteur = new Lecteur();
-	lecteur.setCurrentMorceau(morceau);
-	let data = morceau.getData();
-	morceau.setValuesWaveform(data);
-	// morceau.getValuesWaveform(this.currentMorceau.getValuesWaveform())
-	console.log("data: "+ data);
-	console.log("nblike: "+this.currentMorceau.getNbLike());
-	console.log("values: "+this.getValuesWaveform());
-
-	this.drawSvg(this.getValuesWaveform);
-	window.addEventListener('resize', function () {
-		this.resizeBar();
-	}, false);
-
-	this.player(this.currentMorceau.getPath());
-}
-
-Lecteur.prototype.main();
