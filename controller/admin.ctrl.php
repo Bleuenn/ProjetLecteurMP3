@@ -20,7 +20,7 @@ if(!is_null($id)){
     /*
      *  Affichage des données JSON
      */
-    if(!is_null($json)){
+    if($json){
         echo $morceau;
     }
 }
