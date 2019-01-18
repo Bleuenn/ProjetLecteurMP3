@@ -1,13 +1,16 @@
 /**
+ *
  * Constructeur de l'objet représentant une file d'écoute
- * @param {*} name nom de la liste d'écoute
- * @param {*} liste liste des morceaux
+ * @param name nom de la liste d'écoute
+ * @param liste liste des morceaux
+ * @constructor
  */
 function FileEcoute(name,liste) {
 		this.id=0;
 		this.name=name;
 		this.liste=liste;	
-	}
+}
+
 /**
  * Retourne l'id de la file d'écoute
  */

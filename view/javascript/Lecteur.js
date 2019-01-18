@@ -1,5 +1,6 @@
 /**
  * Constructeur de l'objet représentant le lecteur
+ * @constructor
  */
 function Lecteur () {
     currentMorceau=null;
@@ -54,15 +55,17 @@ Lecteur.prototype.setVolume = function(newVolume) {
 }
 
 /**
- * 
+ * Initialisation d'un son écoutable depuis le player grace a l'API soundManager2
+ * @return retourne un objet soundManager
  */
 Lecteur.prototype.createSound = function() {
-    
+
+	return soundManager;
 }
 
 /**
- *
- * @returns {number}
+ * Récupère la largeur (en pixel) de la div qui contient l'onde générée par audiowaveform
+ * @return {number} la largeur en pixel de la div .waveform
  */
 Lecteur.prototype.getWidthWaveForm = function() {
     let element = document.getElementsByClassName('waveform')[0],
@@ -73,8 +76,8 @@ Lecteur.prototype.getWidthWaveForm = function() {
 }
 
 /**
- *
- * @returns {number}
+ * Récupère la hauteur (en pixel) de la div qui contient l'onde générée par audiowaveform
+ * @returns {number} la hauteur en pixel de la div .waveform
  */
 Lecteur.prototype.getHeightWaveForm = function() {
     let element = document.getElementsByClassName('waveform')[0],
@@ -128,13 +131,8 @@ Lecteur.prototype.drawSVG = function(values) {
 		largeurRect = Math.ceil(this.getNombreBarresResponsive(window.innerWidth) / 100 + 1),
 		w3c = "http://www.w3.org/2000/svg";
 
-	//console.log(largeurRect);
-	//console.log(data.length);
-
 	let maxHBar = this.getMax();
-	// let nombreDeBarre = getNombreBarresResponsive(window.innerWidth) > 6 ? getNombreBarresResponsive(window.innerWidth) : 5;
 	let nombreDeBarre = this.getNombreBarresResponsive(window.innerWidth);
-
 
 	for (let i = 0; i < values.length; i++) {
 		let rect = document.createElementNS(w3c, 'rect'),
@@ -152,7 +150,6 @@ Lecteur.prototype.drawSVG = function(values) {
 		rect.setAttributeNS(null, "y", horizon - value);
 		rect.setAttributeNS(null, "width", largeurRect);
 		rect.setAttributeNS(null, "height", value);
-		//rect.setAttributeNS(null, "style", "fill: white");
 
 		//reverse.setAttributeNS(null, "id", "reverseNumero" + i);
 		reverse.setAttributeNS(null, "class", "reverse");
@@ -167,12 +164,19 @@ Lecteur.prototype.drawSVG = function(values) {
     }
 }
 
+/**
+ * Efface les différents SVG présent sur le lecteur et redessine l'onde audiowaveform
+ */
 Lecteur.prototype.resizeBar = function() {
 	let svg = document.getElementById('svg');
 	svg.innerHTML ="";
 	this.drawSVG(this.currentMorceau.getValuesWaveform());
 }
 
+/**
+ * Change l'icone du volume en fonction de la valeur et attribue la nouvelle valeur au morceau en cours
+ * @param valeur
+ */
 Lecteur.prototype.changeVolume = function(valeur) {
 	let btnVolume = document.getElementsByClassName('volume')[0];
 	if (valeur === 0) {
@@ -184,7 +188,7 @@ Lecteur.prototype.changeVolume = function(valeur) {
 	} else if (valeur <= 75) {
 		btnVolume.innerText = "";
 	}
-	this.setVolume(valeur);
+	this.currentMorceau.setVolume(valeur);
 }
 
 /**
@@ -193,7 +197,7 @@ Lecteur.prototype.changeVolume = function(valeur) {
  * @returns nombreBarre le nombre de barre en fonction de la largeur de l'écran
  */
 Lecteur.prototype.getNombreBarresResponsive = function(largeurEcran) {
-	let nombreDeBarres = largeurEcran / 7; // divisé par 7 pour avoir un ratio pour un juste milieu en trop et pas assez de barres
+	let nombreDeBarres = largeurEcran / 7; // divisé par 7 pour avoir un ratio pour un juste milieu entre trop et pas assez de barres
 	return Math.round(nombreDeBarres);
 }
 
