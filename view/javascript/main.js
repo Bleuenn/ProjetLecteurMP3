@@ -1,6 +1,11 @@
 var req = new XMLHttpRequest();
 
-req.open('GET', 'http://localhost/ProjetLecteurMP3/index.php?page=admin&id=5c37b38d214fb37593d7c3af&json=true', true); // true pour asynchrone
+/* Pour les tests, on peut avoir chacun son id de test ça sera plus simple pour switch entre nos différentes configs */
+// let id = '5c37b38d214fb37593d7c3af'; // mongoDB Melvin
+let id = '5c4207d20a00ccd7d6d2cac6' // mongoDB Thomas S
+/********************************************************************************************************************/
+
+req.open('GET', 'http://localhost/ProjetLecteurMP3/index.php?page=admin&id='+id+'&json=true', true); // true pour asynchrone
 
 req.onreadystatechange = function (e) {
     if (req.readyState == 4) {
