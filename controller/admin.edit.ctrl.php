@@ -4,6 +4,7 @@ use Model\DAO;
 use Model\Morceau;
 
 !empty($_GET['id']) ? $id = $_GET['id'] : $id = null;
+!empty($_GET['increment']) ? $increment = $_GET['increment'] : $increment = null;
 
 !empty($_POST['titre']) ? $titre = $_POST['titre'] : $titre = null;
 !empty($_POST['artiste']) ? $artiste = $_POST['artiste'] : $artiste = null;
@@ -47,6 +48,12 @@ if($id !== null) {
         catch (Exception $e) {
             echo $e->getMessage();
         }
+    }
+    elseif($increment){
+        $dao = new DAO();
+        $result = $dao->increment($increment ,$id);
+        $dao->close();
+        header("Location: index.php?page=admin");
     }
     else{
 

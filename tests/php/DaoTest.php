@@ -84,6 +84,21 @@ class DaoTest extends TestCase
     }
 
     /*
+     * Test de la méthode Update :
+     * @test
+     * @covers DAO::increment
+     * @covers DAO::getInfo
+     * @depends testConstructeur
+     */
+    public function testIncrement(){
+        $id = "e25rz845ef4q5";
+        $cnx = new DAO();
+        $cnx->increment("nbLike", $id);
+        $infos = $cnx->getInfo();
+        $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/e25rz845ef4q5", $infos['url']);
+    }
+
+    /*
      * Test de la classe delete :
      * @test
      * @covers DAO::delete

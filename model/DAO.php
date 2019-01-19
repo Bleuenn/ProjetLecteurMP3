@@ -66,7 +66,7 @@ class DAO {
             curl_setopt($this->connection, CURLOPT_URL,            self::URL.$id);
             curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1 );
             curl_setopt($this->connection, CURLOPT_CUSTOMREQUEST,  'PATCH');
-            curl_setopt($this->connection, CURLOPT_POSTFIELDS,      json_encode('"$inc": { "'.$champ.'": 1 }') );
+            curl_setopt($this->connection, CURLOPT_POSTFIELDS,      json_encode(array("\$inc" => array($champ => 1))) );
             curl_setopt($this->connection, CURLOPT_HTTPHEADER,      array('Content-Type:application/json'));
 
             return curl_exec($this->connection);
