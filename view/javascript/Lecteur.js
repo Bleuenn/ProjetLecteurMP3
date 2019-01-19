@@ -3,9 +3,9 @@
  * @constructor
  */
 function Lecteur () {
-    currentMorceau=null;
-    currentTime=null;
-    volume=25;
+    this.currentMorceau=null;
+    this.currentTime=null;
+    this.volume=25;
     // playList=false; // a voir si on l'intègre...
 }
 
