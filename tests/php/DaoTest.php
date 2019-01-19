@@ -84,7 +84,7 @@ class DaoTest extends TestCase
     }
 
     /*
-     * Test de la méthode Update :
+     * Test de la méthode increment :
      * @test
      * @covers DAO::increment
      * @covers DAO::getInfo
@@ -99,13 +99,27 @@ class DaoTest extends TestCase
     }
 
     /*
-     * Test de la classe delete :
+     * Test de la méthode increment :
      * @test
-     * @covers DAO::delete
+     * @covers DAO::increment
      * @covers DAO::getInfo
+     * @expectedException InvalidArgumentException
      * @depends testConstructeur
-     * @depends testUpdate
      */
+    public function testIncrementException(){
+        $id = "e25rz845ef4q5";
+        $cnx = new DAO();
+        $cnx->increment("t", $id);
+    }
+
+        /*
+         * Test de la classe delete :
+         * @test
+         * @covers DAO::delete
+         * @covers DAO::getInfo
+         * @depends testConstructeur
+         * @depends testUpdate
+         */
     public function testDelete(){
         $cnx = new DAO();
         $cnx->delete("e25rz845ef4q5");
