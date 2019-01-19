@@ -233,6 +233,40 @@ Lecteur.prototype.initialisation = function() {
 	let btnVolume = document.getElementsByClassName('volume')[0];
 	let range = null;
 
+	//Initialisation Cover
+    let cover = document.getElementsByClassName('visuel')[0];
+    let image = document.createElement("img");
+    image.setAttribute("src", this.getCurrentMorceau().cover);
+    cover.appendChild(image);
+
+	//Initialisation Infos
+    let artiste = document.getElementsByClassName('artiste')[0];
+    let titre = document.getElementsByClassName('titre')[0];
+
+    artiste.appendChild(document.createTextNode(this.getCurrentMorceau().artiste));
+    titre.appendChild(document.createTextNode(this.getCurrentMorceau().name));
+
+    //Initialisation Temps
+    let totalTime = document.getElementsByClassName('total')[0];
+    let minutes = Math.floor(this.getCurrentMorceau().totalTime / 60);
+    let seconds = this.getCurrentMorceau().totalTime - minutes * 60;
+
+    totalTime.appendChild(document.createTextNode(minutes+":"+seconds));
+
+    //Initialisation statistiques
+    let nbLecture = document.getElementsByClassName("nb-lectures")[0];
+    let nbCommentaire = document.getElementsByClassName("nb-commentaires")[0];
+
+    nbLecture.appendChild(document.createTextNode(this.getCurrentMorceau().nbPlay));
+    nbCommentaire.appendChild(document.createTextNode(this.getCurrentMorceau().nbComment));
+
+    //Initialisation social
+    let like = document.getElementsByClassName("like")[0];
+    let share = document.getElementsByClassName("share")[0];
+
+    like.appendChild(document.createTextNode(this.getCurrentMorceau().nbLike));
+    share.appendChild(document.createTextNode(this.getCurrentMorceau().nbPartage));
+
 	btnVolume.addEventListener('mouseover', function (e) {
 		if (range === null) {
 			range = document.createElement("input");

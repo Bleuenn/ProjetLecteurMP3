@@ -13,10 +13,11 @@ req.onreadystatechange = function (e) {
         if (req.status == 200){
 
             let json = JSON.parse(req.responseText);
-            console.log(json);
-            let morceau = new Morceau(json._id.$oid, json.titre, json.album, json.artiste, json.cover, 0, 0, json.duree, 0, 0, json.listePoint, json.cheminMP3),
+
+            let morceau = new Morceau(json._id.$oid, json.titre, json.album, json.artiste, json.cover, json.nbLike, json.nbPartage, json.duree, json.nbEcoute, json.nbComment, json.listePoint, json.cheminMP3),
                 lecteur = new Lecteur();
 
+            console.log(morceau);
             lecteur.setCurrentMorceau(morceau);
             morceau.setValuesWaveform( lecteur.currentMorceau.getValuesWaveform() );
             // morceau.getValuesWaveform(this.currentMorceau.getValuesWaveform()) //

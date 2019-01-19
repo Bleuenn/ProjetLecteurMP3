@@ -89,9 +89,11 @@ form .submit{
 
 .visuel {
     position: absolute;
+}
+
+.visuel > img{
     width: 250px;
     height: 250px;
-    background: url("../img/Monde libre.jpg") no-repeat;
     background-size: cover;
 }
 

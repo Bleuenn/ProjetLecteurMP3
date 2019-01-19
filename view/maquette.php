@@ -10,8 +10,8 @@
 <div class='audioplayer'>
     <div class='visuel'></div>
     <div class='infos'>
-        <div class='artiste'>Nom de l'artiste</div>
-        <div class='titre'>Nom du morceau</div>
+        <div class='artiste'></div>
+        <div class='titre'></div>
     </div>
     <div class="waveform">
         <svg xmlns="http://www.w3.org/2000/svg" id="svg"/>
@@ -23,16 +23,16 @@
         <button class='volume' data-vaue='90'></button>
     </div>
     <div class='temps'>
-        <div class='en-cours'>1:31</div>
-        <div class='total'>3:11</div>
+        <div class='en-cours'>0:00</div>
+        <div class='total'></div>
     </div>
     <div class='statistiques'>
-        <div class='nb-lectures'>16,5M</div>
-        <div class='nb-commentaires'>280</div>
+        <div class='nb-lectures'></div>
+        <div class='nb-commentaires'></div>
     </div>
     <div class='social'>
-        <button class='like'>333K</button>
-        <button class='share'>Partager</button>
+        <button class='like'></button>
+        <button class='share'></button>
     </div>
 </div>
 <script src="view/javascript/soundmanager2/soundmanager2.js"></script>
