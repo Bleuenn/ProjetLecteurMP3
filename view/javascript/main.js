@@ -1,9 +1,10 @@
 var req = new XMLHttpRequest();
 
 /* Pour les tests, on peut avoir chacun son id de test ça sera plus simple pour switch entre nos différentes configs */
-// let id = '5c37b38d214fb37593d7c3af'; // mongoDB Melvin
-let id = '5c4207d20a00ccd7d6d2cac6' // mongoDB Thomas S
+//let id = '5c37b38d214fb37593d7c3af'; // mongoDB Melvin
+//let id = '5c4207d20a00ccd7d6d2cac6' // mongoDB Thomas S
 /********************************************************************************************************************/
+let id = window.location.search.toString().substr(4);
 
 req.open('GET', 'http://localhost/ProjetLecteurMP3/index.php?page=admin&id='+id+'&json=true', true); // true pour asynchrone
 
@@ -13,7 +14,6 @@ req.onreadystatechange = function (e) {
 
             let json = JSON.parse(req.responseText);
             console.log(json);
-            console.log(json._id.$oid);
             let morceau = new Morceau(json._id.$oid, json.titre, json.album, json.artiste, json.cover, 0, 0, json.duree, 0, 0, json.listePoint, json.cheminMP3),
                 lecteur = new Lecteur();
 

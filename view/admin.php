@@ -9,6 +9,7 @@
     <h1>Administration</h1>
     <table>
         <thead>
+            <th>Play</th>
             <th>Titre</th>
             <th>Album</th>
             <th>Artiste</th>

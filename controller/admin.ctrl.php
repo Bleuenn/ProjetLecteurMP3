@@ -52,6 +52,7 @@ else{
                 $date = $morceau->annee;
 
                 $TABLEAU .= "<tr>";
+                $TABLEAU .= "<td><a href='?id=".$morceau->_id->{'$oid'}."'>Play</a></td>";
                 $TABLEAU .= "<td>$titre</td>";
                 if($album === null){
                     $TABLEAU .= "<td class='undefined'>$album</td>";
