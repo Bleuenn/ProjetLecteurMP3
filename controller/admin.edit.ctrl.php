@@ -67,7 +67,14 @@ if($id !== null) {
         $ARTISTE = $morceau->artiste;
         $ALBUM = $morceau->album;
         $ANNEE = $morceau->annee;
-        $GENRE = $morceau->genre;
+
+        if(empty($morceau->genre)){
+            $GENRE = null;
+        }
+        else{
+            $GENRE = $morceau->genre;
+        }
+
         $MP3 = $morceau->cheminMP3;
         $COVER = $morceau->cover;
 

@@ -230,8 +230,6 @@ Lecteur.prototype.player = function(chemin) {
  */
 Lecteur.prototype.initialisation = function() {
 	let rect = document.querySelectorAll('rect')[0];
-	let btnVolume = document.getElementsByClassName('volume')[0];
-	let range = null;
 
 	//Initialisation Cover
     let cover = document.getElementsByClassName('visuel')[0];
@@ -267,22 +265,33 @@ Lecteur.prototype.initialisation = function() {
     like.appendChild(document.createTextNode(this.getCurrentMorceau().nbLike));
     share.appendChild(document.createTextNode(this.getCurrentMorceau().nbPartage));
 
+    let btnVolume = document.getElementsByClassName('volume')[0];
+
+    console.log(btnVolume);
+
 	btnVolume.addEventListener('mouseover', function (e) {
-		if (range === null) {
-			range = document.createElement("input");
-			range.setAttribute("type", "range");
-			range.setAttribute("id", "range");
-			range.setAttribute("value", this.currentMorceau.getVolume());
+        let range = document.getElementById("range");
 
-			btnVolume.parentNode.appendChild(range);
+        if( range === null){
+            range = document.createElement("input");
+            range.setAttribute("type", "range");
+            range.setAttribute("id", "range");
+            range.setAttribute("value", 10);
+            btnVolume.parentNode.appendChild(range);
+        }
+        else{
+            range.style.display = "block";
+        }
 
-			range.addEventListener("mouseout", function (e) {
-				//console.log(range.value);
-				//console.log(volume);
-				changeVolume(range.value);
-				btnVolume.parentNode.removeChild(range);
-				range = null;
-			});
-		}
-	});
+        range.addEventListener("mouseout", function (e) {
+
+            if( range.value === 0){ btnVolume.innerText = ""; }
+            else if(range.value <= 40){ btnVolume.innerText = "";}
+            else if(range.value <= 70){ btnVolume.innerText = ""; }
+            else { btnVolume.innerText = ""; }
+            range.style.display = "none";
+            console.log(range.value);
+        });
+
+	}, true);
 }
