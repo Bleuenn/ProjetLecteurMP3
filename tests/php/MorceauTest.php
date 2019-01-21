@@ -16,7 +16,7 @@ final class MorceauTest extends TestCase
      * $_FILE d'une image.
      */
     private $testJPG = array(
-      'name'=>'test.jpg',
+        'name'=>'test.jpg',
         'tmp_name'=>'tests/php/test.jpg',
         'type'=>'image/jpeg',
         'size'=>1472190,

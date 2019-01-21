@@ -5,7 +5,9 @@ use Model\DAO;
 use Model\Morceau;
 use PHPUnit\Framework\TestCase;
 
-
+/**
+ * @coversDefaultClass \Model\DAO
+ */
 final class DaoTest extends TestCase
 {
     private $titre = "test", $artiste="ArtisteTest", $album="AlbumTest", $annee=2000, $genre="GenreTest",
@@ -16,8 +18,8 @@ final class DaoTest extends TestCase
      * initialisation de la requête CURL
      * @test
      * @before
-     * @covers DAO::__construct
-     * @covers DAO::close
+     * @covers ::__construct
+     * @covers ::close
      */
     public function testConstructeur(){
         $cnx= new DAO();
@@ -28,8 +30,8 @@ final class DaoTest extends TestCase
     /**
      * Test de la méthode getAll :
      * @test
-     * @covers DAO::getAll
-     * @covers DAO::getInfo
+     * @covers ::getAll
+     * @covers ::getInfo
      * @depends testConstructeur
      */
     public function testGetAll(){
@@ -42,8 +44,8 @@ final class DaoTest extends TestCase
     /**
      * Test de la méthode getById :
      * @test
-     * @covers DAO::getById
-     * @covers DAO::getInfo
+     * @covers ::getById
+     * @covers ::getInfo
      * @depends testConstructeur
      */
     public function testGetById(){
@@ -56,8 +58,8 @@ final class DaoTest extends TestCase
     /**
     * Test de la méthode Add :
      * @test
-     * @covers DAO::add
-     * @covers DAO::getInfo
+     * @covers ::add
+     * @covers ::getInfo
      * @depends testConstructeur
      */
     public function testAdd(){
@@ -71,8 +73,8 @@ final class DaoTest extends TestCase
     /**
      * Test de la méthode Update :
      * @test
-     * @covers DAO::update
-     * @covers DAO::getInfo
+     * @covers ::update
+     * @covers ::getInfo
      * @depends testConstructeur
      */
     public function testUpdate(){
@@ -86,8 +88,8 @@ final class DaoTest extends TestCase
     /**
      * Test de la méthode increment :
      * @test
-     * @covers DAO::increment
-     * @covers DAO::getInfo
+     * @covers ::increment
+     * @covers ::getInfo
      * @depends testConstructeur
      */
     public function testIncrement(){
@@ -101,8 +103,8 @@ final class DaoTest extends TestCase
     /**
      * Test de la méthode increment :
      * @test
-     * @covers DAO::increment
-     * @covers DAO::getInfo
+     * @covers ::increment
+     * @covers ::getInfo
      * @expectedException InvalidArgumentException
      * @depends testConstructeur
      */
@@ -115,8 +117,8 @@ final class DaoTest extends TestCase
         /**
          * Test de la classe delete :
          * @test
-         * @covers DAO::delete
-         * @covers DAO::getInfo
+         * @covers ::delete
+         * @covers ::getInfo
          * @depends testConstructeur
          * @depends testUpdate
          */

@@ -6,10 +6,19 @@ class DAO {
     private $connection;
     const URL = "127.0.0.1:8080/morceau/morceau/";
 
+    /**
+     * DAO constructor.
+     * Initialise la connexion.
+     */
     public function __construct(){
         $this->connection = curl_init();
     }
 
+    /**
+     * Requête CURL pour récuperer toutes
+     * les musiques de la bdd.
+     * @return mixed (false, json)
+     */
     public function getAll(){
         curl_setopt($this->connection, CURLOPT_URL, self::URL);
 
@@ -18,6 +27,12 @@ class DAO {
         return curl_exec($this->connection);
     }
 
+    /**
+     * Requête CURL pour récuperer un
+     * morceau selon un ID.
+     * @param string $id
+     * @return mixed
+     */
     public function getById(string $id){
         curl_setopt($this->connection, CURLOPT_URL, self::URL.$id);
 
@@ -26,6 +41,12 @@ class DAO {
         return curl_exec($this->connection);
     }
 
+    /**
+     * Requête CURL pour modifier un
+     * morceau dans la bdd.
+     * @param Morceau $morceau
+     * @return mixed
+     */
     public function update(Morceau $morceau){
 
         // Construction du corps de la requête avec les informations de l'objet Morceau
@@ -41,6 +62,11 @@ class DAO {
         return curl_exec($this->connection);
     }
 
+    /**
+     * Requête CURL pour ajouter un morceau dans la BDD
+     * @param Morceau $morceau
+     * @return mixed
+     */
     public function add(Morceau $morceau){
 
         // Construction du corps de la requête avec les informations de l'objet Morceau
@@ -55,6 +81,14 @@ class DAO {
         return curl_exec($this->connection);
     }
 
+    /**
+     * Requête CURL pour incrementer un champs
+     * passé un param selon un id passé en
+     * param.
+     * @param string $champ
+     * @param string $id
+     * @return mixed
+     */
     public function increment(string $champ, string $id){
         $champsValid = array("nbEcoute", "nbLike", "nbPartage", "nbComment");
 
@@ -73,6 +107,12 @@ class DAO {
         }
     }
 
+    /**
+     * Requête CURL pour suprimmer un morceau
+     * de la BDD.
+     * @param $id
+     * @return mixed
+     */
     public function delete($id){
 
         curl_setopt($this->connection, CURLOPT_URL,            self::URL.$id);
@@ -82,10 +122,20 @@ class DAO {
         return curl_exec($this->connection);
     }
 
+    /**
+     * Méthode qui détail la
+     * Requête CURL envoyé.
+     * ( Utilisé pour les tests )
+     * @return mixed
+     */
     public function getInfo(){
         return curl_getinfo($this->connection);
     }
 
+    /**
+     * Méthode pour Fermer la
+     * connexion à la BDD.
+     */
     public function close(){
         curl_close($this->connection);
     }
