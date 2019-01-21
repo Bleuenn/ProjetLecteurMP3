@@ -155,7 +155,7 @@ final class MorceauTest extends TestCase
      * Test de la méthode GenerateWeaveform
      * Vérification de la récupération des points
      * du spectre audio d'un fichier MP3.
-     * @covers ::generateWeaveForm
+     * @covers ::generateWaveForm
      */
     public function testGenerateWaveForm(){
         $morceau = new Morceau($this->titre, $this->artiste, $this->album, $this->annee, $this->genre, $this->mp3, $this->cover, $this->id);
