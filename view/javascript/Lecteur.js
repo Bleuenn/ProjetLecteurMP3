@@ -174,24 +174,6 @@ Lecteur.prototype.resizeBar = function() {
 }
 
 /**
- * Change l'icone du volume en fonction de la valeur et attribue la nouvelle valeur au morceau en cours
- * @param valeur
- */
-Lecteur.prototype.changeVolume = function(valeur) {
-	let btnVolume = document.getElementsByClassName('volume')[0];
-	if (valeur === 0) {
-		btnVolume.innerText = "";
-	} else if (valeur <= 25) {
-		btnVolume.innerText = "";
-	} else if (valeur <= 50) {
-		btnVolume.innerText = "";
-	} else if (valeur <= 75) {
-		btnVolume.innerText = "";
-	}
-	this.currentMorceau.setVolume(valeur);
-}
-
-/**
  * Cette fonction permet de calculer le nombre de barre que doit posséder le SVG
  * en fonction de la largeur de la fenêtre
  * @returns nombreBarre le nombre de barre en fonction de la largeur de l'écran
@@ -283,12 +265,13 @@ Lecteur.prototype.initialisation = function() {
 
         range.addEventListener("mouseout", function (e) {
 
-            if( range.value === 0){ btnVolume.innerText = ""; }
-            else if(range.value <= 40){ btnVolume.innerText = "";}
-            else if(range.value <= 70){ btnVolume.innerText = ""; }
-            else { btnVolume.innerText = ""; }
+            let btnVolume = document.getElementsByClassName('volume')[0];
+            if (range.value <= 2) { btnVolume.innerText = "";}
+            else if (range.value <= 33) { btnVolume.innerText = "";}
+            else if (range.value <= 66) { btnVolume.innerText = ""; }
+            else if (range.value <= 100) { btnVolume.innerText = "";}
+
             range.style.display = "none";
-            console.log(range.value);
         });
 
 	}, true);
