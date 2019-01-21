@@ -87,6 +87,9 @@ form .submit{
     font-family: sans-serif;
 }
 
+.audioplayer *:focus { outline: none;}
+.audioplayer *::-moz-focus-inner {border: 0;}
+
 .visuel {
     position: absolute;
 }
