@@ -5,8 +5,16 @@ class Morceau
 {
     private $id, $titre, $artiste, $album, $duree, $annee, $listePoint, $genre, $mp3, $cover;
 
-    /*
-     * Constructeur de classe Morceau
+    /**
+     * Morceau constructor.
+     * @param $titre
+     * @param $artiste
+     * @param $album
+     * @param $annee
+     * @param $genre
+     * @param $mp3
+     * @param $cover
+     * @param null $id
      */
     public function __construct($titre, $artiste, $album, $annee, $genre, $mp3, $cover, $id = null){
         $this->setId($id);
@@ -17,63 +25,97 @@ class Morceau
         $this->setMp3($mp3);
         $this->setCover($cover);
         $this->setAnnee($annee);
-
-        //-----------------------------------------*
-        //Contenu temporaire : test d'insertion bdd
-        //-----------------------------------------*
-        $this->duree = 275;
-        //-----------------------------------------*
     }
 
     /* -------------------------------------------------- *
      *                  Méthodes GET                      *
      * -------------------------------------------------- */
 
+    /**
+     * GET de l'id.
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * GET du titre.
+     * @return mixed
+     */
     public function getTitre()
     {
         return $this->titre;
     }
 
+    /**
+     * Get de l'artiste.
+     * @return mixed
+     */
     public function getArtiste()
     {
         return $this->artiste;
     }
 
+    /**
+     * GET de l'album.
+     * @return mixed
+     */
     public function getAlbum()
     {
         return $this->album;
     }
 
+    /**
+     * GET de la durée.
+     * @return mixed
+     */
     public function getDuree()
     {
         return $this->duree;
     }
 
+    /**
+     * GET de l'année.
+     * @return mixed
+     */
     public function getAnnee()
     {
         return $this->annee;
     }
 
+    /**
+     * GET du genre.
+     * @return mixed
+     */
     public function getGenre()
     {
         return $this->genre;
     }
 
+    /**
+     * GET du MP3.
+     * @return mixed
+     */
     public function getMp3()
     {
         return $this->mp3;
     }
 
+    /**
+     * GET de la liste de Point.
+     * @return mixed
+     */
     public function getListePoint()
     {
         return $this->listePoint;
     }
 
+    /**
+     * GET de la pochette d'album.
+     * @return mixed
+     */
     public function getCover()
     {
         return $this->cover;
@@ -82,6 +124,13 @@ class Morceau
     /* -------------------------------------------------- *
      *                  Méthodes SET                      *
      * -------------------------------------------------- */
+
+    /**
+     * SET de l'id.
+     * La méthode filtre le type
+     * de l'id.
+     * @param null $id
+     */
     public function setId($id = null){
         if(!is_string($id) && !is_null($id)) {
             throw new \InvalidArgumentException("ID : string excepted");
@@ -89,18 +138,33 @@ class Morceau
         $this->id = $id;
     }
 
+    /**
+     * @param $titre
+     */
     public function setTitre($titre){
         $this->titre = $titre;
     }
 
+    /**
+     * @param $artiste
+     */
     public function setArtiste($artiste){
         $this->artiste = $artiste;
     }
 
+    /**
+     * @param $album
+     */
     public function setAlbum($album){
         $this->album = $album;
     }
 
+    /**
+     * SET de l'année.
+     * La méthode verifie que l'année
+     * est un integer non null.
+     * @param $annee
+     */
     public function setAnnee($annee){
         if(!is_int($annee) && !is_null($annee)){
             throw new \InvalidArgumentException("Annee : integer excepted");
@@ -111,6 +175,12 @@ class Morceau
         $this->annee = $annee;
     }
 
+    /**
+     * SET du genre.
+     * La méthode vérifie que le genre
+     * soit de type string.
+     * @param $genre
+     */
     public function setGenre($genre){
         if(!is_string($genre) && !is_null($genre)){
             throw new \InvalidArgumentException("Genre : String excepted");
@@ -118,6 +188,12 @@ class Morceau
         $this->genre = $genre;
     }
 
+    /**
+     * SET de la pochette d'album.
+     * La méthode verifie le type du
+     * paramètre.
+     * @param $cover
+     */
     public function setCover($cover){
         if(!is_array($cover) && !is_string($cover)) {
             throw new \InvalidArgumentException("Cover : String or array excepted");
@@ -125,6 +201,12 @@ class Morceau
         $this->cover = $cover;
     }
 
+    /**
+     * SET du MP3.
+     * La méthode verifie le type du
+     * paramètre.
+     * @param $mp3
+     */
     public function setMp3($mp3){
         if(!is_array($mp3) && !is_string($mp3)){
             throw new \InvalidArgumentException("Mp3 : String or array excepted");
@@ -132,10 +214,12 @@ class Morceau
         $this->mp3 = $mp3;
     }
 
-    /*
+    /**
      * Méthode Upload de fichier
      * Cette méthode sert à uploader sur
      * le serveur les fichiers img et mp3
+     * @param $type ( le type du fichier musique ou pochette )
+     * @return true ou false.
      */
     public function upload($type)
     {
@@ -161,7 +245,7 @@ class Morceau
     }
 
 
-    /*
+    /**
      * Méthode de génération de la Weaveform selon
      * le fichier MP3 upload.
      */
