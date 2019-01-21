@@ -6,7 +6,7 @@ use Model\Morceau;
 use PHPUnit\Framework\TestCase;
 
 
-class DaoTest extends TestCase
+final class DaoTest extends TestCase
 {
     private $titre = "test", $artiste="ArtisteTest", $album="AlbumTest", $annee=2000, $genre="GenreTest",
         $mp3="tests/php/test.mp3", $cover= "tests/php/test.jpg";

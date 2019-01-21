@@ -1,9 +1,6 @@
 <?php
 namespace Model;
 
-use http\Exception\InvalidArgumentException;
-use PHPUnit\Runner\Exception;
-
 class DAO {
 
     private $connection;
@@ -72,7 +69,7 @@ class DAO {
             return curl_exec($this->connection);
         }
         else{
-            throw new InvalidArgumentException("Champ invalide");
+            throw new \InvalidArgumentException("Champ invalide");
         }
     }
 
