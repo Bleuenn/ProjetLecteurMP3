@@ -21,5 +21,5 @@
             <?php echo $TABLEAU; ?>
         </tbody>
     </table>
-    <label><a href="?page=add">Ajouter une nouvelle musique</a></label>
+    <label id="add"><a href="?page=add"><span class="icon"></span> Ajouter une musique</a></label>
 </body>

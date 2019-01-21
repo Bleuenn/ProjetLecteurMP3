@@ -52,7 +52,7 @@ else{
                 $date = $morceau->annee;
 
                 $TABLEAU .= "<tr>";
-                $TABLEAU .= "<td><a href='?id=".$morceau->_id->{'$oid'}."'>Play</a></td>";
+                $TABLEAU .= "<td><a class='icon' href='?id=".$morceau->_id->{'$oid'}."'></a></td>";
                 $TABLEAU .= "<td>$titre</td>";
                 if($album === null){
                     $TABLEAU .= "<td class='undefined'>$album</td>";
@@ -61,7 +61,7 @@ else{
                     $TABLEAU .= "<td>$album</td>";
                 }
                 $TABLEAU .= "<td>$artiste</td>";
-                $TABLEAU .= "<td>$date</td><td><a href='?page=edit&id=".$morceau->_id->{'$oid'}."'>Modifer</a></td><td><a href='?page=delete&id=".$morceau->_id->{'$oid'}."'>Supprimer</a></td>";
+                $TABLEAU .= "<td>$date</td><td><a class='icon' href='?page=edit&id=".$morceau->_id->{'$oid'}."'></a></td><td><a  class='icon' href='?page=delete&id=".$morceau->_id->{'$oid'}."'></a></td>";
                 $TABLEAU .= "</tr>";
             }
         }

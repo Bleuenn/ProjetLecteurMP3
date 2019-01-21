@@ -23,9 +23,19 @@ h2{
     border-bottom: solid #a3a6a3 1px;
     padding-bottom: 10px;
 }
+#add {
+    margin-left: 5px;
+    padding-bottom: 10px;
+}
+
+#add > * {
+    text-decoration: none;
+    color: #4e555b;
+}
 
 table{
     font-family: sans-serif;
+    margin: 10px 0px;
 }
 
 th{
@@ -61,6 +71,12 @@ form .submit{
     font-size: 0.75em;
     padding-bottom: 5px;
     border-bottom: solid #a3a6a3 1px;
+}
+
+.icon {
+    color: black;
+    text-decoration: none;
+    font-family: 'fontello', Fallback, sans-serif;
 }
 
 .undefined{
