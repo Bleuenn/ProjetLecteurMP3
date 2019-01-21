@@ -13,7 +13,6 @@ req.onreadystatechange = function (e) {
         if (req.status == 200){
 
             let json = JSON.parse(req.responseText);
-
             let morceau = new Morceau(json._id.$oid, json.titre, json.album, json.artiste, json.cover, json.nbLike, json.nbPartage, json.duree, json.nbEcoute, json.nbComment, json.listePoint, json.cheminMP3),
                 lecteur = new Lecteur();
 

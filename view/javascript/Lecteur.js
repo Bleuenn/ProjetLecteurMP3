@@ -215,12 +215,12 @@ Lecteur.prototype.player = function(chemin) {
 		if (!enLecture) {
 			musique.play();
 			enLecture = true;
-			boutonLecteur.innerText = "";
+			boutonLecteur.innerText = "";
 		} else {
 			musique.pause();
 			enLecture = false;
 			musique.currentTime = 0;
-			boutonLecteur.innerText = "";
+			boutonLecteur.innerText = "";
 		}
 	});
 }
@@ -266,8 +266,6 @@ Lecteur.prototype.initialisation = function() {
     share.appendChild(document.createTextNode(this.getCurrentMorceau().nbPartage));
 
     let btnVolume = document.getElementsByClassName('volume')[0];
-
-    console.log(btnVolume);
 
 	btnVolume.addEventListener('mouseover', function (e) {
         let range = document.getElementById("range");
