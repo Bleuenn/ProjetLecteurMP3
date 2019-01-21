@@ -16,14 +16,14 @@ function FileEcoute(name,liste) {
  */
 FileEcoute.prototype.getId = function() {
 	return this.id;
-	};
+};
 
 /**
  * Retourne le nom de la file d'écoute
  */
 FileEcoute.prototype.getNamePlaylist = function() {
 	return this.name;
-	};
+};
 
 /**
  * Modifie le nom de la file d'écoute
@@ -31,14 +31,14 @@ FileEcoute.prototype.getNamePlaylist = function() {
  */
 FileEcoute.prototype.setNamePlaylist = function(newName) {
 	this.name=newName;
-	};
+};
 
 /**
  * Retourne la liste des morceaux de la file d'écoute
  */
 FileEcoute.prototype.getListeMorceau = function() {
     return this.liste;
-    };
+};
 
 /**
  * Modifie le nom de la file d'écoute

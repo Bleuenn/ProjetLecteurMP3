@@ -1,3 +1,4 @@
+"use strict";
 let expect = chai.expect;
 
 describe('FileEcoute', function() {
