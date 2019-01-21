@@ -11,7 +11,7 @@ final class MorceauTest extends TestCase
     private $titre = "test", $artiste="ArtisteTest", $album="AlbumTest", $annee=2000, $genre="GenreTest",
             $mp3="tests/php/test.mp3", $cover= "tests/php/test.jpg", $id="2ea5f125e548a6";
 
-    /*
+    /**
      * L'attribut testJPG simule un
      * $_FILE d'une image.
      */
@@ -23,7 +23,7 @@ final class MorceauTest extends TestCase
         'error'=>0
     );
 
-    /*
+    /**
      * L'attribut testMP3 simule un
      * $_FILE d'une musique.
      */
@@ -35,7 +35,7 @@ final class MorceauTest extends TestCase
         'error'=>0
     );
 
-    /*
+    /**
      * Test du contructeur de la classe Morceau avec l'id
      * du morceau renseigné.
      * @covers Morceau::__construct
@@ -61,7 +61,7 @@ final class MorceauTest extends TestCase
         $this->assertSame("2ea5f125e548a6", $morceau->getId());
     }
 
-    /*
+    /**
      * Test du contructeur de la classe Morceau sans que l'id
      * du morceau ne soit renseigné.
      * Vérification de l'initialisation par défault de l'id.
@@ -72,7 +72,7 @@ final class MorceauTest extends TestCase
         $this->assertSame(null, $morceau->getId());
     }
 
-    /*
+    /**
      * Test de la méthode Upload.
      * Vérification de l'assignation de l'attribut cover.
      * Vérification de l'assignation de l'attribut mp3.

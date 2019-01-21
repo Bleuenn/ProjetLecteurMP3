@@ -11,7 +11,7 @@ final class DaoTest extends TestCase
     private $titre = "test", $artiste="ArtisteTest", $album="AlbumTest", $annee=2000, $genre="GenreTest",
         $mp3="tests/php/test.mp3", $cover= "tests/php/test.jpg";
 
-    /*
+    /**
      * Test du contructeur de la classe DAO :
      * initialisation de la requête CURL
      * @test
@@ -25,7 +25,7 @@ final class DaoTest extends TestCase
         $cnx->close();
     }
 
-    /*
+    /**
      * Test de la méthode getAll :
      * @test
      * @covers DAO::getAll
@@ -39,7 +39,7 @@ final class DaoTest extends TestCase
         $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/", $infos['url']);
     }
 
-    /*
+    /**
      * Test de la méthode getById :
      * @test
      * @covers DAO::getById
@@ -53,7 +53,7 @@ final class DaoTest extends TestCase
         $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/5c37b38d214fb37593d7c3af", $infos['url']);
     }
 
-    /*
+    /**
     * Test de la méthode Add :
      * @test
      * @covers DAO::add
@@ -68,7 +68,7 @@ final class DaoTest extends TestCase
         $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/", $infos['url']);
     }
 
-    /*
+    /**
      * Test de la méthode Update :
      * @test
      * @covers DAO::update
@@ -83,7 +83,7 @@ final class DaoTest extends TestCase
         $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/e25rz845ef4q5", $infos['url']);
     }
 
-    /*
+    /**
      * Test de la méthode increment :
      * @test
      * @covers DAO::increment
@@ -98,7 +98,7 @@ final class DaoTest extends TestCase
         $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/e25rz845ef4q5", $infos['url']);
     }
 
-    /*
+    /**
      * Test de la méthode increment :
      * @test
      * @covers DAO::increment
@@ -112,7 +112,7 @@ final class DaoTest extends TestCase
         $cnx->increment("t", $id);
     }
 
-        /*
+        /**
          * Test de la classe delete :
          * @test
          * @covers DAO::delete
