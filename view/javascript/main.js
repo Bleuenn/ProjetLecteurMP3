@@ -37,6 +37,26 @@ req.onreadystatechange = function (e) {
 
             lecteur.initialisation();
 
+			/**************SOUNDMANAGER2************/
+			var audio = lecteur.createSound(lecteur.currentMorceau.getPath());
+
+			let boutonLecteur = document.getElementsByClassName('play')[0];
+			let enLecture = false;
+
+			boutonLecteur.addEventListener('click', function () {
+
+				if (!enLecture) {
+					audio.play();
+					enLecture = true;
+					boutonLecteur.innerText = "";
+				} else {
+					audio.pause();
+					enLecture = false;
+					boutonLecteur.innerText = "";
+				}
+			});
+			/*************************************/
+
             // Requête Ajax pour récupérer toutes les musiques de la bdd
             reqFileEcoute.open('GET', 'http://localhost/ProjetLecteurMP3/index.php?page=admin&json=true', true); // true pour asynchrone
 
