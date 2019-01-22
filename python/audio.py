@@ -126,7 +126,6 @@ def main() :
         json.dump(contentFinal, outfile)
         outfile.write('}')
     os.system('rm musique.txt')
-    os.system('rm musique.json')
 
 if __name__ == '__main__':
     main()
