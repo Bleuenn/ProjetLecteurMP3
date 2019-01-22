@@ -61,9 +61,6 @@ Lecteur.prototype.setVolume = function(newVolume) {
 Lecteur.prototype.createSound = function(url, currentMorceau) {
 	var audio = null;
 
-	var player = {
-		//TODO lister les boutons à modifier à l'affichage
-	}
 	if (audio === null) {
 		soundManager.setup({
 			onready: function() {
@@ -165,13 +162,12 @@ Lecteur.prototype.drawSVG = function(values) {
     var svg = document.getElementById('svg'),
 		height = this.getHeightWaveForm(),
 		width = this.getWidthWaveForm(),
-		largeurRect = Math.ceil(this.getNombreBarresResponsive(window.innerWidth) / 100 + 1),
+		largeurRect = 3//Math.floor(this.getNombreBarresResponsive(window.innerWidth) / 100 + 1),
 		w3c = "http://www.w3.org/2000/svg";
 
-    console.log(width);
-
 	var maxHBar = this.getMax();
-	var nombreDeBarre = this.getNombreBarresResponsive(window.innerWidth);
+	var espaceMaxParBarre = width / values.length;
+	var espaceEntreLesBarres = espaceMaxParBarre - largeurRect;
 
 	for (var i = 0; i < values.length; i++) {
 		var rect = document.createElementNS(w3c, 'rect'),
@@ -184,7 +180,7 @@ Lecteur.prototype.drawSVG = function(values) {
 		}
 
 		// Création des barres SVG verticales
-		rect.setAttributeNS(null, "x", i * width / nombreDeBarre);
+		rect.setAttributeNS(null, "x", i*espaceMaxParBarre);
 		rect.setAttributeNS(null, "y", horizon - value);
 		rect.setAttributeNS(null, "width", largeurRect);
 		rect.setAttributeNS(null, "height", value);
@@ -192,7 +188,7 @@ Lecteur.prototype.drawSVG = function(values) {
 
 		// Création de l'effet mirroir
 		reverse.setAttributeNS(null, "class", "reverse");
-		reverse.setAttributeNS(null, "x", i * width / nombreDeBarre);
+		reverse.setAttributeNS(null, "x", i * espaceMaxParBarre);
 		reverse.setAttributeNS(null, "y", horizon + 3);
 		reverse.setAttributeNS(null, "width", largeurRect);
 		reverse.setAttributeNS(null, "height", value / 2);
@@ -317,43 +313,59 @@ Lecteur.prototype.initialisation = function() {
     this.colorSvg();
 };
 
+/**
+ * Permet de colorer la waveform lors d'un clic sur l'un des rectangles de l'audiowaveform
+ */
 Lecteur.prototype.colorSvg = function(){
-  var nRect = document.querySelectorAll("rect");
-  for(var i = 0; i < nRect.length; i++){
-    nRect[i].addEventListener('click',function(e){
-      var rectClick = e.currentTarget;
-      if(!(rectClick.classList.contains("reverse"))){
+	var nRect = document.querySelectorAll("rect");
 
-        rectClick.nextElementSibling.classList.replace("reverse","activeR");
-        rectClick.classList.add("active");
-        var currentRect = rectClick ;
+		for(var i = 0; i < nRect.length; i++){
 
-        while(currentRect.previousElementSibling ){
-          var prev = currentRect.previousElementSibling;
-          prev.classList.replace("reverse","activeR"); //barre reverse
-          prev.previousElementSibling.classList.add("active"); // barre du haut
-          currentRect = prev.previousElementSibling;
-        }
+			nRect[i].addEventListener('click',function(e){
+			var rectClick = e.currentTarget;
 
-        if(rectClick.classList.contains("active")){
-          var firstNextRect = rectClick.nextElementSibling.nextElementSibling
-          firstNextRect.classList.remove("active");
-          var secondNextRect = firstNextRect.nextElementSibling;
-          secondNextRect.classList.replace("activeR","reverse");
-          var newcurrentRect = secondNextRect;
+				if(!(rectClick.classList.contains("reverse"))){
 
-          while(newcurrentRect.nextElementSibling){
-            var next = newcurrentRect.nextElementSibling;
-            next.classList.remove("active");
-            next.nextElementSibling.classList.replace("activeR","reverse");
-            newcurrentRect = next.nextElementSibling;
-          }
+					rectClick.nextElementSibling.classList.replace("reverse","activeR");
+					rectClick.classList.add("active");
+					var currentRect = rectClick ;
 
-        }
+					while(currentRect.previousElementSibling ){
+						var prev = currentRect.previousElementSibling;
+						prev.classList.replace("reverse","activeR"); //barre reverse
+						prev.previousElementSibling.classList.add("active"); // barre du haut
+						currentRect = prev.previousElementSibling;
+					}
 
-      }
+					if(rectClick.classList.contains("active")){
+						var firstNextRect = rectClick.nextElementSibling.nextElementSibling
+						firstNextRect.classList.remove("active");
+						var secondNextRect = firstNextRect.nextElementSibling;
+						secondNextRect.classList.replace("activeR","reverse");
+						var newcurrentRect = secondNextRect;
 
-    });
-  }
-
+						while(newcurrentRect.nextElementSibling) {
+							var next = newcurrentRect.nextElementSibling;
+							next.classList.remove("active");
+							next.nextElementSibling.classList.replace("activeR", "reverse");
+							newcurrentRect = next.nextElementSibling;
+						}
+					}
+				}
+			});
+		}
 }
+
+// /**
+//  * Permet de renvoyer un tableau contenant une partie des batons en fonction de la largeur de l'écran
+//  * @param mesBatons tableau contenant les valeurs générées par audiowaveform
+//  */
+Lecteur.prototype.bonNombreBaton = function(mesBatons) {
+	var newTab = [];
+	var largeurEcran = this.getWidthWaveForm();
+
+	if (largeurEcran < 1000) {
+
+	}
+}
+
