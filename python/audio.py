@@ -23,9 +23,9 @@ def read_first_line(filename):
     try:
         with open(filename) as file:
             first_line = file.readline()
+            return first_line
     except IOError:
-        first_line = 'IOError'
-    return first_line
+        raise IOError('No file found with the name ' + repr(filename))
 
 # Method that found the smallest multiplier beetween to number
 # a : the first number
@@ -42,16 +42,24 @@ def pgcd(a,b):
 # Method used to retrieve the content of the file as a Tab
 # filename : the name of the file
 def get_file_content(filename):
-    with open(filename) as content_file:
-        content = json.loads(content_file.read())
-        return content
+    try:
+        with open(filename) as content_file:
+            content = json.loads(content_file.read())
+            return content
+    except IOError:
+        raise IOError('No file found with the name ' + repr(filename))
 
 # Method that turn the content of the json into a tab that contains all the curve value
 # content : the table of all the value generated from the audiowaveform command
 def remove_negative_value(content):
     i = 0
     y = 0
-    content = content["data"]
+    try:
+        content = content["data"]
+    except KeyError:
+        raise KeyError('\'data\' index not found.')
+    except TypeError:
+        raise TypeError('String indeces must be integers, the parameter is not a JSON.')
     content_positive = content[0:len(content)/2]
     for i in range (0, len(content)):
         if i%2 != 0:
@@ -94,7 +102,7 @@ def install_mandatory_packages ():
 
 # Main function that is launched at the beginning of the script
 def main() :
-    #install_mandatory_packages()
+    install_mandatory_packages()
     filename = sys.argv[1]
     duration = get_duration(filename)
     stick_number = 300
@@ -104,7 +112,7 @@ def main() :
         pgcd_value = stick_number
     duration = duration * pgcd_value
     result = duration / stick_number
-    os.system('touch musique.json')
+    os.system('touch musiques.json')
     os.system('audiowaveform -i ' + repr(filename) + ' -o musique.json -b 8 --pixels-per-second ' + repr(int(pgcd_value)))
     content = get_file_content('musique.json')
     content_positive = remove_negative_value(content)
@@ -114,7 +122,7 @@ def main() :
         outfile.write('{"duration":' + repr(get_duration(filename)) + ',"values":')
         json.dump(contentFinal, outfile)
         outfile.write('}')
-    os.system('sudo rm musique.txt')
+    os.system('rm musique.txt')
 
 if __name__ == '__main__':
     main()

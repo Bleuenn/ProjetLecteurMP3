@@ -183,15 +183,14 @@ Lecteur.prototype.drawSVG = function(values) {
 			value = 6;
 		}
 
-		//rect.setAttributeNS(null, "class", "barreSvg");
-		//rect.setAttributeNS(null, "id", "barreNumero" + i);
+		// Création des barres SVG verticales
 		rect.setAttributeNS(null, "x", i * width / nombreDeBarre);
 		rect.setAttributeNS(null, "y", horizon - value);
 		rect.setAttributeNS(null, "width", largeurRect);
 		rect.setAttributeNS(null, "height", value);
 		rect.setAttributeNS(null, "data-num", i);
 
-		//reverse.setAttributeNS(null, "id", "reverseNumero" + i);
+		// Création de l'effet mirroir
 		reverse.setAttributeNS(null, "class", "reverse");
 		reverse.setAttributeNS(null, "x", i * width / nombreDeBarre);
 		reverse.setAttributeNS(null, "y", horizon + 3);
