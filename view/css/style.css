@@ -368,21 +368,22 @@ svg {
     height: 100%;
 }
 
-rect:hover {
-    fill: orangered !important;
-    transition: fill .0s;
+rect.active {
+  fill: orangered !important;
+}
+
+rect.activeR{
+  fill : #edbd9f !important;
 }
 
 rect {
     fill: #a3a6a3 !important;
-    border: solid black 1px !important;
-    transition: fill 1s ease-in-out;
+    border: solid black 1px ;
 }
 
 rect.reverse {
     fill: #a3a6a391 !important;
-    border: solid black 1px !important;
-    transition: fill 1s ease-in-out;
+    border: solid black 1px ;
 }
 
 /* ---------------------------------------------------------------- */
