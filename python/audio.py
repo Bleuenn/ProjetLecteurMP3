@@ -97,7 +97,7 @@ def main() :
     #install_mandatory_packages()
     filename = sys.argv[1]
     duration = get_duration(filename)
-    stick_number = 300
+    stick_number = 400
     pgcd_value = 0
     pgcd_value = pgcd(duration, stick_number)
     if duration * pgcd_value < stick_number:
