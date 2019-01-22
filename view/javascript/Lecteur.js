@@ -283,7 +283,7 @@ Lecteur.prototype.initialisation = function() {
 
     let btnVolume = document.getElementsByClassName('volume')[0];
 
-	btnVolume.addEventListener('mouseover', function (e) {
+	btnVolume.addEventListener('mouseover', function (e){
         let range = document.getElementById("range");
 
         if( range === null){
@@ -306,7 +306,22 @@ Lecteur.prototype.initialisation = function() {
             else if (range.value <= 100) { btnVolume.innerText = "";}
 
             range.style.display = "none";
-        });
+        }, true);
 
-	}, true);
-}
+    }, true);
+
+    like.addEventListener("click", function(e){
+        console.log(this.currentMorceau.getName());
+        this.currentMorceau.addOneLike();
+        let like = document.getElementsByClassName("like")[0];
+        like.innerText = this.getCurrentMorceau().nbLike;
+    }.bind( this ), true);
+
+    share.addEventListener("click", function(e){
+        console.log(this.currentMorceau.getName());
+        this.currentMorceau.addOneLike();
+        let like = document.getElementsByClassName("like")[0];
+        like.innerText = this.getCurrentMorceau().nbLike;
+    }.bind( this ), true);
+
+};

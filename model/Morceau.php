@@ -236,7 +236,8 @@ class Morceau
         //Création du nom du fichier à partir du titre
         $pos = strrpos($file['name'], ".");
         $extension = substr($file['name'], $pos);
-        $fichier = $this->titre . $extension;
+        $titre = str_replace(" ", "_", $this->titre);
+        $fichier = $titre . $extension;
 
         if($type == "mp3"){ $this->mp3 = $dossier.$fichier; }
         else{ $this->cover = $dossier.$fichier; }

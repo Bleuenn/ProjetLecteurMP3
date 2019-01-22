@@ -15,7 +15,7 @@
  * @constructor
  */
 function Morceau (id, nameMusique, album, nameArtiste, cover, nblike, nbPartage, totaltime, nbPlay, nbComment, valuesWaveForm, path) {
-    this.id=0;
+    this.id=id;
     this.name=nameMusique;
     this.album=album
     this.artiste=nameArtiste;
@@ -58,8 +58,12 @@ Morceau.prototype.setNbLike = function(newNbLike) {
  * Modifie le nombre de like en incrémentant (+1) et modifie en base de données
  */
 Morceau.prototype.addOneLike = function() {
-    setNbLike(getNbLike() + 1);
-}
+    let req = new XMLHttpRequest();
+    this.setNbLike(this.getNbLike() + 1);
+    console.log('http://localhost/ProjetLecteurMP3/index.php?page=edit&id='+this.id+'&increment=nbLike');
+    req.open('GET', 'http://localhost/ProjetLecteurMP3/index.php?page=edit&id='+this.id+'&increment=nbLike', true);
+    req.send(null);
+};
 
 /**
  * Récupère le nombre de partage du morceau en cours
@@ -135,7 +139,7 @@ Morceau.prototype.addOneComment = function() {
  * @return {*} le nom de la musique
  */
 Morceau.prototype.getName = function() {
-    return this.nameMusique;
+    return this.name;
 }
 
 /**
