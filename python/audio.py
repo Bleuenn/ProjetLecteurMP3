@@ -70,10 +70,10 @@ def remove_negative_value(content):
 # Method that create the final tab from the value of the tab with only positive value
 # content_positive : the table that contains all the positive value from the table generated using the audiowaveform command
 # result : the number of value that need to be regrouped to get a final value for the final table
-def get_final_tab(content_positive, result):
-    final_content = content_positive[0:400]
+def get_final_tab(content_positive, result, stick_number):
+    final_content = content_positive[0:stick_number]
     n = 0
-    for i in range (0, 400):
+    for i in range (0, stick_number):
         average = 0
         for y in range (0, result):
             average = average + content_positive[n]
@@ -105,18 +105,21 @@ def main() :
     install_mandatory_packages()
     filename = sys.argv[1]
     duration = get_duration(filename)
-    stick_number = 300
+    stick_number = 400
     pgcd_value = 0
     pgcd_value = pgcd(duration, stick_number)
     if duration * pgcd_value < stick_number:
         pgcd_value = stick_number
     duration = duration * pgcd_value
     result = duration / stick_number
-    os.system('touch musiques.json')
+    pprint(duration)
+    pprint(pgcd_value)
+    pprint(result)
+    os.system('touch musique.json')
     os.system('audiowaveform -i ' + repr(filename) + ' -o musique.json -b 8 --pixels-per-second ' + repr(int(pgcd_value)))
     content = get_file_content('musique.json')
     content_positive = remove_negative_value(content)
-    contentFinal = get_final_tab(content_positive, result)
+    contentFinal = get_final_tab(content_positive, result, stick_number)
     content["data"] = contentFinal
     with open('musique.json', 'w') as outfile:
         outfile.write('{"duration":' + repr(get_duration(filename)) + ',"values":')

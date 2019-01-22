@@ -1,5 +1,8 @@
 import audio
 import os
+import json
+import apt
+import pytest
 from pprint import pprint
 
 # TEST for 'get_duration(filename)'
@@ -19,7 +22,8 @@ def test_read_first_line_normal():
     assert audio.read_first_line('musiquetest.txt') == '000\n'
 
 def test_read_first_line_no_file():
-    assert audio.read_first_line('NoFileIsNamedLikeThis') == 'IOError'
+    with pytest.raises(IOError):
+        audio.read_first_line('NoFileIsNamedLikeThis')
 
 # TEST for 'pgcd(a,b)'
 def test_pgcd_a_and_b_equals():
@@ -50,9 +54,32 @@ def test_pgcd_negative_numbers():
 
 # TEST for 'get_file_content(filename)'
 def test_getfilecontent_normal():
-    os.system('echo {"version":2,"length":10,"data":,[-7,7,-10,-1,-4,6,-2,9,-3,3,1,6,-9,7,-9,-2,-2,8,-1,7]} > test.json')
-    assert audio.get_file_content('test.json') == json.loads('{"version":2,"length":10,"data":,[-7,7,-10,-1,-4,6,-2,9,-3,3,1,6,-9,7,-9,-2,-2,8,-1,7]}')
+    with open('test.json', 'w') as jsonfile:
+        jsonfile.write('{"version":2,"length":10,"data":[-7,7,-10,-1,-4,6,-2,9,-3,3,1,6,-9,7,-9,-2,-2,8,-1,7]}')
+    assert audio.get_file_content('test.json')["length"] == 10
+    assert audio.get_file_content('test.json')["version"] == 2
+    assert audio.get_file_content('test.json')["data"] == [-7,7,-10,-1,-4,6,-2,9,-3,3,1,6,-9,7,-9,-2,-2,8,-1,7]
+
+def test_getfilecontent_no_file():
+    with pytest.raises(IOError):
+        audio.get_file_content('NoFileIsNamedLikeThis')
 
 #TEST for 'remove_negative_value(content)'
-def test_remove_negative_value():
-    jsoncontent = "{\"version\":2,\"length\":10,\"data\":,[-7,7,-10,-1,-4,6,-2,9,-3,3,1,6,-9,7,-9,-2,-2,8,-1,7]}"
+def test_removenegativevalue_normal():
+    assert audio.remove_negative_value(audio.get_file_content('test.json')) == [7,-1,6,9,3,6,7,-2,8,7]
+
+def test_removenegativevalue_no_data_index():
+    with open('test.json', 'w') as jsonfile:
+        jsonfile.write('{"version":2,"length":10,"notdata":[-7,7,-10,-1,-4,6,-2,9,-3,3,1,6,-9,7,-9,-2,-2,8,-1,7]}')
+    with pytest.raises(KeyError):
+        audio.remove_negative_value(audio.get_file_content('test.json'))
+
+def test_removenegativevalue_not_a_json():
+    not_a_json = "Definetely not a json content"
+    with pytest.raises(TypeError):
+        audio.remove_negative_value(not_a_json)
+
+def test_removenegativevalue_odd_number_of_value():
+    with open('test.json', 'w') as jsonfile:
+        jsonfile.write('{"version":2,"length":10,"data":[-7,7,-10,-1,-4,6,-2,9,-3,3,1,6,-9,7,-9,-2,-2,8,-1]}')
+    assert audio.remove_negative_value(audio.get_file_content('test.json')) == [7,-1,6,9,3,6,7,-2,8]
