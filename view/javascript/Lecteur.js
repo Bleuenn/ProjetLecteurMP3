@@ -235,8 +235,6 @@ Lecteur.prototype.player = function(chemin) {
  * Permet de faire l'initialisation des éléments du lecteur
  */
 Lecteur.prototype.initialisation = function() {
-	var rect = document.querySelectorAll('rect')[0];
-
 	//Initialisation Cover
     var cover = document.getElementsByClassName('visuel')[0];
     var image = document.createElement("img");
@@ -301,14 +299,12 @@ Lecteur.prototype.initialisation = function() {
     }, true);
 
     like.addEventListener("click", function(e){
-        console.log(this.currentMorceau.getName());
         this.currentMorceau.addOneLike();
         var like = document.getElementsByClassName("like")[0];
         like.innerText = this.getCurrentMorceau().nbLike;
     }.bind( this ), true);
 
     share.addEventListener("click", function(e){
-        console.log(this.currentMorceau.getName());
         this.currentMorceau.addOnePartage();
         var share = document.getElementsByClassName("share")[0];
         share.innerText = this.getCurrentMorceau().nbPartage;
