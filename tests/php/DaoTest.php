@@ -5,19 +5,21 @@ use Model\DAO;
 use Model\Morceau;
 use PHPUnit\Framework\TestCase;
 
-
-class DaoTest extends TestCase
+/**
+ * @coversDefaultClass \Model\DAO
+ */
+final class DaoTest extends TestCase
 {
     private $titre = "test", $artiste="ArtisteTest", $album="AlbumTest", $annee=2000, $genre="GenreTest",
         $mp3="tests/php/test.mp3", $cover= "tests/php/test.jpg";
 
-    /*
+    /**
      * Test du contructeur de la classe DAO :
      * initialisation de la requête CURL
      * @test
      * @before
-     * @covers DAO::__construct
-     * @covers DAO::close
+     * @covers ::__construct
+     * @covers ::close
      */
     public function testConstructeur(){
         $cnx= new DAO();
@@ -25,11 +27,11 @@ class DaoTest extends TestCase
         $cnx->close();
     }
 
-    /*
+    /**
      * Test de la méthode getAll :
      * @test
-     * @covers DAO::getAll
-     * @covers DAO::getInfo
+     * @covers ::getAll
+     * @covers ::getInfo
      * @depends testConstructeur
      */
     public function testGetAll(){
@@ -39,11 +41,11 @@ class DaoTest extends TestCase
         $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/", $infos['url']);
     }
 
-    /*
+    /**
      * Test de la méthode getById :
      * @test
-     * @covers DAO::getById
-     * @covers DAO::getInfo
+     * @covers ::getById
+     * @covers ::getInfo
      * @depends testConstructeur
      */
     public function testGetById(){
@@ -53,11 +55,11 @@ class DaoTest extends TestCase
         $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/5c37b38d214fb37593d7c3af", $infos['url']);
     }
 
-    /*
+    /**
     * Test de la méthode Add :
      * @test
-     * @covers DAO::add
-     * @covers DAO::getInfo
+     * @covers ::add
+     * @covers ::getInfo
      * @depends testConstructeur
      */
     public function testAdd(){
@@ -68,11 +70,11 @@ class DaoTest extends TestCase
         $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/", $infos['url']);
     }
 
-    /*
+    /**
      * Test de la méthode Update :
      * @test
-     * @covers DAO::update
-     * @covers DAO::getInfo
+     * @covers ::update
+     * @covers ::getInfo
      * @depends testConstructeur
      */
     public function testUpdate(){
@@ -83,11 +85,11 @@ class DaoTest extends TestCase
         $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/e25rz845ef4q5", $infos['url']);
     }
 
-    /*
+    /**
      * Test de la méthode increment :
      * @test
-     * @covers DAO::increment
-     * @covers DAO::getInfo
+     * @covers ::increment
+     * @covers ::getInfo
      * @depends testConstructeur
      */
     public function testIncrement(){
@@ -98,11 +100,11 @@ class DaoTest extends TestCase
         $this->assertSame("HTTP://127.0.0.1:8080/morceau/morceau/e25rz845ef4q5", $infos['url']);
     }
 
-    /*
+    /**
      * Test de la méthode increment :
      * @test
-     * @covers DAO::increment
-     * @covers DAO::getInfo
+     * @covers ::increment
+     * @covers ::getInfo
      * @expectedException InvalidArgumentException
      * @depends testConstructeur
      */
@@ -112,11 +114,11 @@ class DaoTest extends TestCase
         $cnx->increment("t", $id);
     }
 
-        /*
+        /**
          * Test de la classe delete :
          * @test
-         * @covers DAO::delete
-         * @covers DAO::getInfo
+         * @covers ::delete
+         * @covers ::getInfo
          * @depends testConstructeur
          * @depends testUpdate
          */

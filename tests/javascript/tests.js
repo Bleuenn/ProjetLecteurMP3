@@ -1,3 +1,4 @@
+"use strict";
 let expect = chai.expect;
 
 describe('FileEcoute', function() {
@@ -38,10 +39,32 @@ describe('FileEcoute', function() {
 
 
 describe('Lecteur', function () {
-    describe('Lecteur', function () {
-        it("should delete morceau", function () {
-            expect(fileEcoute1.deleteMorceau(42)).to.equal(0);
-        });
+    /**
+     * Création des éléments DOM
+     */
+    document.createElement('div').setAttribute('class', 'artiste');
+    document.createElement('div').setAttribute('class', 'titre');
+    document.createElement('div').setAttribute('class', 'total');
+    document.createElement('div').setAttribute('class', 'nb-lecture');
+    document.createElement('div').setAttribute('class', 'nb-commentaires');
+    document.createElement('div').setAttribute('class', 'like');
+    document.createElement('div').setAttribute('class', 'share');
+    document.createElement('div').setAttribute('class', 'volume');
+
+    let morceau = new Morceau(1, "Avec le coeur et la raison", "Réel","Kery James", "view/img/reel.jpg", 0, 0, 146, 0, 0, [1, 2, 3], "musique/mp3/reel.mp3");
+    lecteur = new Lecteur();
+    lecteur.currentMorceau(morceau);
+
+    it("should initialise", function () {
+        lecteur.initialisation();
+        expect(document.getElementsByClassName('artiste')[0]).to.equal("Kery James");
+        expect(document.getElementsByClassName('titre')[0]).to.equal("Avec le coeur et la raison");
+        expect(document.getElementsByClassName('total')[0]).to.equal("2:26");
+        expect(document.getElementsByClassName('nb-lectures')[0]).to.equal(0);
+        expect(document.getElementsByClassName('nb-commentaires')[0]).to.equal(0);
+        expect(document.getElementsByClassName('like')[0]).to.equal(0);
+        expect(document.getElementsByClassName('share')[0]).to.equal(0);
+        expect(document.getElementsByClassName('volume')[0]).to.equal("");
     })
 });
 
