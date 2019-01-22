@@ -84,11 +84,11 @@ Lecteur.prototype.createSound = function(url) {
 			audio = soundManager.createSound({
 				id: 'audio',
 				url: url,
-				whileloading: function() {
-					// this.currentMorceau.totalTime = this.formatMilliseconds(audio.durationEstimate);
-				},
 				whileplaying: function() {
 					// player.timeElapsed.textContent = this.formatMilliseconds(audio.position);
+					var currentTime = document.querySelector('div[class=en-cours]');
+					// currentTime.innerHTML = formatMillisecondes(audio.duration);
+					console.log(audio);
 				},
 				onload: function() {
 					// player.timeTotal.textContent = this.formatMilliseconds(audio.duration);

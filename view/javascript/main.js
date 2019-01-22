@@ -55,7 +55,7 @@ req.onreadystatechange = function (e) {
 					boutonLecteur.innerText = "";
 				}
 			});
-			/*************************************/
+			/**************************************/
 
             // Requête Ajax pour récupérer toutes les musiques de la bdd
             reqFileEcoute.open('GET', 'http://localhost/ProjetLecteurMP3/index.php?page=admin&json=true', true); // true pour asynchrone
