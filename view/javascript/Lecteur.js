@@ -54,61 +54,48 @@ Lecteur.prototype.setVolume = function(newVolume) {
     this.volume=newVolume;
 }
 
-Lecteur.prototype.formatMillisecondes = function(milliseconds) {
-	var hours = Math.floor(milliseconds / 3600000);
-	milliseconds = milliseconds % 3600000;
-	var minutes = Math.floor(milliseconds / 60000);
-	milliseconds = milliseconds % 60000;
-	var seconds = Math.floor(milliseconds / 1000);
-	milliseconds = Math.floor(milliseconds % 1000);
-
-	return (hours > 0 ? hours : '0') + ':' +
-		(minutes < 10 ? '0' : '') + minutes + ':' +
-		(seconds < 10 ? '0' : '') + seconds + ':' +
-		(milliseconds < 100 ? '0' : '') + (milliseconds < 10 ? '0' : '') + milliseconds;
-}
-
 /**
  * Initialisation d'un son écoutable depuis le player grace a l'API soundManager2
  * @return retourne un objet soundManager
  */
-Lecteur.prototype.createSound = function(url) {
-	var audio;
+Lecteur.prototype.createSound = function(url, currentMorceau) {
+	var audio = null;
 
 	var player = {
 		//TODO lister les boutons à modifier à l'affichage
 	}
+	if (audio === null) {
+		soundManager.setup({
+			onready: function() {
+				audio = soundManager.createSound({
+					id: 'audio',
+					url: url,
+					whileplaying: function() {
+						// player.timeElapsed.textContent = this.formatMilliseconds(audio.position);
+						var currentTime = document.querySelector('div[class=en-cours]');
+						// currentTime.innerHTML = formatMillisecondes(audio.duration);
+						currentTime.innerText = currentMorceau.formatMillisecondes(audio.position);
+					},
+					onfinish: function() {
+						var boutonLecteur = document.getElementsByClassName('play')[0];
+						currentTime.innerText = "0:00";
+						boutonLecteur.innerText = "";
 
-	soundManager.setup({
-		onready: function() {
-			audio = soundManager.createSound({
-				id: 'audio',
-				url: url,
-				whileplaying: function() {
-					// player.timeElapsed.textContent = this.formatMilliseconds(audio.position);
-					var currentTime = document.querySelector('div[class=en-cours]');
-					// currentTime.innerHTML = formatMillisecondes(audio.duration);
-					console.log(audio);
-				},
-				onload: function() {
-					// player.timeTotal.textContent = this.formatMilliseconds(audio.duration);
-				},
-				onfinish: function() {
-					var boutonLecteur = document.getElementsByClassName('play')[0];
-					boutonLecteur.innerText = "";
-					// var event;
-					// try {
-					// 	// Internet Explorer doesn't like this statement
-					// 	event = new Event('click');
-					// } catch (ex) {
-					// 	event = document.createEvent('MouseEvent');
-					// 	event.initEvent('click', true, false);
-					// }
-					// player.btnStop.dispatchEvent(event);
-				}
-			});
-		}
-	});
+						// var event;
+						// try {
+						// 	// Internet Explorer doesn't like this statement
+						// 	event = new Event('click');
+						// } catch (ex) {
+						// 	event = document.createEvent('MouseEvent');
+						// 	event.initEvent('click', true, false);
+						// }
+						// player.btnStop.dispatchEvent(event);
+					}
+				});
+			}
+		});
+	}
+
 
 	return audio;
 }
@@ -181,6 +168,8 @@ Lecteur.prototype.drawSVG = function(values) {
 		largeurRect = Math.ceil(this.getNombreBarresResponsive(window.innerWidth) / 100 + 1),
 		w3c = "http://www.w3.org/2000/svg";
 
+    console.log(width);
+
 	var maxHBar = this.getMax();
 	var nombreDeBarre = this.getNombreBarresResponsive(window.innerWidth);
 
@@ -200,6 +189,7 @@ Lecteur.prototype.drawSVG = function(values) {
 		rect.setAttributeNS(null, "y", horizon - value);
 		rect.setAttributeNS(null, "width", largeurRect);
 		rect.setAttributeNS(null, "height", value);
+		rect.setAttributeNS(null, "data-num", i);
 
 		//reverse.setAttributeNS(null, "id", "reverseNumero" + i);
 		reverse.setAttributeNS(null, "class", "reverse");
@@ -207,7 +197,7 @@ Lecteur.prototype.drawSVG = function(values) {
 		reverse.setAttributeNS(null, "y", horizon + 3);
 		reverse.setAttributeNS(null, "width", largeurRect);
 		reverse.setAttributeNS(null, "height", value / 2);
-		//reverse.setAttributeNS(null, "style", "fill: red !important");
+		reverse.setAttributeNS(null, "data-num", i);
 
 		svg.appendChild(rect);
 		svg.appendChild(reverse);
@@ -342,8 +332,8 @@ Lecteur.prototype.colorSvg = function(){
 
         while(currentRect.previousElementSibling ){
           var prev = currentRect.previousElementSibling;
-          prev.classList.replace("reverse","activeR");
-          prev.previousElementSibling.classList.add("active");
+          prev.classList.replace("reverse","activeR"); //barre reverse
+          prev.previousElementSibling.classList.add("active"); // barre du haut
           currentRect = prev.previousElementSibling;
         }
 

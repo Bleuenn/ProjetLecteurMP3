@@ -181,3 +181,20 @@ Morceau.prototype.setPath = function(cheminmp3){
 Morceau.prototype.getPath = function() {
     return this.path;
 }
+
+/**
+ * Permet de transformer les millisecondes en minutes et secondes sous format "minutes:secondes"
+ * @param milliseconds
+ * @return {string}
+ */
+Morceau.prototype.formatMillisecondes = function(milliseconds) {
+    var hours = Math.floor(milliseconds / 3600000);
+    milliseconds = milliseconds % 3600000;
+    var minutes = Math.floor(milliseconds / 60000);
+    milliseconds = milliseconds % 60000;
+    var seconds = Math.floor(milliseconds / 1000);
+    milliseconds = Math.floor(milliseconds % 1000);
+
+    return (minutes < 10 ? '' : '') + minutes + ':' +
+        (seconds < 10 ? '0' : '') + seconds;
+}

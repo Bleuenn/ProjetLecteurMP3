@@ -10,7 +10,7 @@ let id = window.location.search.toString().substr(4);
 // Requête Ajax pour récupérer une musique de la bdd
 req.open('GET', 'http://localhost/ProjetLecteurMP3/index.php?page=admin&id='+id+'&json=true', true); // true pour asynchrone
 
-req.onreadystatechange = function (e, callback) {
+req.onreadystatechange = function (e) {
     if (req.readyState == 4) {
         // Cas ou la requête à reussi
         if (req.status == 200){
@@ -33,13 +33,12 @@ req.onreadystatechange = function (e, callback) {
                 lecteur.resizeBar();
             });
 
-            lecteur.player(lecteur.currentMorceau.getPath());
+            // lecteur.player(lecteur.currentMorceau.getPath());
 
             lecteur.initialisation();
 
 			/**************SOUNDMANAGER2************/
-			var audio = lecteur.createSound(lecteur.currentMorceau.getPath());
-
+			var audio = lecteur.createSound(lecteur.currentMorceau.getPath(),lecteur.getCurrentMorceau());
 			let boutonLecteur = document.getElementsByClassName('play')[0];
 			let enLecture = false;
 
@@ -55,7 +54,41 @@ req.onreadystatechange = function (e, callback) {
 					boutonLecteur.innerText = "";
 				}
 			});
-			/**************************************/
+			/*************************************/
+
+            // Requête Ajax pour récupérer toutes les musiques de la bdd
+            reqFileEcoute.open('GET', 'http://localhost/ProjetLecteurMP3/index.php?page=admin&json=true', true); // true pour asynchrone
+
+            reqFileEcoute.onreadystatechange = function (e) {
+
+                if (reqFileEcoute.readyState == 4) {
+                    // Cas ou la requête à reussi
+                    if (reqFileEcoute.status == 200){
+
+                        var listeMorceau = [];
+                        let json = JSON.parse(reqFileEcoute.responseText);
+                        json = json._embedded;
+
+                        /**
+                         * Boucle pour parcourir le résultat de la requête AJAX
+                         * Afin de récupere les Morceaux et les inserer dans
+                         *  un tableau.
+                         */
+                        for(let i =0; i < json.length; i++){
+                            listeMorceau.push( new Morceau(json[i]._id.$oid, json[i].titre, json[i].album, json[i].artiste, json[i].cover, json[i].nbLike,
+                                json[i].nbPartage, json[i].duree, json[i].nbEcoute, json[i].nbComment, json[i].listePoint, json[i].cheminMP3) );
+                        }
+
+                        var fileEcoute = new FileEcoute("file", listeMorceau);
+                        console.log(fileEcoute);
+                    }
+                    // Cas ou la requête à échoué
+                    else console.log("Erreur pendant le chargement de la page.\n");
+                }
+
+            };
+            reqFileEcoute.send(null);
+
         }
         // Cas ou la requête à échoué
         else console.log("Erreur pendant le chargement de la page.\n");
@@ -63,38 +96,6 @@ req.onreadystatechange = function (e, callback) {
 };
 req.send(null);
 
-// Requête Ajax pour récupérer toutes les musiques de la bdd
-reqFileEcoute.open('GET', 'http://localhost/ProjetLecteurMP3/index.php?page=admin&json=true', true); // true pour asynchrone
-
-var ajaxFileEcoute = reqFileEcoute.onreadystatechange = function (e) {
-
-    if (reqFileEcoute.readyState == 4) {
-        // Cas ou la requête à reussi
-        if (reqFileEcoute.status == 200){
-
-            var listeMorceau = [];
-            let json = JSON.parse(reqFileEcoute.responseText);
-            json = json._embedded;
-
-            /**
-             * Boucle pour parcourir le résultat de la requête AJAX
-             * Afin de récupere les Morceaux et les inserer dans
-             *  un tableau.
-             */
-            for(let i =0; i < json.length; i++){
-                listeMorceau.push( new Morceau(json[i]._id.$oid, json[i].titre, json[i].album, json[i].artiste, json[i].cover, json[i].nbLike,
-                    json[i].nbPartage, json[i].duree, json[i].nbEcoute, json[i].nbComment, json[i].listePoint, json[i].cheminMP3) );
-            }
-
-            var fileEcoute = new FileEcoute("file", listeMorceau);
-            console.log(fileEcoute);
-        }
-        // Cas ou la requête à échoué
-        else console.log("Erreur pendant le chargement de la page.\n");
-    }
-
-};
-reqFileEcoute.send(null);
 
 
 
