@@ -61,7 +61,7 @@ else{
                     $TABLEAU .= "<td>$album</td>";
                 }
                 $TABLEAU .= "<td>$artiste</td>";
-                $TABLEAU .= "<td>$date</td><td><a class='icon' href='?page=edit&id=".$morceau->_id->{'$oid'}."'></a></td><td><a  class='icon' href='?page=delete&id=".$morceau->_id->{'$oid'}."'></a></td>";
+                $TABLEAU .= "<td>$date</td><td><a class='icon' href='?page=edit&id=".$morceau->_id->{'$oid'}."'></a></td><td><a class='icon' href='?page=delete&id=".$morceau->_id->{'$oid'}."&name=".$morceau->titre."'></a></td>";
                 $TABLEAU .= "</tr>";
             }
         }

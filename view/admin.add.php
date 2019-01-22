@@ -23,11 +23,11 @@
 
         <label>MP3</label>
         <sub>(Selectionner un fichier)</sub>
-        <input type="file" name="mp3"/>
+        <input type="file" name="mp3" accept=".mp3, audio/mpeg"/>
 
         <label>Cover</label>
         <sub>(Selectionner un fichier)</sub>
-        <input type="file" name="cover"/>
+        <input type="file" name="cover" accept=".jpg, image/jpeg"/>
 
         <label>Genre(s)</label>
         <sub>(Séparer les genres par des virgules)</sub>

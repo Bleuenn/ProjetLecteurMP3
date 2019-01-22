@@ -8,7 +8,7 @@ let id = window.location.search.toString().substr(4);
 /********************************************************************************************************************/
 
 // Requête Ajax pour récupérer une musique de la bdd
-req.open('GET', 'http://localhost/ProjetLecteurMP3/index.php?page=admin&id='+id+'&json=true', true); // true pour asynchrone
+req.open('GET', 'http://'+window.location.host+'/ProjetLecteurMP3/index.php?page=admin&id='+id+'&json=true', true); // true pour asynchrone
 
 req.onreadystatechange = function (e) {
     if (req.readyState == 4) {
@@ -61,7 +61,7 @@ req.onreadystatechange = function (e) {
 			/*************************************/
 
             // Requête Ajax pour récupérer toutes les musiques de la bdd
-            reqFileEcoute.open('GET', 'http://localhost/ProjetLecteurMP3/index.php?page=admin&json=true', true); // true pour asynchrone
+            reqFileEcoute.open('GET', 'http://'+window.location.host+'/ProjetLecteurMP3/index.php?page=admin&json=true', true); // true pour asynchrone
 
             reqFileEcoute.onreadystatechange = function (e) {
 
