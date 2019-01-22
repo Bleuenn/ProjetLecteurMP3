@@ -134,7 +134,7 @@ class DAO {
 
     /**
      * Méthode pour Fermer la
-     * connexion à la BDD.
+     * connexion à la BDD.w
      */
     public function close(){
         curl_close($this->connection);

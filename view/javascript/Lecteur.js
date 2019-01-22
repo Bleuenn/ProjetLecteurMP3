@@ -310,13 +310,12 @@ Lecteur.prototype.initialisation = function() {
 
     share.addEventListener("click", function(e){
         console.log(this.currentMorceau.getName());
-        this.currentMorceau.addOneLike();
-        var like = document.getElementsByClassName("like")[0];
-        like.innerText = this.getCurrentMorceau().nbLike;
+        this.currentMorceau.addOnePartage();
+        var share = document.getElementsByClassName("share")[0];
+        share.innerText = this.getCurrentMorceau().nbPartage;
     }.bind( this ), true);
 
     this.colorSvg();
-
 };
 
 Lecteur.prototype.colorSvg = function(){

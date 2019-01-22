@@ -60,8 +60,8 @@ Morceau.prototype.setNbLike = function(newNbLike) {
 Morceau.prototype.addOneLike = function() {
     let req = new XMLHttpRequest();
     this.setNbLike(this.getNbLike() + 1);
-    console.log('http://localhost/ProjetLecteurMP3/index.php?page=edit&id='+this.id+'&increment=nbLike');
-    req.open('GET', 'http://localhost/ProjetLecteurMP3/index.php?page=edit&id='+this.id+'&increment=nbLike', true);
+    console.log('http://'+window.location.host+'/ProjetLecteurMP3/index.php?page=edit&id='+this.id+'&increment=nbLike');
+    req.open('GET', 'http://'+window.location.host+'/ProjetLecteurMP3/index.php?page=edit&id='+this.id+'&increment=nbLike', true);
     req.send(null);
 };
 
@@ -85,7 +85,11 @@ Morceau.prototype.setNbPartage = function(newNbPartage) {
  * Modifie le nombre de partage en incrémentant (+1) et modifie en base de données
  */
 Morceau.prototype.addOnePartage = function() {
-    setNbPartage(getNbPartage() + 1);
+    let req = new XMLHttpRequest();
+    this.setNbPartage(this.getNbPartage() + 1);
+    console.log('http://'+window.location.host+'/ProjetLecteurMP3/index.php?page=edit&id='+this.id+'&increment=nbPartage');
+    req.open('GET', 'http://'+window.location.host+'/ProjetLecteurMP3/index.php?page=edit&id='+this.id+'&increment=nbPartage', true);
+    req.send(null);
 }
 
 /**

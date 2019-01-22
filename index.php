@@ -1,5 +1,4 @@
 <?php
-
 include_once "model/DAO.php";
 
 isset($_GET['page']) ? $page = $_GET['page'] : $page = null;
