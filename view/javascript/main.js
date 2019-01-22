@@ -20,19 +20,37 @@ req.onreadystatechange = function (e) {
             lecteur.setCurrentMorceau(morceau);
             morceau.setValuesWaveform( lecteur.currentMorceau.getValuesWaveform() );
             // morceau.getValuesWaveform(this.currentMorceau.getValuesWaveform()) //
-            console.log("data: "+ lecteur.currentMorceau.getValuesWaveform() );
-            console.log("nblike: "+lecteur.currentMorceau.getNbLike());
-            console.log("values: "+lecteur.currentMorceau.getValuesWaveform());
+            // console.log("data: "+ lecteur.currentMorceau.getValuesWaveform() );
+            // console.log("nblike: "+lecteur.currentMorceau.getNbLike());
+            // console.log("values: "+lecteur.currentMorceau.getValuesWaveform());
 
             lecteur.drawSVG(lecteur.currentMorceau.getValuesWaveform());
             window.addEventListener('resize', function () {
                 lecteur.resizeBar();
             });
 
-            lecteur.player(lecteur.currentMorceau.getPath());
+            // lecteur.player(lecteur.currentMorceau.getPath());
 
             lecteur.initialisation();
+            // console.log(json.url);
 
+            var audio = lecteur.createSound(lecteur.currentMorceau.getPath());
+
+            let boutonLecteur = document.getElementsByClassName('play')[0];
+            let enLecture = false;
+
+            boutonLecteur.addEventListener('click', function () {
+
+                if (!enLecture) {
+                    audio.play();
+                    enLecture = true;
+                    boutonLecteur.innerText = "";
+                } else {
+                    audio.pause();
+                    enLecture = false;
+                    boutonLecteur.innerText = "";
+                }
+            });
         }
         else console.log("Erreur pendant le chargement de la page.\n");
     }

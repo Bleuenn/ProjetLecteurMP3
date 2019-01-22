@@ -54,13 +54,63 @@ Lecteur.prototype.setVolume = function(newVolume) {
     this.volume=newVolume;
 }
 
+Lecteur.prototype.formatMillisecondes = function(milliseconds) {
+	var hours = Math.floor(milliseconds / 3600000);
+	milliseconds = milliseconds % 3600000;
+	var minutes = Math.floor(milliseconds / 60000);
+	milliseconds = milliseconds % 60000;
+	var seconds = Math.floor(milliseconds / 1000);
+	milliseconds = Math.floor(milliseconds % 1000);
+
+	return (hours > 0 ? hours : '0') + ':' +
+		(minutes < 10 ? '0' : '') + minutes + ':' +
+		(seconds < 10 ? '0' : '') + seconds + ':' +
+		(milliseconds < 100 ? '0' : '') + (milliseconds < 10 ? '0' : '') + milliseconds;
+}
+
 /**
  * Initialisation d'un son écoutable depuis le player grace a l'API soundManager2
  * @return retourne un objet soundManager
  */
-Lecteur.prototype.createSound = function() {
+Lecteur.prototype.createSound = function(url) {
+	var audio;
 
-	return soundManager;
+	var player = {
+		//TODO lister les boutons à modifier à l'affichage
+	}
+
+	soundManager.setup({
+		onready: function() {
+			audio = soundManager.createSound({
+				id: 'audio',
+				url: url,
+				whileloading: function() {
+					// this.currentMorceau.totalTime = this.formatMilliseconds(audio.durationEstimate);
+				},
+				whileplaying: function() {
+					// player.timeElapsed.textContent = this.formatMilliseconds(audio.position);
+				},
+				onload: function() {
+					// player.timeTotal.textContent = this.formatMilliseconds(audio.duration);
+				},
+				onfinish: function() {
+					var boutonLecteur = document.getElementsByClassName('play')[0];
+					boutonLecteur.innerText = "";
+					// var event;
+					// try {
+					// 	// Internet Explorer doesn't like this statement
+					// 	event = new Event('click');
+					// } catch (ex) {
+					// 	event = document.createEvent('MouseEvent');
+					// 	event.initEvent('click', true, false);
+					// }
+					// player.btnStop.dispatchEvent(event);
+				}
+			});
+		}
+	});
+
+	return audio;
 }
 
 /**
@@ -206,23 +256,7 @@ Lecteur.prototype.getNombreBarresResponsive = function(largeurEcran) {
  * @param chemin chemin de la musique.
  */
 Lecteur.prototype.player = function(chemin) {
-	let musique = new Audio(chemin);
-	let boutonLecteur = document.getElementsByClassName('play')[0];
-	let enLecture = false;
 
-	boutonLecteur.addEventListener('click', function () {
-
-		if (!enLecture) {
-			musique.play();
-			enLecture = true;
-			boutonLecteur.innerText = "";
-		} else {
-			musique.pause();
-			enLecture = false;
-			musique.currentTime = 0;
-			boutonLecteur.innerText = "";
-		}
-	});
 }
 
 /**
