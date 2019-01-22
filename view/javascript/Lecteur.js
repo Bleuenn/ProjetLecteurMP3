@@ -172,7 +172,7 @@ Lecteur.prototype.drawSVG = function(values) {
 	for (var i = 0; i < values.length; i++) {
 		var rect = document.createElementNS(w3c, 'rect'),
 			reverse = document.createElementNS(w3c, 'rect'),
-			value = (this.getHeightWaveForm() * values[i]) / maxHBar,
+			value = ((this.getHeightWaveForm() * values[i]) / maxHBar) * 0.66,
 			horizon = (height * 2) / 3; // permet de remonter les barres pour insérer l'effet mirroir en dessous
 
 		if (value === 0) {
