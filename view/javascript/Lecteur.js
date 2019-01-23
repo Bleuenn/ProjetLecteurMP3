@@ -88,7 +88,7 @@ Lecteur.prototype.createSound = function(url, lecteur) {
                 url: url,
 				volume: lecteur.volume,
                 whileplaying: function() {
-					// Pendant la lecture, on mettre à jour le temps courant de la musique.
+					// Pendant la lecture, on met à jour le temps courant de la musique.
                     var currentTime = document.querySelector('div[class=en-cours]');
                     currentTime.innerText = lecteur.currentMorceau.formatMillisecondes(lecteur.audio.position);
 
