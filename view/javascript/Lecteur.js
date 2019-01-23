@@ -77,11 +77,43 @@ Lecteur.prototype.createSound = function(url, lecteur) {
 					var curseur = allRect[Math.round(lecteur.audio.position / (lecteur.audio.duration / allRect.length))];
 
 					// J'attribue les couleurs pour la barre courante 'reverse' puis sur l'élément le précèdent
-					if (curseur.classList.contains("reverse")) {
-						curseur.classList.replace("reverse","activeR");
-						curseur.previousElementSibling.classList.add("active")
-					}
-					//TODO ATTENTION A CERTAINS MOMENT, LA CLASSE ACTIVE N'EST PAS APPLIQUEE !! ~ A FIX
+
+						for (var i = 0; i < allRect.length; i++) {
+							if (allRect[i].attributes["data-num"].value <= curseur.attributes["data-num"].value) {
+								if (curseur.classList.contains("reverse")) {
+									curseur.classList.replace("reverse", "activeR");
+									curseur.previousElementSibling.classList.add('active');
+								}
+								console.log(allRect[600].attributes["data-num"].value);
+							}
+						}
+
+
+					// while(curseur.previousElementSibling != null) {
+					// 	if (curseur.classList.contains("reverse")) {
+					// 		curseur.classList.replace("reverse","activeR");
+					// 	} else {
+					// 		curseur.previousElementSibling.classList.add("active")
+					// 	}
+					// }
+					// for (var i = 0; i < curseur.attributes["data-num"].value; i++) {
+					// 	while (curseur.previousElementSibling)
+					// 		if (allRect[j].attributes["data-num"].value < curseur.attributes["data-num"].value) {
+					// 			console.log("couleur")
+					// 		}
+					// 	}
+					// }
+					// console.log("---------------")
+
+					// if (curseur.classList.value === "") {
+					// 	curseur.classList.add("active");
+					// 	curseur.nextElementSibling.classList.replace("reverse", "activeR");
+					// }
+					// if (curseur.previousElementSibling !== null && curseur.previousElementSibling.classList.value === "") {
+					// 	console.log();
+					// }
+
+
                 },
                 onfinish: function() {
                     var boutonLecteur = document.getElementsByClassName('play')[0];
