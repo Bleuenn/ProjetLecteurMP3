@@ -30,8 +30,9 @@ jdk:
 
 script:
   - ./vendor/bin/phpunit
-  - sonar-scanner
   - cd ./tests/javascript/
   - npm install
   - npm test
+  - cd ../../
+  - sonar-scanner
 
