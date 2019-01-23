@@ -75,61 +75,22 @@ Lecteur.prototype.createSound = function(url, lecteur) {
 
 					// Permet de récupérer tous les barres et de définir quelle barre est associée au temps courant.
 					var allRect = document.querySelectorAll("rect");
-					var curseur = allRect[Math.round(lecteur.audio.position / (lecteur.audio.duration / allRect.length))];
+					var curseur = allRect[Math.ceil(lecteur.audio.position / (lecteur.audio.duration / allRect.length))];
 
 					// J'attribue les couleurs pour la barre courante 'reverse' puis sur l'élément le précèdent
-
-						for (var i = 0; i < allRect.length; i++) {
-							if (allRect[i].attributes["data-num"].value <= curseur.attributes["data-num"].value) {
-								if (curseur.classList.contains("reverse")) {
-									curseur.classList.replace("reverse", "activeR");
-									curseur.previousElementSibling.classList.add('active');
-								}
-								console.log(allRect[600].attributes["data-num"].value);
-							}
+					while(curseur !== null) {
+						if (curseur === undefined) {
+							curseur = allRect[allRect.length-1];
 						}
-
-
-					// while(curseur.previousElementSibling != null) {
-					// 	if (curseur.classList.contains("reverse")) {
-					// 		curseur.classList.replace("reverse","activeR");
-					// 	} else {
-					// 		curseur.previousElementSibling.classList.add("active")
-					// 	}
-					// }
-					// for (var i = 0; i < curseur.attributes["data-num"].value; i++) {
-					// 	while (curseur.previousElementSibling)
-					// 		if (allRect[j].attributes["data-num"].value < curseur.attributes["data-num"].value) {
-					// 			console.log("couleur")
-					// 		}
-					// 	}
-					// }
-					// console.log("---------------")
-
-					// if (curseur.classList.value === "") {
-					// 	curseur.classList.add("active");
-					// 	curseur.nextElementSibling.classList.replace("reverse", "activeR");
-					// }
-					// if (curseur.previousElementSibling !== null && curseur.previousElementSibling.classList.value === "") {
-					// 	console.log();
-					// }
-
-
+							if (curseur.classList.contains("reverse")) {
+								curseur.classList.replace('reverse','activeR');
+								curseur.previousElementSibling.classList.add('active');
+							}
+								curseur = curseur.previousElementSibling;
+					}
                 },
                 onfinish: function() {
-                    var boutonLecteur = document.getElementsByClassName('play')[0];
-                    currentTime.innerText = "0:00";
-                    boutonLecteur.innerText = "";
 
-                    // var event;
-                    // try {
-                    // 	// Internet Explorer doesn't like this statement
-                    // 	event = new Event('click');
-                    // } catch (ex) {
-                    // 	event = document.createEvent('MouseEvent');
-                    // 	event.initEvent('click', true, false);
-                    // }
-                    // player.btnStop.dispatchEvent(event);
                 }
             });
         }
@@ -530,17 +491,4 @@ Lecteur.prototype.colorSvg = function(){
           }
       });
 		}
-}
-
-// /**
-//  * Permet de renvoyer un tableau contenant une partie des batons en fonction de la largeur de l'écran
-//  * @param mesBatons tableau contenant les valeurs générées par audiowaveform
-//  */
-Lecteur.prototype.bonNombreBaton = function(mesBatons) {
-	var newTab = [];
-	var largeurEcran = this.getWidthWaveForm();
-
-	if (largeurEcran < 1000) {
-
-	}
 }
