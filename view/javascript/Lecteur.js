@@ -229,6 +229,7 @@ Lecteur.prototype.resizeBar = function() {
 	svg.innerHTML ="";
 	this.drawSVG(this.currentMorceau.getValuesWaveform());
   this.colorSvg();
+  this.newCurrentTime();
 }
 
 /**
