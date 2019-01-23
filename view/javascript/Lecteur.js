@@ -6,6 +6,8 @@ function Lecteur () {
     this.currentMorceau=null;
     this.currentTime=null;
     this.volume=25;
+    this.audio = null;
+    this.listening = false;
     // playList=false; // a voir si on l'intègre...
 }
 
@@ -37,6 +39,7 @@ Lecteur.prototype.getCurrentMorceau = function() {
  */
 Lecteur.prototype.setCurrentMorceau = function(newMorceau) {
     this.currentMorceau=newMorceau;
+    this.initialisation();
 }
 
 /**
@@ -58,56 +61,37 @@ Lecteur.prototype.setVolume = function(newVolume) {
  * Initialisation d'un son écoutable depuis le player grace a l'API soundManager2
  * @return retourne un objet soundManager
  */
-Lecteur.prototype.createSound = function(url, currentMorceau) {
-	var audio = null;
-	var currentTime = document.querySelector('div[class=en-cours]');
+Lecteur.prototype.createSound = function(url, lecteur) {
+    soundManager.setup({
+        onready: function() {
+            lecteur.audio = soundManager.createSound({
+                id: 'audio',
+                url: url,
+                whileplaying: function() {
+                    // player.timeElapsed.textContent = this.formatMilliseconds(audio.position);
+                    var currentTime = document.querySelector('div[class=en-cours]');
+                    // currentTime.innerHTML = formatMillisecondes(audio.duration);
+                    currentTime.innerText = lecteur.currentMorceau.formatMillisecondes(lecteur.audio.position);
+                },
+                onfinish: function() {
+                    var boutonLecteur = document.getElementsByClassName('play')[0];
+                    currentTime.innerText = "0:00";
+                    boutonLecteur.innerText = "";
 
-	if (audio === null) {
-		soundManager.setup({
-			onready: function() {
-				audio = soundManager.createSound({
-					id: 'audio',
-					url: url,
-					whileplaying: function() {
-						// Pendant la lecture, on mettre à jour le temps courant de la musique.
-						currentTime.innerText = currentMorceau.formatMillisecondes(audio.position);
-
-						// Permet de récupérer tous les barres et de définir quelle barre est associée au temps courant.
-						var allRect = document.querySelectorAll("rect");
-						var curseur = allRect[Math.round(audio.position / (audio.duration / allRect.length))];
-
-						// J'attribue les couleurs pour la barre courante 'reverse' puis sur l'élément le précèdent
-						if (curseur.classList.contains("reverse")) {
-							curseur.classList.replace("reverse","activeR");
-							curseur.previousElementSibling.classList.add("active")
-						}
-						//TODO ATTENTION A CERTAINS MOMENT, LA CLASSE ACTIVE N'EST PAS APPLIQUEE !! ~ A FIX
-
-
-
-					},
-					onfinish: function() {
-						var boutonLecteur = document.getElementsByClassName('play')[0];
-						currentTime.innerText = "0:00";
-						boutonLecteur.innerText = "";
-
-						// var event;
-						// try {
-						// 	// Internet Explorer doesn't like this statement
-						// 	event = new Event('click');
-						// } catch (ex) {
-						// 	event = document.createEvent('MouseEvent');
-						// 	event.initEvent('click', true, false);
-						// }
-						// player.btnStop.dispatchEvent(event);
-					}
-				});
-			}
-		});
-	}
-
-
-	return audio;
+                    // var event;
+                    // try {
+                    // 	// Internet Explorer doesn't like this statement
+                    // 	event = new Event('click');
+                    // } catch (ex) {
+                    // 	event = document.createEvent('MouseEvent');
+                    // 	event.initEvent('click', true, false);
+                    // }
+                    // player.btnStop.dispatchEvent(event);
+                }
+            });
+        }
+    });
+	return lecteur.audio;
 }
 
 /**
@@ -236,8 +220,56 @@ Lecteur.prototype.getNombreBarresResponsive = function(largeurEcran) {
  * Joue la musique musique en paramètre.
  * @param chemin chemin de la musique.
  */
-Lecteur.prototype.player = function(chemin) {
+Lecteur.prototype.play = function(chemin) {
+    console.log(this.audio);
+    if(this.audio !== null){
+        this.audio.pause();
+        this.audio.stop();
+        this.audio.unload();
+        this.listening = false;
+        this.audio.destruct();
+        this.audio = null;
+    }
 
+    this.audio = this.createSound(chemin, this);
+    this.audio.load();
+
+    let boutonLecteur = document.getElementsByClassName('play')[0];
+    boutonLecteur.addEventListener('click', function () {
+
+        if (!this.listening) {
+            this.audio.play();
+            this.listening = true;
+            boutonLecteur.innerText = "";
+        } else {
+            this.audio.pause();
+            this.listening = false;
+            boutonLecteur.innerText = "";
+        }
+
+        this.currentMorceau.addOnePlay();
+        var nbLecture = document.getElementsByClassName("nb-lectures")[0];
+        nbLecture.innerText = this.getCurrentMorceau().nbPlay;
+    }.bind(this));
+};
+
+/**
+ * Affiche ou masque les boutons
+ * previous et next du player
+ */
+Lecteur.prototype.showNavigationButton = function(boolean){
+
+    var prev = document.getElementsByClassName("prev")[0];
+    var next = document.getElementsByClassName("next")[0];
+
+    if(boolean){
+        prev.style.display = 'block';
+        next.style.display = 'block';
+    }
+    else{
+        prev.style.display = 'none';
+        next.style.display = 'none';
+    }
 }
 
 /**
@@ -248,35 +280,47 @@ Lecteur.prototype.initialisation = function() {
     var cover = document.getElementsByClassName('visuel')[0];
     var image = document.createElement("img");
     image.setAttribute("src", this.getCurrentMorceau().cover);
+    while (cover.firstChild) {
+        cover.removeChild(cover.firstChild);
+    }
     cover.appendChild(image);
 
 	//Initialisation Infos
     var artiste = document.getElementsByClassName('artiste')[0];
     var titre = document.getElementsByClassName('titre')[0];
 
-    artiste.appendChild(document.createTextNode(this.getCurrentMorceau().artiste));
-    titre.appendChild(document.createTextNode(this.getCurrentMorceau().name));
+    artiste.innerText = this.getCurrentMorceau().artiste;
+    titre.innerText = this.getCurrentMorceau().name;
 
     //Initialisation Temps
     var totalTime = document.getElementsByClassName('total')[0];
     var minutes = Math.floor(this.getCurrentMorceau().totalTime / 60);
     var seconds = this.getCurrentMorceau().totalTime - minutes * 60;
 
-    totalTime.appendChild(document.createTextNode(minutes+":"+seconds));
+    totalTime.innerText = minutes+":"+seconds;
 
     //Initialisation statistiques
     var nbLecture = document.getElementsByClassName("nb-lectures")[0];
     var nbCommentaire = document.getElementsByClassName("nb-commentaires")[0];
 
-    nbLecture.appendChild(document.createTextNode(this.getCurrentMorceau().nbPlay));
-    nbCommentaire.appendChild(document.createTextNode(this.getCurrentMorceau().nbComment));
+    nbLecture.innerText = this.getCurrentMorceau().nbPlay;
+    nbCommentaire.innerText = this.getCurrentMorceau().nbComment;
 
     //Initialisation social
     var like = document.getElementsByClassName("like")[0];
     var share = document.getElementsByClassName("share")[0];
 
-    like.appendChild(document.createTextNode(this.getCurrentMorceau().nbLike));
-    share.appendChild(document.createTextNode(this.getCurrentMorceau().nbPartage));
+    like.innerText = this.getCurrentMorceau().nbLike;
+    share.innerText = this.getCurrentMorceau().nbPartage;
+
+    this.currentMorceau.setValuesWaveform( this.currentMorceau.getValuesWaveform() );
+    // morceau.getValuesWaveform(this.currentMorceau.getValuesWaveform()) //
+    // console.log("data: "+ lecteur.currentMorceau.getValuesWaveform() );
+    // console.log("nblike: "+lecteur.currentMorceau.getNbLike());
+    // console.log("values: "+lecteur.currentMorceau.getValuesWaveform());
+
+    this.drawSVG(this.currentMorceau.getValuesWaveform());
+    this.resizeBar();
 
     var btnVolume = document.getElementsByClassName('volume')[0];
 
@@ -318,6 +362,27 @@ Lecteur.prototype.initialisation = function() {
         var share = document.getElementsByClassName("share")[0];
         share.innerText = this.getCurrentMorceau().nbPartage;
     }.bind( this ), true);
+
+    /**************SOUNDMANAGER2************/
+    let boutonLecteur = document.getElementsByClassName('play')[0];
+
+    boutonLecteur.addEventListener('click', function () {
+
+        if (!this.listening) {
+            this.audio.play();
+            this.listening = true;
+            boutonLecteur.innerText = "";
+        } else {
+            this.audio.pause();
+            this.listening = false;
+            boutonLecteur.innerText = "";
+        }
+
+        this.currentMorceau.addOnePlay();
+        var nbLecture = document.getElementsByClassName("nb-lectures")[0];
+        nbLecture.innerText = this.getCurrentMorceau().nbPlay;
+    }.bind(this));
+    /*************************************/
 
     this.colorSvg();
 };
