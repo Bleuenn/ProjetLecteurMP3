@@ -122,8 +122,8 @@ it("should set path", function() {
 });
 
 it("should format milliseconde", function() {
-    morceau1.formatMillisecondes(morceau1.et)
-    expect(morceau1.getPath()).to.equal("non en fait c'est pas ça");
+    
+    expect(morceau1.formatMillisecondes(146000)).to.equal("2:26");
 });
 
 });

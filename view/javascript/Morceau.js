@@ -252,13 +252,6 @@ Morceau.prototype.formatMillisecondes = function(milliseconds) {
         (seconds < 10 ? '0' : '') + seconds;
 }
 
-function setCookie(sName, sValue) {
-    var today = new Date(), expires = new Date();
-    expires.setTime(today.getTime() + (365*24*60*60*1000));
-    document.cookie = sName + "=" + encodeURIComponent(sValue) + ";expires=" + expires.toGMTString();
-}
-
-
 function getCookie(sName) {
     var cookContent = document.cookie, cookEnd, i, j;
     var sName = sName + "=";
@@ -274,4 +267,10 @@ function getCookie(sName) {
         }
     }
     return null;
+}
+
+function setCookie(sName, sValue) {
+    var today = new Date(), expires = new Date();
+    expires.setTime(today.getTime() + (365*24*60*60*1000));
+    document.cookie = sName + "=" + encodeURIComponent(sValue) + ";expires=" + expires.toGMTString();
 }
