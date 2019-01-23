@@ -169,11 +169,14 @@ describe('Tests FileEcoute', function() {
     });
 
     it("should next morceau", function() {
+        fileEcoute1.setMorceauListen(morceau1);
         expect(fileEcoute1.nextMorceau()).to.equal(morceau2);
     });
 
     it("should previous morceau", function() {
-        expect(fileEcoute1.nextMorceau()).to.equal(morceau1);
+        fileEcoute1.setListeMorceau(listeRap2);
+        fileEcoute1.setMorceauListen(morceau3);
+        expect(fileEcoute1.previousMorceau()).to.equal(morceau2);
     });
 });
 

@@ -57,6 +57,21 @@ FileEcoute.prototype.setListeMorceau = function(newListe){
 	};
 
 /**
+ * Retourne le morceau sélectionné dans la liste de la file d'écoute
+ */
+FileEcoute.prototype.getMorceauListen = function(){
+	return this.morceau;
+};
+
+/**
+ * Modifie le morceau sélectionné dans la liste de la file d'écoute
+ */
+FileEcoute.prototype.setMorceauListen = function(morceauToListen){
+	this.morceau=morceauToListen;
+};
+
+
+/**
  * 
  * @param {*} morceau le morceau à ajouter à la file d'écoute
  */

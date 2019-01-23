@@ -185,12 +185,11 @@ Lecteur.prototype.drawSVG = function(values) {
     var svg = document.getElementById('svg'),
 		height = this.getHeightWaveForm(),
 		width = this.getWidthWaveForm(),
-		largeurRect = 3//Math.floor(this.getNombreBarresResponsive(window.innerWidth) / 100 + 1),
+		largeurRect = 3,//Math.floor(this.getNombreBarresResponsive(window.innerWidth) / 100 + 1),
 		w3c = "http://www.w3.org/2000/svg";
 
 	var maxHBar = this.getMax();
 	var espaceMaxParBarre = width / values.length;
-	var espaceEntreLesBarres = espaceMaxParBarre - largeurRect;
 
 	for (var i = 0; i < values.length; i++) {
 		var rect = document.createElementNS(w3c, 'rect'),

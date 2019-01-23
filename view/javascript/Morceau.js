@@ -241,7 +241,6 @@ Morceau.prototype.setPath = function(cheminmp3){
  * @return {string}
  */
 Morceau.prototype.formatMillisecondes = function(milliseconds) {
-    var hours = Math.floor(milliseconds / 3600000);
     milliseconds = milliseconds % 3600000;
     var minutes = Math.floor(milliseconds / 60000);
     milliseconds = milliseconds % 60000;
