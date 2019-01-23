@@ -76,6 +76,9 @@ FileEcoute.prototype.deleteMorceau = function(targetId){
 	});
 }
 
+/**
+ * 
+ */
 FileEcoute.prototype.nextMorceau = function(){
     var posMorceau = 0;
 
@@ -94,6 +97,9 @@ FileEcoute.prototype.nextMorceau = function(){
     return this.morceau;
 }
 
+/**
+ * 
+ */
 FileEcoute.prototype.previousMorceau = function(){
     var posMorceau = 0;
 

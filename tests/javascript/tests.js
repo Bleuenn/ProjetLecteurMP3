@@ -96,11 +96,36 @@ it("should set nb Comment", function() {
     expect(morceau1.getNbComment()).to.equal(42);
 });
 
-it("should add one Comment", function() {
-    //delete_cookie('comment');
+/*it("should add one Comment", function() {
     morceau1.addOneComment();
     expect(morceau1.getNbComment()).to.equal(43);
+});*/
+
+// Values
+
+it("should get valueWaveform", function() {
+    expect(morceau1.getValuesWaveform().join()).to.equal([1,2,3].join());
 });
+
+it("should set valueWaveform", function() {
+    morceau1.setValuesWaveform([4,7,9])
+    expect(morceau1.getValuesWaveform().join()).to.equal([4,7,9].join());
+});
+
+it("should get path", function() {
+    expect(morceau1.getPath()).to.equal("musique/mp3/reel.mp3");
+});
+
+it("should set path", function() {
+    morceau1.setPath("non en fait c'est pas ça")
+    expect(morceau1.getPath()).to.equal("non en fait c'est pas ça");
+});
+
+it("should format milliseconde", function() {
+    morceau1.formatMillisecondes(morceau1.et)
+    expect(morceau1.getPath()).to.equal("non en fait c'est pas ça");
+});
+
 });
 
 describe('FileEcoute', function() {
