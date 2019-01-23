@@ -199,7 +199,7 @@ Lecteur.prototype.drawSVG = function(values) {
 			horizon = (height * 2) / 3; // permet de remonter les barres pour insérer l'effet mirroir en dessous
 
 		if (value === 0) {
-			value = 6;
+			value = 1;
 		}
 
 		// Création des barres SVG verticales
