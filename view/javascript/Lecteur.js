@@ -80,7 +80,7 @@ Lecteur.prototype.createSound = function(url, lecteur) {
 					// J'attribue les couleurs pour la barre courante 'reverse' puis sur l'élément le précèdent
 					while(curseur !== null) {
 						if (curseur === undefined) {
-							curseur = allRect[allRect.length-1];
+							curseur = allRect[allRect.length-1]; // si undefined on place le curseur à la fin
 						}
 							if (curseur.classList.contains("reverse")) {
 								curseur.classList.replace('reverse','activeR');
