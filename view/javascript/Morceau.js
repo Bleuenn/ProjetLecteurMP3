@@ -174,6 +174,13 @@ Morceau.prototype.addOnePlay = function() {
 }
 
 /**
+ * Retourne le temps total du Morceau
+ */
+Morceau.prototype.getTotalTime = function() {
+    return this.totalTime;
+}
+
+/**
  * Récupère le nombre de commentaires
  * @return {*} le nombre de commentaires de la musique en cours
  */
