@@ -416,7 +416,7 @@ svg {
 }
 
 rect.active {
-  fill: orangered ;
+  fill: orangered !important;
   /*transition: fill 1s ease-in-out;*/
   transition: .3s ;
 }
@@ -438,7 +438,7 @@ rect.reverse {
 }
 
 rect.hover , rect.active.hover {
-  fill : #f28759 ;
+  fill : #f28759 !important;
   transition: .3s ;
 }
 
