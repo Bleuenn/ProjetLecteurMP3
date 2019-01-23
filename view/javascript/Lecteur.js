@@ -447,6 +447,28 @@ Lecteur.prototype.colorSvg = function(){
 					}
 				}
 			});
+      nRect[i].addEventListener('mouseover',function(e){
+        var rectHover = e.currentTarget;
+        if(!(rectHover.classList.contains("reverse")) && !(rectHover.classList.contains("active")) && !(rectHover.classList.contains("activeR"))){
+            rectHover.classList.add("hover");
+            var nextHover = rectHover.previousElementSibling.nextElementSibling;
+            while(nextHover.previousElementSibling.previousElementSibling ){
+              nextHover.classList.add("hover");
+              nextHover = nextHover.previousElementSibling.previousElementSibling;}
+        }
+      });
+
+      nRect[i].addEventListener('mouseout',function(e){
+        var rectHover = e.currentTarget;
+        if((rectHover.classList.contains("hover"))){
+            rectHover.classList.remove("hover");
+            var nextHover = rectHover.previousElementSibling.nextElementSibling;
+            while(nextHover.previousElementSibling.previousElementSibling){
+              nextHover.classList.remove("hover");
+              nextHover = nextHover.previousElementSibling.previousElementSibling;
+            }
+        }
+      });
 		}
 }
 
@@ -462,4 +484,3 @@ Lecteur.prototype.bonNombreBaton = function(mesBatons) {
 
 	}
 }
-

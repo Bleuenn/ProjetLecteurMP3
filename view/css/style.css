@@ -423,13 +423,17 @@ rect.activeR{
 }
 
 rect {
-    fill: #a3a6a3 !important;
+    fill: #a3a6a3 ;
     border: solid black 1px ;
 }
 
 rect.reverse {
     fill: #a3a6a391 !important;
     border: solid black 1px ;
+}
+
+rect.hover {
+  fill : #f28759 ;
 }
 
 /* ---------------------------------------------------------------- */
