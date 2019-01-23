@@ -137,13 +137,34 @@ describe('FileEcoute', function() {
 
 describe('Lecteur', function () {
 
-    it("should current Morceau", function() {
+    it("should get current Morceau", function() {
+        lecteur.setCurrentMorceau(morceau1);
         expect(lecteur.getCurrentMorceau()).to.equal(morceau1);
     });
 
     it("should set current Morceau", function() {
         lecteur.setCurrentMorceau(morceau2)
         expect(lecteur.getCurrentMorceau()).to.equal(morceau2);
+    });
+
+    it("should get current Time", function() {
+        lecteur.setCurrentTime(241);
+        expect(lecteur.getCurrentTime()).to.equal(241);
+    });
+
+    it("should set current Time", function() {
+        lecteur.setCurrentTime(352)
+        expect(lecteur.getCurrentTime()).to.equal(352);
+    });
+
+    it("should get Volume", function() {
+        lecteur.setVolume(50);
+        expect(lecteur.getVolume()).to.equal(50);
+    });
+
+    it("should set Volume", function() {
+        lecteur.setVolume(100)
+        expect(lecteur.getVolume()).to.equal(100);
     });
 
     /**
@@ -158,9 +179,8 @@ describe('Lecteur', function () {
     document.createElement('div').setAttribute('class', 'share');
     document.createElement('div').setAttribute('class', 'volume');
 
-    lecteur.setCurrentMorceau(morceau1);
-
     it("should initialise", function () {
+        lecteur.setCurrentMorceau(morceau1);
         lecteur.initialisation();
         expect(document.getElementsByClassName('artiste')[0]).to.equal("Kery James");
         expect(document.getElementsByClassName('titre')[0]).to.equal("Avec le coeur et la raison");
