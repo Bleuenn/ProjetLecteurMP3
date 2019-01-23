@@ -54,6 +54,7 @@ Lecteur.prototype.getVolume = function() {
  */
 Lecteur.prototype.setVolume = function(newVolume) {
     this.volume=newVolume;
+    this.audio.setVolume(newVolume);
 }
 
 /**
@@ -368,7 +369,6 @@ Lecteur.prototype.initialisation = function() {
 
 	btnVolume.addEventListener('mouseover', function (e){
         var range = document.getElementById("range");
-
         if( range === null){
             range = document.createElement("input");
             range.setAttribute("type", "range");
@@ -384,23 +384,20 @@ Lecteur.prototype.initialisation = function() {
         }
 
         range.addEventListener("mouseout", function (e) {
-
             var btnVolume = document.getElementsByClassName('volume')[0];
             if (range.value <= 2) { btnVolume.innerText = "";}
             else if (range.value <= 33) { btnVolume.innerText = "";}
             else if (range.value <= 66) { btnVolume.innerText = ""; }
             else if (range.value <= 100) { btnVolume.innerText = "";}
 
-            range.style.display = "none";
         }, true);
 
         range.addEventListener('change', function(e) {
-			// this.audio.setVolume(range.value);
+            range.style.display = "none";
+            this.setVolume(range.value);
+		}.bind(this), true);
 
-			console.log("Lecteur JS ligne 368: "+lecteur.audio);
-		},true);
-
-    }, true);
+    }.bind(this), true);
 
     like.addEventListener("click", function(e){
         this.currentMorceau.addOneLike();
