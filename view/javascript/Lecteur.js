@@ -408,7 +408,37 @@ Lecteur.prototype.initialisation = function() {
     share.addEventListener("click", function(e){
         this.currentMorceau.addOnePartage();
         var share = document.getElementsByClassName("share")[0];
+        var shareDiv = document.querySelector("#share-code");
         share.innerText = this.getCurrentMorceau().nbPartage;
+
+        console.log(shareDiv);
+        if(shareDiv === null){
+            shareDiv = document.createElement("div");
+            var shareInput = document.createElement("input");
+            var shareBtn = document.createElement("button");
+
+            shareDiv.setAttribute("id", "share-code");
+            shareInput.setAttribute("id", "share-input");
+            shareBtn.setAttribute("id", "share-btn");
+            shareInput.setAttribute("value", '<iframe src="http://localhost/ProjetLecteurMP3/index.php?id=5c47593c00051d917d1462b6" width="100%" height="500" sandbox="allow-scripts"><p><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/"></a></p></iframe>');
+
+            shareDiv.appendChild(shareBtn);
+            shareDiv.appendChild(shareInput);
+            share.parentNode.appendChild(shareDiv);
+
+            shareBtn.addEventListener("click", function(e){
+                shareInput.select();
+                shareInput.focus();
+                document.execCommand("copy");
+            });
+
+        }
+        else{
+            console.log("remove child...");
+            share.parentNode.removeChild(shareDiv);
+            shareDiv = null;
+        }
+
     }.bind( this ), true);
 
     /**************SOUNDMANAGER2************/
