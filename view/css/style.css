@@ -384,6 +384,7 @@ input[type=range]:focus::-ms-fill-upper {
     height: 70%;
     max-height: 167px;
     margin-left: 265px;
+    width: 100%;
 }/*
 .waveform {
     display: flex;
