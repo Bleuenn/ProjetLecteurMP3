@@ -185,12 +185,11 @@ Lecteur.prototype.drawSVG = function(values) {
     var svg = document.getElementById('svg'),
 		height = this.getHeightWaveForm(),
 		width = this.getWidthWaveForm(),
-		largeurRect = 3//Math.floor(this.getNombreBarresResponsive(window.innerWidth) / 100 + 1),
+		largeurRect = 3,//Math.floor(this.getNombreBarresResponsive(window.innerWidth) / 100 + 1),
 		w3c = "http://www.w3.org/2000/svg";
 
 	var maxHBar = this.getMax();
 	var espaceMaxParBarre = width / values.length;
-	var espaceEntreLesBarres = espaceMaxParBarre - largeurRect;
 
 	for (var i = 0; i < values.length; i++) {
 		var rect = document.createElementNS(w3c, 'rect'),
@@ -199,7 +198,7 @@ Lecteur.prototype.drawSVG = function(values) {
 			horizon = (height * 2) / 3; // permet de remonter les barres pour insérer l'effet mirroir en dessous
 
 		if (value === 0) {
-			value = 6;
+			value = 1;
 		}
 
 		// Création des barres SVG verticales
@@ -261,7 +260,7 @@ Lecteur.prototype.player = function(chemin) {
     this.audio = this.createSound(chemin, this);
     this.audio.load();
 
-    let boutonLecteur = document.getElementsByClassName('play')[0];
+    var boutonLecteur = document.getElementsByClassName('play')[0];
     boutonLecteur.addEventListener('click', function () {
 
         if (!this.listening) {
@@ -423,7 +422,7 @@ Lecteur.prototype.initialisation = function() {
     }.bind( this ), true);
 
     /**************SOUNDMANAGER2************/
-    let boutonLecteur = document.getElementsByClassName('play')[0];
+    var boutonLecteur = document.getElementsByClassName('play')[0];
 
     boutonLecteur.addEventListener('click', function () {
 
