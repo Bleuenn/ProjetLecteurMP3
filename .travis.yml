@@ -30,10 +30,9 @@ jdk:
 
 script:
   - ./vendor/bin/phpunit
+  - cd ./tests/javascript/
+  - npm install
+  - npm test
+  - cd ../../
   - sonar-scanner
-
-#after_success:
-#  - travis_retry php vendor/bin/php-coveralls
-#  # or enable logging
-#  - travis_retry php vendor/bin/php-coveralls -v
 
