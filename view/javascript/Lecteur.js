@@ -71,6 +71,7 @@ Lecteur.prototype.pause = function(){
  * Relance la musique
  */
 Lecteur.prototype.play = function(){
+    var boutonLecteur = document.getElementsByClassName('play')[0];
     this.audio.play();
     this.listening = true;
     boutonLecteur.innerText = "";
@@ -229,6 +230,7 @@ Lecteur.prototype.resizeBar = function() {
 	svg.innerHTML ="";
 	this.drawSVG(this.currentMorceau.getValuesWaveform());
   this.colorSvg();
+  this.newCurrentTime();
 }
 
 /**
