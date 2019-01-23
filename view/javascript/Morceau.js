@@ -241,7 +241,7 @@ Morceau.prototype.formatMillisecondes = function(milliseconds) {
     var seconds = Math.floor(milliseconds / 1000);
     milliseconds = Math.floor(milliseconds % 1000);
 
-    return (minutes < 10 ? '' : '') + minutes + ':' +
+    return minutes + ':' +
         (seconds < 10 ? '0' : '') + seconds;
 }
 

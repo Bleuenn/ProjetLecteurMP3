@@ -68,6 +68,15 @@ Lecteur.prototype.pause = function(){
 }
 
 /**
+ * Relance la musique
+ */
+Lecteur.prototype.play = function(){
+    this.audio.play();
+    this.listening = true;
+    boutonLecteur.innerText = "";
+}
+
+/**
  * Initialisation d'un son écoutable depuis le player grace a l'API soundManager2
  * @return retourne un objet soundManager
  */
@@ -254,9 +263,7 @@ Lecteur.prototype.player = function(chemin) {
     boutonLecteur.addEventListener('click', function () {
 
         if (!this.listening) {
-            this.audio.play();
-            this.listening = true;
-            boutonLecteur.innerText = "";
+            this.play();
         } else {
             this.pause();
         }
@@ -308,6 +315,7 @@ Lecteur.prototype.initialisation = function() {
 
     //Initialisation Temps
     var totalTime = document.getElementsByClassName('total')[0];
+    console.log("Time :"+this.getCurrentMorceau().totalTime);
     var minutes = Math.floor(this.getCurrentMorceau().totalTime / 60);
     var seconds = this.getCurrentMorceau().totalTime - minutes * 60;
 
@@ -325,7 +333,7 @@ Lecteur.prototype.initialisation = function() {
     var share = document.getElementsByClassName("share")[0];
 
     like.innerText = this.getCurrentMorceau().nbLike;
-    share.innerText = this.getCurrentMorceau().nbPartage;
+    share.innerText = "partager";
 
     this.currentMorceau.setValuesWaveform( this.currentMorceau.getValuesWaveform() );
     // morceau.getValuesWaveform(this.currentMorceau.getValuesWaveform()) //
@@ -380,16 +388,13 @@ Lecteur.prototype.initialisation = function() {
         this.currentMorceau.addOnePartage();
         var share = document.getElementsByClassName("share")[0];
         var shareDiv = document.querySelector("#share-code");
-        share.innerText = this.getCurrentMorceau().nbPartage;
 
-        console.log(shareDiv);
         if(shareDiv === null){
             shareDiv = document.createElement("div");
             var shareInput = document.createElement("input");
             var shareBtn = document.createElement("button");
 
             //Génération du lien de l'iframe
-            console.log(window.location);
             var sharelink = window.location.href;
 
             shareDiv.setAttribute("id", "share-code");
@@ -409,7 +414,6 @@ Lecteur.prototype.initialisation = function() {
 
         }
         else{
-            console.log("remove child...");
             share.parentNode.removeChild(shareDiv);
             shareDiv = null;
         }
@@ -422,9 +426,7 @@ Lecteur.prototype.initialisation = function() {
     boutonLecteur.addEventListener('click', function () {
 
         if (!this.listening) {
-            this.audio.play();
-            this.listening = true;
-            boutonLecteur.innerText = "";
+            this.play();
         } else {
             this.pause();
         }
@@ -465,7 +467,7 @@ Lecteur.prototype.colorSvg = function(){
 					if(rectClick.classList.contains("active") || rectClick.classList.contains("hover")){
 						var firstNextRect = rectClick.nextElementSibling.nextElementSibling
 						firstNextRect.classList.remove("active");
-            firstNextRect.classList.remove("hover");
+                        firstNextRect.classList.remove("hover");
 						var secondNextRect = firstNextRect.nextElementSibling;
 						secondNextRect.classList.replace("activeR","reverse");
 						var newcurrentRect = secondNextRect;
@@ -473,7 +475,7 @@ Lecteur.prototype.colorSvg = function(){
 						while(newcurrentRect.nextElementSibling) {
 							var next = newcurrentRect.nextElementSibling;
 							next.classList.remove("active");
-              next.classList.remove("hover");
+                            next.classList.remove("hover");
 							next.nextElementSibling.classList.replace("activeR", "reverse");
 							newcurrentRect = next.nextElementSibling;
 						}
