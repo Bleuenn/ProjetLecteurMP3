@@ -178,7 +178,7 @@ Morceau.prototype.addOnePlay = function() {
  * @return {*} le nombre de commentaires de la musique en cours
  */
 Morceau.prototype.getNbComment = function() {
-    return nbComment;
+    return this.nbComment;
 }
 
 /**
