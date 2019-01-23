@@ -60,6 +60,7 @@ Lecteur.prototype.setVolume = function(newVolume) {
  */
 Lecteur.prototype.createSound = function(url, currentMorceau) {
 	var audio = null;
+	var currentTime = document.querySelector('div[class=en-cours]');
 
 	if (audio === null) {
 		soundManager.setup({
@@ -68,10 +69,22 @@ Lecteur.prototype.createSound = function(url, currentMorceau) {
 					id: 'audio',
 					url: url,
 					whileplaying: function() {
-						// player.timeElapsed.textContent = this.formatMilliseconds(audio.position);
-						var currentTime = document.querySelector('div[class=en-cours]');
-						// currentTime.innerHTML = formatMillisecondes(audio.duration);
+						// Pendant la lecture, on mettre à jour le temps courant de la musique.
 						currentTime.innerText = currentMorceau.formatMillisecondes(audio.position);
+
+						// Permet de récupérer tous les barres et de définir quelle barre est associée au temps courant.
+						var allRect = document.querySelectorAll("rect");
+						var curseur = allRect[Math.round(audio.position / (audio.duration / allRect.length))];
+
+						// J'attribue les couleurs pour la barre courante 'reverse' puis sur l'élément le précèdent
+						if (curseur.classList.contains("reverse")) {
+							curseur.classList.replace("reverse","activeR");
+							curseur.previousElementSibling.classList.add("active")
+						}
+						//TODO ATTENTION A CERTAINS MOMENT, LA CLASSE ACTIVE N'EST PAS APPLIQUEE !! ~ A FIX
+
+
+
 					},
 					onfinish: function() {
 						var boutonLecteur = document.getElementsByClassName('play')[0];
