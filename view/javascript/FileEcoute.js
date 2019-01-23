@@ -20,6 +20,13 @@ FileEcoute.prototype.getId = function() {
 };
 
 /**
+ * Retourne l'id de la file d'écoute
+ */
+FileEcoute.prototype.setId = function(newId) {
+	this.id = newId;
+};
+
+/**
  * Retourne le nom de la file d'écoute
  */
 FileEcoute.prototype.getNamePlaylist = function() {
@@ -42,12 +49,12 @@ FileEcoute.prototype.getListeMorceau = function() {
 };
 
 /**
- * Modifie le nom de la file d'écoute
- *  @param {*} newName le nouveau nom de la file d'écoute
+ * Modifie la file d'écoute
+ *  @param {*} newName la nouvelle file d'écoute
  */
-/*FileEcoute.prototype.setListeMorceau = function(newListe){
+FileEcoute.prototype.setListeMorceau = function(newListe){
 	this.liste=newListe;
-	};*/
+	};
 
 /**
  * 
@@ -57,11 +64,14 @@ FileEcoute.prototype.addMorceau = function(morceau) {
 	this.liste.push(morceau);
 };
 
-FileEcoute.prototype.deleteMorceau = function(idSelection){
+/**
+ * Supprime le morceau de la file d'écoute
+ */
+FileEcoute.prototype.deleteMorceau = function(targetId){
 
 	this.liste.forEach((element) => { 
-		if (element.id===idMorceau){
-			console.log("ok");
+		if (element.id===targetId){
+			this.liste.splice(this.liste.indexOf(element),1);
 		};
 	});
 }
