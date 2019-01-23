@@ -12,21 +12,6 @@ function Lecteur () {
 }
 
 /**
- * Retourne le temps courant du morceau
- */
-Lecteur.prototype.getCurrentTime = function() {
-    return this.currentTime;
-}
-
-/**
- * Modifie le temps courant du morceau
- * @param {*} newTime nouveau temps courant
- */
-Lecteur.prototype.setCurrentTime = function(newTime) {
-    this.currentTime=newTime;
-}
-
-/**
  * Retourne le morceau courant
  */
 Lecteur.prototype.getCurrentMorceau = function() {
@@ -39,7 +24,21 @@ Lecteur.prototype.getCurrentMorceau = function() {
  */
 Lecteur.prototype.setCurrentMorceau = function(newMorceau) {
     this.currentMorceau=newMorceau;
-    this.initialisation();
+}
+
+/**
+ * Retourne le temps courant du morceau
+ */
+Lecteur.prototype.getCurrentTime = function() {
+    return this.currentTime;
+}
+
+/**
+ * Modifie le temps courant du morceau
+ * @param {*} newTime nouveau temps courant
+ */
+Lecteur.prototype.setCurrentTime = function(newTime) {
+    this.currentTime=newTime;
 }
 
 /**
