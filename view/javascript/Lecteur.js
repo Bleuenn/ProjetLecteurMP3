@@ -229,6 +229,7 @@ Lecteur.prototype.resizeBar = function() {
 	svg.innerHTML ="";
 	this.drawSVG(this.currentMorceau.getValuesWaveform());
   this.colorSvg();
+  this.newCurrentTime();
 }
 
 /**
@@ -535,4 +536,28 @@ Lecteur.prototype.colorSvg = function(){
           }
       });
 		}
+}
+
+/**
+ * Permet de déplacer la musique à l'endroit cliqué sur l'onde
+ * @param e baton sur lequel le clic a été déclenché
+ */
+Lecteur.prototype.setPosition = function(e) {
+    var rect = document.querySelectorAll('rect'); // tableau contenant toutes les barres
+    var targetNumber = parseInt(e.getAttribute('data-num')); // je récupère le numéro de la barre cliquée
+    var newPosition = ((targetNumber / rect.length) * this.audio.duration)*2; // calcule de la nouvelle position
+    this.audio.setPosition(newPosition); // affectation de la nouvelle position
+
+}
+
+/**
+ * Permet d'ajouter l'évènement au clic sur chaque rectangle représenté sur l'audiowaveform.
+ */
+Lecteur.prototype.newCurrentTime = function () {
+    var rect = document.querySelectorAll('rect');
+    for (var i = 0; i < rect.length; i++) {
+        rect[i].addEventListener(('click'), function (e) {
+            this.setPosition(e.currentTarget);
+        }.bind( this ), true);
+    }
 }
