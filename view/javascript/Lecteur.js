@@ -417,10 +417,14 @@ Lecteur.prototype.initialisation = function() {
             var shareInput = document.createElement("input");
             var shareBtn = document.createElement("button");
 
+            //Génération du lien de l'iframe
+            console.log(window.location);
+            var sharelink = window.location.href;
+
             shareDiv.setAttribute("id", "share-code");
             shareInput.setAttribute("id", "share-input");
             shareBtn.setAttribute("id", "share-btn");
-            shareInput.setAttribute("value", '<iframe src="http://localhost/ProjetLecteurMP3/index.php?id=5c47593c00051d917d1462b6" width="100%" height="500" sandbox="allow-scripts"><p><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/"></a></p></iframe>');
+            shareInput.setAttribute("value", '<iframe src="'+sharelink+'" width="100%" height="500" sandbox="allow-scripts"><p><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/"></a></p></iframe>');
 
             shareDiv.appendChild(shareBtn);
             shareDiv.appendChild(shareInput);
