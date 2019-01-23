@@ -23,6 +23,7 @@ req.onreadystatechange = function (e) {
             //console.log(morceau);
             lecteur.showNavigationButton(false);
             lecteur.setCurrentMorceau(morceau);
+            lecteur.initialisation();
 
             window.addEventListener('resize', function () {
                 lecteur.resizeBar();
@@ -65,10 +66,13 @@ req.onreadystatechange = function (e) {
 
                         next.addEventListener("click", function(e){
                             lecteur.setCurrentMorceau( fileEcoute.nextMorceau() );
+                            lecteur.initialisation();
                             lecteur.play( lecteur.currentMorceau.getPath() );
                         }.bind( fileEcoute ), true);
                         previous.addEventListener("click", function(e){
                             lecteur.setCurrentMorceau( fileEcoute.previousMorceau() );
+                            lecteur.initialisation();
+                            lecteur.play( lecteur.currentMorceau.getPath() );
                         }.bind( fileEcoute ), true);
                     }
                     // Cas ou la requête à échoué

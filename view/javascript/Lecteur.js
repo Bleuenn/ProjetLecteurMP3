@@ -24,7 +24,6 @@ Lecteur.prototype.getCurrentMorceau = function() {
  */
 Lecteur.prototype.setCurrentMorceau = function(newMorceau) {
     this.currentMorceau=newMorceau;
-    this.initialisation();
 }
 
 /**
