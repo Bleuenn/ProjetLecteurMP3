@@ -163,9 +163,8 @@ describe('Tests FileEcoute', function() {
     });
 
     it("should delete morceau", function() {
-		morceau3.setId(42);
-		fileEcoute1.deleteMorceau(42);
-        expect(fileEcoute1.getListeMorceau().join()).to.equal([morceau1, morceau2].join());
+		fileEcoute1.deleteMorceau(3);
+        expect(fileEcoute1.getListeMorceau().join()).to.equal([morceau1,morceau2].join());
     });
 
     it("should next morceau", function() {
