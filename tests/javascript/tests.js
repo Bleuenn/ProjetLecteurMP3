@@ -16,123 +16,131 @@ var delete_cookie = function( name )  {
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
 
-describe('Morceau', function () {
-//id
-	
-it("should get id", function() {
-    expect(morceau1.getId()).to.equal(1);
+describe('Tests Morceau', function () {
+
+    //id
+        
+    it("should get id", function() {
+        expect(morceau1.getId()).to.equal(1);
+    });
+
+    it("should set id", function() {
+        morceau1.setId(42);
+        expect(morceau1.getId()).to.equal(42);
+    });
+
+    //name
+
+    it("should get name", function() {
+        expect(morceau1.getName()).to.equal("Avec le coeur et la raison");
+    });
+
+    //Like
+
+    it("should get nb like", function() {
+        expect(morceau1.getNbLike()).to.equal(0);
+    });
+
+    it("should set nb like", function() {
+        morceau1.setNbLike(42);
+        expect(morceau1.getNbLike()).to.equal(42);
+    });
+
+    it("should add one like", function() {
+        delete_cookie('like');
+        morceau1.addOneLike();
+        expect(morceau1.getNbLike()).to.equal(43);
+    });
+
+    //Partage
+
+    it("should get nb Partage", function() {
+        expect(morceau1.getNbPartage()).to.equal(0);
+    });
+
+    it("should set nb Partage", function() {
+        morceau1.setNbPartage(42);
+        expect(morceau1.getNbPartage()).to.equal(42);
+    });
+
+    it("should add one Partage", function() {
+        delete_cookie('share');
+        morceau1.addOnePartage();
+        expect(morceau1.getNbPartage()).to.equal(43);
+    });
+
+    //Play
+
+    it("should get nb Play", function() {
+        expect(morceau1.getNbPlay()).to.equal(0);
+    });
+
+    it("should set nb Play", function() {
+        morceau1.setNbPlay(42);
+        expect(morceau1.getNbPlay()).to.equal(42);
+    });
+
+    it("should add one Play", function() {
+        delete_cookie('play');
+        morceau1.addOnePlay();
+        expect(morceau1.getNbPlay()).to.equal(43);
+    });
+
+    //Comment
+
+    it("should get nb Comment", function() {
+        expect(morceau1.getNbComment()).to.equal(0);
+    });
+
+    it("should set nb Comment", function() {
+        morceau1.setNbComment(42);
+        expect(morceau1.getNbComment()).to.equal(42);
+    });
+
+    /*it("should add one Comment", function() {
+        morceau1.addOneComment();
+        expect(morceau1.getNbComment()).to.equal(43);
+    });*/
+
+    // Values
+
+    it("should get valueWaveform", function() {
+        expect(morceau1.getValuesWaveform().join()).to.equal([1,2,3].join());
+    });
+
+    it("should set valueWaveform", function() {
+        morceau1.setValuesWaveform([4,7,9])
+        expect(morceau1.getValuesWaveform().join()).to.equal([4,7,9].join());
+    });
+
+    // Path
+
+    it("should get path", function() {
+        expect(morceau1.getPath()).to.equal("musique/mp3/reel.mp3");
+    });
+
+    it("should set path", function() {
+        morceau1.setPath("non en fait c'est pas ça")
+        expect(morceau1.getPath()).to.equal("non en fait c'est pas ça");
+    });
+
+    //Other
+
+    it("should format milliseconde", function() {
+        
+        expect(morceau1.formatMillisecondes(146000)).to.equal("2:26");
+    });
 });
 
-it("should set id", function() {
-    morceau1.setId(42);
-    expect(morceau1.getId()).to.equal(42);
-});
+describe('Tests FileEcoute', function() {
 
-//name
-
-it("should get name", function() {
-    expect(morceau1.getName()).to.equal("Avec le coeur et la raison");
-});
-
-//Like
-
-it("should get nb like", function() {
-    expect(morceau1.getNbLike()).to.equal(0);
-});
-
-it("should set nb like", function() {
-    morceau1.setNbLike(42);
-    expect(morceau1.getNbLike()).to.equal(42);
-});
-
-it("should add one like", function() {
-    delete_cookie('like');
-    morceau1.addOneLike();
-    expect(morceau1.getNbLike()).to.equal(43);
-});
-
-//Partage
-
-it("should get nb Partage", function() {
-    expect(morceau1.getNbPartage()).to.equal(0);
-});
-
-it("should set nb Partage", function() {
-    morceau1.setNbPartage(42);
-    expect(morceau1.getNbPartage()).to.equal(42);
-});
-
-it("should add one Partage", function() {
-    delete_cookie('share');
-    morceau1.addOnePartage();
-    expect(morceau1.getNbPartage()).to.equal(43);
-});
-
-//Play
-
-it("should get nb Play", function() {
-    expect(morceau1.getNbPlay()).to.equal(0);
-});
-
-it("should set nb Play", function() {
-    morceau1.setNbPlay(42);
-    expect(morceau1.getNbPlay()).to.equal(42);
-});
-
-it("should add one Play", function() {
-    delete_cookie('play');
-    morceau1.addOnePlay();
-    expect(morceau1.getNbPlay()).to.equal(43);
-});
-
-//Comment
-
-it("should get nb Comment", function() {
-    expect(morceau1.getNbComment()).to.equal(0);
-});
-
-it("should set nb Comment", function() {
-    morceau1.setNbComment(42);
-    expect(morceau1.getNbComment()).to.equal(42);
-});
-
-/*it("should add one Comment", function() {
-    morceau1.addOneComment();
-    expect(morceau1.getNbComment()).to.equal(43);
-});*/
-
-// Values
-
-it("should get valueWaveform", function() {
-    expect(morceau1.getValuesWaveform().join()).to.equal([1,2,3].join());
-});
-
-it("should set valueWaveform", function() {
-    morceau1.setValuesWaveform([4,7,9])
-    expect(morceau1.getValuesWaveform().join()).to.equal([4,7,9].join());
-});
-
-it("should get path", function() {
-    expect(morceau1.getPath()).to.equal("musique/mp3/reel.mp3");
-});
-
-it("should set path", function() {
-    morceau1.setPath("non en fait c'est pas ça")
-    expect(morceau1.getPath()).to.equal("non en fait c'est pas ça");
-});
-
-it("should format milliseconde", function() {
-    
-    expect(morceau1.formatMillisecondes(146000)).to.equal("2:26");
-});
-
-});
-
-describe('FileEcoute', function() {
+    //id
 
     it("should get the id object", function() {
         expect(fileEcoute1.getId()).to.equal(0);
     });
+
+    //name
 
     it("should get the name of the playlist", function() {
         expect(fileEcoute1.getNamePlaylist()).to.equal("Rap");
@@ -142,6 +150,8 @@ describe('FileEcoute', function() {
         fileEcoute1.setNamePlaylist("Rap2Ouf");
         expect(fileEcoute1.getNamePlaylist()).to.equal("Rap2Ouf");
     });
+
+    //liste
 
     it("should get listeMorceau", function() {
         expect(fileEcoute1.getListeMorceau()).to.equal(listeRap1);
@@ -157,10 +167,18 @@ describe('FileEcoute', function() {
 		fileEcoute1.deleteMorceau(42);
         expect(fileEcoute1.getListeMorceau().join()).to.equal([morceau1, morceau2].join());
     });
+
+    it("should next morceau", function() {
+        expect(fileEcoute1.nextMorceau()).to.equal(morceau2);
+    });
+
+    it("should previous morceau", function() {
+        expect(fileEcoute1.nextMorceau()).to.equal(morceau1);
+    });
 });
 
 
-describe('Lecteur', function () {
+describe('Tests Lecteur', function () {
 
     it("should get current Morceau", function() {
         lecteur.setCurrentMorceau(morceau1);
