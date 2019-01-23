@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "node node_modules/.bin/istanbul cover mocha.js --dir ../_reports/ --reporter=clover"
+    "test": "node node_modules/.bin/istanbul cover mocha.js --dir ../_reports/ --reporter=lcovonly"
   },
   "devDependencies": {
     "istanbul": "^0.4.5"
