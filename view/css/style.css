@@ -102,6 +102,7 @@ form .submit{
     box-shadow: 5px 5px 15px #a3a6a3;
     padding: 1%;
     font-family: sans-serif;
+    background-color: white;
 }
 
 .audioplayer *:focus { outline: none;}
@@ -365,6 +366,36 @@ input[type=range]:focus::-ms-fill-upper {
     border: #babdba 1px solid;
     border-radius: 5%;
     margin-left: 15px;
+}
+
+#share-code {
+    position: absolute;
+    display: inline;
+    cursor: pointer;
+    top: 50px;
+    width: 217px;
+    border: solid 5px white;
+}
+
+#share-btn {
+    background-color: whitesmoke;
+    border: solid 1px black;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+
+#share-btn::after {
+    font-family: 'fontello', Fallback, sans-serif;
+    content: "";
+    color: black;
+}
+
+#share-input{
+    background-color: #4e555b;
+    padding: 5px;
+    border: solid 1px black;
+    color: whitesmoke;
 }
 
 .like::before {
