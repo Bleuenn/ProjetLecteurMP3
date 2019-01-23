@@ -31,6 +31,52 @@ function Morceau (id, nameMusique, album, nameArtiste, cover, nblike, nbPartage,
 }
 
 /**
+ * Retourne l'id du Morceau
+ */
+Morceau.prototype.getId = function() {
+	return this.id;
+};
+
+/**
+ * Modifie l'id du Morceau
+ */
+Morceau.prototype.setId = function(newId) {
+	this.id = newId;
+};
+
+/**
+ * Récupère le nom de la musique en cours
+ * @return {*} le nom de la musique
+ */
+Morceau.prototype.getName = function() {
+    return this.name;
+}
+
+/**
+ * Récupère l'album de la musique en cours
+ * @return {*} le nom de l'album
+ */
+Morceau.prototype.getAlbum = function() {
+    return this.album;
+}
+
+/**
+ * Récupère le nom de l'artiste de la musique en cours
+ * @return {*} le nom de l'artiste
+ */
+Morceau.prototype.getArtiste = function() {
+    return this.nameArtiste;
+}
+
+/**
+ * Récupère la couverture de la jacket de la musique en cours
+ * @return {*} le path de la jacket
+ */
+Morceau.prototype.getCover = function() {
+    return this.cover;
+}
+
+/**
  * Modifie le chemin de la pochette d'album
  * @param path le/chemin/de/la/pochette/d'album.jpg
  */
@@ -151,22 +197,6 @@ Morceau.prototype.addOneComment = function() {
 }
 
 /**
- * Récupère le nom de la musique en cours
- * @return {*} le nom de la musique
- */
-Morceau.prototype.getName = function() {
-    return this.name;
-}
-
-/**
- * Récupère le nom de l'artiste de la musique en cours
- * @return {*} le nom de l'artiste
- */
-Morceau.prototype.getArtiste = function() {
-    return this.nameArtiste;
-}
-
-/**
  * Récupère les valeurs de l'onde générée par Audiowaveform
  * @return {*} un tableau contenant toutes les valeurs positives
  */
@@ -183,19 +213,19 @@ Morceau.prototype.setValuesWaveform = function(values) {
 }
 
 /**
- * Attribue le chemin de la musique récupéré en base de donnée à l'instance du morceau en cours
- * @param cheminmp3 chemin/de/la/musique.mp3
- */
-Morceau.prototype.setPath = function(cheminmp3){
-    this.path = cheminmp3
-}
-
-/**
  * Récupère le chemin du mp3 depuis l'instance de la musique en cours de lecture
  * @return {*} le/chemin/de/la/musique.mp3
  */
 Morceau.prototype.getPath = function() {
     return this.path;
+}
+
+/**
+ * Attribue le chemin de la musique récupéré en base de donnée à l'instance du morceau en cours
+ * @param cheminmp3 chemin/de/la/musique.mp3
+ */
+Morceau.prototype.setPath = function(cheminmp3){
+    this.path = cheminmp3
 }
 
 /**
