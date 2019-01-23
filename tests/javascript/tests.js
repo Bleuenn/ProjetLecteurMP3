@@ -12,6 +12,10 @@ var fileEcoute1 = new FileEcoute("Rap",listeRap1);
 
 var lecteur = new Lecteur();
 
+var delete_cookie = function( name )  {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  }
+
 describe('Morceau', function () {
 //id
 	
@@ -42,6 +46,7 @@ it("should set nb like", function() {
 });
 
 it("should add one like", function() {
+    delete_cookie('like');
     morceau1.addOneLike();
     expect(morceau1.getNbLike()).to.equal(43);
 });
@@ -58,6 +63,7 @@ it("should set nb Partage", function() {
 });
 
 it("should add one Partage", function() {
+    delete_cookie('share');
     morceau1.addOnePartage();
     expect(morceau1.getNbPartage()).to.equal(43);
 });
@@ -74,6 +80,7 @@ it("should set nb Play", function() {
 });
 
 it("should add one Play", function() {
+    delete_cookie('play');
     morceau1.addOnePlay();
     expect(morceau1.getNbPlay()).to.equal(43);
 });
@@ -90,6 +97,7 @@ it("should set nb Comment", function() {
 });
 
 it("should add one Comment", function() {
+    //delete_cookie('comment');
     morceau1.addOneComment();
     expect(morceau1.getNbComment()).to.equal(43);
 });
