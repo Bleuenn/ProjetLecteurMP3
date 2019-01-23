@@ -104,11 +104,15 @@ Morceau.prototype.setNbLike = function(newNbLike) {
  * Modifie le nombre de like en incrémentant (+1) et modifie en base de données
  */
 Morceau.prototype.addOneLike = function() {
+
+    this.setNbLike(this.getNbLike() + 1);
+
     if(getCookie("like") === null){
         let req = new XMLHttpRequest();
-        this.setNbLike(this.getNbLike() + 1);
+        
         req.open('GET', 'http://'+window.location.host+'/ProjetLecteurMP3/index.php?page=edit&id='+this.id+'&increment=nbLike', true);
         req.send(null);
+        
         setCookie("like", true);
     }
 };
@@ -133,9 +137,12 @@ Morceau.prototype.setNbPartage = function(newNbPartage) {
  * Modifie le nombre de partage en incrémentant (+1) et modifie en base de données
  */
 Morceau.prototype.addOnePartage = function() {
+
+    this.setNbPartage(this.getNbPartage() + 1);
+
     if(getCookie("share") === null){
         let req = new XMLHttpRequest();
-        this.setNbPartage(this.getNbPartage() + 1);
+        
         req.open('GET', 'http://'+window.location.host+'/ProjetLecteurMP3/index.php?page=edit&id='+this.id+'&increment=nbPartage', true);
         req.send(null);
 
@@ -163,9 +170,12 @@ Morceau.prototype.setNbPlay = function(newNbPlay) {
  * Modifie le nombre de lecture en incrémentant (+1) et modifie en base de données
  */
 Morceau.prototype.addOnePlay = function() {
+
+    this.setNbPlay(this.getNbPlay()+1);
+
     if(getCookie("play") === null){
         let req = new XMLHttpRequest();
-        this.setNbPlay(this.getNbPlay()+1);
+
         req.open('GET', 'http://'+window.location.host+'/ProjetLecteurMP3/index.php?page=edit&id='+this.id+'&increment=nbEcoute', true);
         req.send(null);
 

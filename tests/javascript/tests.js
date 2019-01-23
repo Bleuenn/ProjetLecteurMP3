@@ -3,7 +3,7 @@ let expect = chai.expect;
 
 var morceau1 = new Morceau(1, "Avec le coeur et la raison", "Réel","Kery James", "view/img/reel.jpg", 0, 0, 146, 0, 0, [1, 2, 3], "musique/mp3/reel.mp3");
 var morceau2 = new Morceau(2,"CQFD","...IAM","IAM","view/img/iam.jpg", 0, 0, 231, 0, 0, [1, 2, 3], "musique/mp3/cqfd.mp3");
-var morceau3 = new Morceau();
+var morceau3 = new Morceau(3,"2 issues","Si c'était à refaire...","Kery James","view/img/scar.jpg",0,0,321,0,0,[1,2,3],"musique/mp3/2issues.mp3");
 
 var listeRap1 = [morceau1, morceau2];
 var listeRap2 = [morceau1, morceau2, morceau3];
