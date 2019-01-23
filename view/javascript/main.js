@@ -21,44 +21,15 @@ req.onreadystatechange = function (e) {
             lecteur = new Lecteur();
 
             //console.log(morceau);
+            lecteur.showNavigationButton(false);
             lecteur.setCurrentMorceau(morceau);
-            morceau.setValuesWaveform( lecteur.currentMorceau.getValuesWaveform() );
-            // morceau.getValuesWaveform(this.currentMorceau.getValuesWaveform()) //
-            // console.log("data: "+ lecteur.currentMorceau.getValuesWaveform() );
-            // console.log("nblike: "+lecteur.currentMorceau.getNbLike());
-            // console.log("values: "+lecteur.currentMorceau.getValuesWaveform());
 
-            lecteur.drawSVG(lecteur.currentMorceau.getValuesWaveform());
             window.addEventListener('resize', function () {
                 lecteur.resizeBar();
             });
 
             // lecteur.player(lecteur.currentMorceau.getPath());
-
-            lecteur.initialisation();
-
-			/**************SOUNDMANAGER2************/
-			var audio = lecteur.createSound(lecteur.currentMorceau.getPath(),lecteur.getCurrentMorceau());
-			let boutonLecteur = document.getElementsByClassName('play')[0];
-			let enLecture = false;
-
-			boutonLecteur.addEventListener('click', function () {
-
-				if (!enLecture) {
-					audio.play();
-					enLecture = true;
-					boutonLecteur.innerText = "";
-				} else {
-					audio.pause();
-					enLecture = false;
-					boutonLecteur.innerText = "";
-				}
-
-                lecteur.currentMorceau.addOnePlay();
-                var nbLecture = document.getElementsByClassName("nb-lectures")[0];
-                nbLecture.innerText = lecteur.getCurrentMorceau().nbPlay;
-			});
-			/*************************************/
+            lecteur.audio = lecteur.createSound(lecteur.currentMorceau.getPath(), lecteur);
 
             // Requête Ajax pour récupérer toutes les musiques de la bdd
             reqFileEcoute.open('GET', 'http://'+window.location.host+'/ProjetLecteurMP3/index.php?page=admin&json=true', true); // true pour asynchrone
@@ -83,8 +54,22 @@ req.onreadystatechange = function (e) {
                                 json[i].nbPartage, json[i].duree, json[i].nbEcoute, json[i].nbComment, json[i].listePoint, json[i].cheminMP3) );
                         }
 
-                        var fileEcoute = new FileEcoute("file", listeMorceau);
-                        console.log(fileEcoute);
+                        if(listeMorceau.length > 1){
+                            lecteur.showNavigationButton(true);
+                        }
+
+                        var fileEcoute = new FileEcoute("file", listeMorceau, lecteur.getCurrentMorceau());
+
+                        var next = document.getElementsByClassName("next")[0];
+                        var previous = document.getElementsByClassName("prev")[0];
+
+                        next.addEventListener("click", function(e){
+                            lecteur.setCurrentMorceau( fileEcoute.nextMorceau() );
+                            lecteur.play( lecteur.currentMorceau.getPath() );
+                        }.bind( fileEcoute ), true);
+                        previous.addEventListener("click", function(e){
+                            lecteur.setCurrentMorceau( fileEcoute.previousMorceau() );
+                        }.bind( fileEcoute ), true);
                     }
                     // Cas ou la requête à échoué
                     else console.log("Erreur pendant le chargement de la page.\n");

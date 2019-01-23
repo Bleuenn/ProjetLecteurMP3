@@ -5,10 +5,11 @@
  * @param liste liste des morceaux
  * @constructor
  */
-function FileEcoute(name,liste) {
+function FileEcoute(name,liste,morceauListen) {
 		this.id=0;
 		this.name=name;
-		this.liste=liste;	
+		this.liste=liste;
+		this.morceau=morceauListen;
 }
 
 /**
@@ -64,3 +65,40 @@ FileEcoute.prototype.deleteMorceau = function(idSelection){
 		};
 	});
 }
+
+FileEcoute.prototype.nextMorceau = function(){
+    var posMorceau = 0;
+
+    for(var i = 0; i < this.liste.length; i++){
+        if(this.morceau.id === this.liste[i].id){
+            posMorceau = i;
+        }
+    }
+
+    if( posMorceau +1 > this.liste.length -1){
+        this.morceau = this.liste[0];
+    }else{
+        this.morceau = this.liste[posMorceau +1];
+    }
+
+    return this.morceau;
+}
+
+FileEcoute.prototype.previousMorceau = function(){
+    var posMorceau = 0;
+
+    for(var i = 0; i < this.liste.length; i++){
+        if(this.morceau.id === this.liste[i].id){
+            posMorceau = i;
+        }
+    }
+
+    if( posMorceau -1 < 0){
+        this.morceau = this.liste[this.liste.length-1];
+    }else{
+        this.morceau = this.liste[posMorceau -1];
+    }
+
+    return this.morceau;
+}
+
