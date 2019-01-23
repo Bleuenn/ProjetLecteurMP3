@@ -261,7 +261,7 @@ Lecteur.prototype.player = function(chemin) {
     this.audio = this.createSound(chemin, this);
     this.audio.load();
 
-    let boutonLecteur = document.getElementsByClassName('play')[0];
+    var boutonLecteur = document.getElementsByClassName('play')[0];
     boutonLecteur.addEventListener('click', function () {
 
         if (!this.listening) {
@@ -423,7 +423,7 @@ Lecteur.prototype.initialisation = function() {
     }.bind( this ), true);
 
     /**************SOUNDMANAGER2************/
-    let boutonLecteur = document.getElementsByClassName('play')[0];
+    var boutonLecteur = document.getElementsByClassName('play')[0];
 
     boutonLecteur.addEventListener('click', function () {
 
