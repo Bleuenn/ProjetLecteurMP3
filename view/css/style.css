@@ -322,16 +322,6 @@ input[type=range]:focus::-ms-fill-upper {
     -webkit-transform: rotate(-90deg);
 }
 
-/*
-.temps {
-    display: flex;
-    align-self: flex-end;
-    align-items: baseline;
-    order: 4;
-    margin-left: 265px;
-    max-height: 50px;
-}*/
-
 .temps {
     display: flex;
     align-self: flex-end;
@@ -367,14 +357,6 @@ input[type=range]:focus::-ms-fill-upper {
     justify-content: flex-end;
     padding-bottom: 2px;
 }
-/*
-.statistiques {
-    display: flex;
-    align-self: flex-end;
-    order: 6;
-    max-height: 50px;
-    color: #a3a6a3;
-}*/
 
 .nb-commentaires::before {
     font-family: 'fontello', Fallback, sans-serif;
@@ -391,14 +373,6 @@ input[type=range]:focus::-ms-fill-upper {
     content: " ";
     margin-right: 10px;
 }
-/*
-.social {
-    display: flex;
-    align-self: flex-start;
-    order: 2;
-    justify-content: flex-end;
-    max-height: 33px;
-}*/
 
 .social {
     display: flex;
@@ -422,7 +396,7 @@ input[type=range]:focus::-ms-fill-upper {
     display: inline;
     cursor: pointer;
     top: 50px;
-    width: 217px;
+    width: 218px;
     border: solid 5px white;
 }
 
@@ -630,6 +604,12 @@ rect.hover , rect.active.hover {
         right: 10px;
         position: absolute;
         order: 7;
+    }
+
+    #share-code{
+        bottom: 26px;
+        right: 0;
+        top: -45px;
     }
 
     .statistiques{
