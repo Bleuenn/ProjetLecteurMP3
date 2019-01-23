@@ -459,9 +459,10 @@ Lecteur.prototype.colorSvg = function(){
 						currentRect = prev.previousElementSibling;
 					}
 
-					if(rectClick.classList.contains("active")){
+					if(rectClick.classList.contains("active") || rectClick.classList.contains("hover")){
 						var firstNextRect = rectClick.nextElementSibling.nextElementSibling
 						firstNextRect.classList.remove("active");
+            firstNextRect.classList.remove("hover");
 						var secondNextRect = firstNextRect.nextElementSibling;
 						secondNextRect.classList.replace("activeR","reverse");
 						var newcurrentRect = secondNextRect;
@@ -469,6 +470,7 @@ Lecteur.prototype.colorSvg = function(){
 						while(newcurrentRect.nextElementSibling) {
 							var next = newcurrentRect.nextElementSibling;
 							next.classList.remove("active");
+              next.classList.remove("hover");
 							next.nextElementSibling.classList.replace("activeR", "reverse");
 							newcurrentRect = next.nextElementSibling;
 						}
@@ -479,7 +481,7 @@ Lecteur.prototype.colorSvg = function(){
           var rectHover = e.currentTarget;
           if(!(rectHover.classList.contains("reverse")) && !(rectHover.classList.contains("active")) && !(rectHover.classList.contains("activeR"))){
               var nextHover = rectHover.previousElementSibling.nextElementSibling;
-              while(nextHover != null){
+              while(nextHover != null && !nextHover.classList.contains("active")){
                   nextHover.classList.add("hover");
                   if(nextHover.previousElementSibling == null){
                       nextHover = null;
@@ -487,12 +489,22 @@ Lecteur.prototype.colorSvg = function(){
                       nextHover = nextHover.previousElementSibling.previousElementSibling;
                   }
               }
+          }else if(rectHover.classList.contains("active")){
+              var nextHover = rectHover;
+              while(nextHover != null && nextHover.classList.contains("active")){
+                  nextHover.classList.add("hover");
+                  if(nextHover.nextElementSibling == null){
+                      nextHover = null;
+                  }else{
+                      nextHover = nextHover.nextElementSibling.nextElementSibling;
+                  }
+              }
           }
       });
 
       nRect[i].addEventListener('mouseout',function(e){
           var rectHover = e.currentTarget;
-          if((rectHover.classList.contains("hover"))){
+          if(rectHover.classList.contains("hover")){
               var nextHover = rectHover.previousElementSibling.nextElementSibling;
               while(nextHover != null){
                   nextHover.classList.remove("hover");
@@ -503,6 +515,18 @@ Lecteur.prototype.colorSvg = function(){
                   }
 
               }
+          }
+          else if (rectHover.classList.contains("active")){
+            var nextHover = rectHover;
+            while(nextHover != null){
+                nextHover.classList.remove("hover");
+                if(nextHover.nextElementSibling == null){
+                    nextHover = null;
+                }else{
+                    nextHover = nextHover.nextElementSibling.nextElementSibling;
+                }
+
+            }
           }
       });
 		}
