@@ -58,6 +58,16 @@ Lecteur.prototype.setVolume = function(newVolume) {
 }
 
 /**
+ * Met la musique en pause
+ */
+Lecteur.prototype.pause = function(){
+    var play = document.querySelector('.play');
+    this.audio.pause();
+    this.listening = false;
+    play.innerText = "";
+}
+
+/**
  * Initialisation d'un son écoutable depuis le player grace a l'API soundManager2
  * @return retourne un objet soundManager
  */
@@ -90,7 +100,9 @@ Lecteur.prototype.createSound = function(url, lecteur) {
 					}
                 },
                 onfinish: function() {
-
+                    //fonction appelée à la fin de la musique.
+                    console.log("bonsoir");
+                    lecteur.pause();
                 }
             });
         }
@@ -224,10 +236,10 @@ Lecteur.prototype.getNombreBarresResponsive = function(largeurEcran) {
  * Joue la musique musique en paramètre.
  * @param chemin chemin de la musique.
  */
-Lecteur.prototype.play = function(chemin) {
+Lecteur.prototype.player = function(chemin) {
     console.log(this.audio);
     if(this.audio !== null){
-        this.audio.pause();
+        this.pause();
         this.audio.stop();
         this.audio.unload();
         this.listening = false;
@@ -246,9 +258,7 @@ Lecteur.prototype.play = function(chemin) {
             this.listening = true;
             boutonLecteur.innerText = "";
         } else {
-            this.audio.pause();
-            this.listening = false;
-            boutonLecteur.innerText = "";
+            this.pause();
         }
 
         this.currentMorceau.addOnePlay();
@@ -416,9 +426,7 @@ Lecteur.prototype.initialisation = function() {
             this.listening = true;
             boutonLecteur.innerText = "";
         } else {
-            this.audio.pause();
-            this.listening = false;
-            boutonLecteur.innerText = "";
+            this.pause();
         }
 
         this.currentMorceau.addOnePlay();

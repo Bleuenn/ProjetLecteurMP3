@@ -67,12 +67,12 @@ req.onreadystatechange = function (e) {
                         next.addEventListener("click", function(e){
                             lecteur.setCurrentMorceau( fileEcoute.nextMorceau() );
                             lecteur.initialisation();
-                            lecteur.play( lecteur.currentMorceau.getPath() );
+                            lecteur.player( lecteur.currentMorceau.getPath() );
                         }.bind( fileEcoute ), true);
                         previous.addEventListener("click", function(e){
                             lecteur.setCurrentMorceau( fileEcoute.previousMorceau() );
                             lecteur.initialisation();
-                            lecteur.play( lecteur.currentMorceau.getPath() );
+                            lecteur.player( lecteur.currentMorceau.getPath() );
                         }.bind( fileEcoute ), true);
                     }
                     // Cas ou la requête à échoué
