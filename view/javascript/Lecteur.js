@@ -5,7 +5,7 @@
 function Lecteur () {
     this.currentMorceau=null;
     this.currentTime=null;
-    this.volume=25;
+    this.volume=10;
     this.audio = null;
     this.listening = false;
     // playList=false; // a voir si on l'intègre...
@@ -67,11 +67,22 @@ Lecteur.prototype.createSound = function(url, lecteur) {
             lecteur.audio = soundManager.createSound({
                 id: 'audio',
                 url: url,
+				volume: lecteur.volume,
                 whileplaying: function() {
-                    // player.timeElapsed.textContent = this.formatMilliseconds(audio.position);
+					// Pendant la lecture, on mettre à jour le temps courant de la musique.
                     var currentTime = document.querySelector('div[class=en-cours]');
-                    // currentTime.innerHTML = formatMillisecondes(audio.duration);
                     currentTime.innerText = lecteur.currentMorceau.formatMillisecondes(lecteur.audio.position);
+
+					// Permet de récupérer tous les barres et de définir quelle barre est associée au temps courant.
+					var allRect = document.querySelectorAll("rect");
+					var curseur = allRect[Math.round(lecteur.audio.position / (lecteur.audio.duration / allRect.length))];
+
+					// J'attribue les couleurs pour la barre courante 'reverse' puis sur l'élément le précèdent
+					if (curseur.classList.contains("reverse")) {
+						curseur.classList.replace("reverse","activeR");
+						curseur.previousElementSibling.classList.add("active")
+					}
+					//TODO ATTENTION A CERTAINS MOMENT, LA CLASSE ACTIVE N'EST PAS APPLIQUEE !! ~ A FIX
                 },
                 onfinish: function() {
                     var boutonLecteur = document.getElementsByClassName('play')[0];
@@ -331,6 +342,9 @@ Lecteur.prototype.initialisation = function() {
             range = document.createElement("input");
             range.setAttribute("type", "range");
             range.setAttribute("id", "range");
+            // range.setAttribute('min',0);
+            // range.setAttribute('max',100);
+            // range.setAttribute('step',1);
             range.setAttribute("value", 10);
             btnVolume.parentNode.appendChild(range);
         }
@@ -348,6 +362,12 @@ Lecteur.prototype.initialisation = function() {
 
             range.style.display = "none";
         }, true);
+
+        range.addEventListener('change', function(e) {
+			// this.audio.setVolume(range.value);
+
+			console.log("Lecteur JS ligne 368: "+lecteur.audio);
+		},true);
 
     }, true);
 
