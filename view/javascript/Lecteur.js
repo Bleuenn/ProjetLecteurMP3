@@ -85,18 +85,18 @@ Lecteur.prototype.createSound = function(url, lecteur) {
 
 					// Permet de récupérer tous les barres et de définir quelle barre est associée au temps courant.
 					var allRect = document.querySelectorAll("rect");
-					var curseur = allRect[Math.ceil(lecteur.audio.position / (lecteur.audio.duration / allRect.length))];
+					var curseur = allRect[Math.floor(lecteur.audio.position / (lecteur.audio.duration / allRect.length))];
 
 					// J'attribue les couleurs pour la barre courante 'reverse' puis sur l'élément le précèdent
 					while(curseur !== null) {
 						if (curseur === undefined) {
 							curseur = allRect[allRect.length-1]; // si undefined on place le curseur à la fin
 						}
-							if (curseur.classList.contains("reverse")) {
-								curseur.classList.replace('reverse','activeR');
-								curseur.previousElementSibling.classList.add('active');
-							}
-								curseur = curseur.previousElementSibling;
+                        if (curseur.classList.contains("reverse")) {
+                            curseur.classList.replace('reverse','activeR');
+                            curseur.previousElementSibling.classList.add('active');
+                        }
+                        curseur = curseur.previousElementSibling;
 					}
                 },
                 onfinish: function() {
@@ -189,7 +189,7 @@ Lecteur.prototype.drawSVG = function(values) {
 			horizon = (height * 2) / 3; // permet de remonter les barres pour insérer l'effet mirroir en dessous
 
 		if (value === 0) {
-			value = 6;
+			value = 1;
 		}
 
 		// Création des barres SVG verticales
@@ -436,101 +436,127 @@ Lecteur.prototype.initialisation = function() {
     /*************************************/
 
     this.colorSvg();
+    this.newCurrentTime();
 };
 
 /**
  * Permet de colorer la waveform lors d'un clic sur l'un des rectangles de l'audiowaveform
  */
 Lecteur.prototype.colorSvg = function(){
+
 	var nRect = document.querySelectorAll("rect");
 
-		for(var i = 0; i < nRect.length; i++){
+    for(var i = 0; i < nRect.length; i++){
 
-			nRect[i].addEventListener('click',function(e){
-			var rectClick = e.currentTarget;
+        nRect[i].addEventListener('click',function(e){
+            var rectClick = e.currentTarget;
 
-				if(!(rectClick.classList.contains("reverse"))){
+            if(!(rectClick.classList.contains("reverse"))){
 
-					rectClick.nextElementSibling.classList.replace("reverse","activeR");
-					rectClick.classList.add("active");
-					var currentRect = rectClick ;
+                rectClick.nextElementSibling.classList.replace("reverse","activeR");
+                rectClick.classList.add("active");
+                var currentRect = rectClick ;
 
-					while(currentRect.previousElementSibling ){
-						var prev = currentRect.previousElementSibling;
-						prev.classList.replace("reverse","activeR"); //barre reverse
-						prev.previousElementSibling.classList.add("active"); // barre du haut
-						currentRect = prev.previousElementSibling;
-					}
-
-					if(rectClick.classList.contains("active") || rectClick.classList.contains("hover")){
-						var firstNextRect = rectClick.nextElementSibling.nextElementSibling
-						firstNextRect.classList.remove("active");
-            firstNextRect.classList.remove("hover");
-						var secondNextRect = firstNextRect.nextElementSibling;
-						secondNextRect.classList.replace("activeR","reverse");
-						var newcurrentRect = secondNextRect;
-
-						while(newcurrentRect.nextElementSibling) {
-							var next = newcurrentRect.nextElementSibling;
-							next.classList.remove("active");
-              next.classList.remove("hover");
-							next.nextElementSibling.classList.replace("activeR", "reverse");
-							newcurrentRect = next.nextElementSibling;
-						}
-					}
-				}
-			});
-      nRect[i].addEventListener('mouseover',function(e){
-          var rectHover = e.currentTarget;
-          if(!(rectHover.classList.contains("reverse")) && !(rectHover.classList.contains("active")) && !(rectHover.classList.contains("activeR"))){
-              var nextHover = rectHover.previousElementSibling.nextElementSibling;
-              while(nextHover != null && !nextHover.classList.contains("active")){
-                  nextHover.classList.add("hover");
-                  if(nextHover.previousElementSibling == null){
-                      nextHover = null;
-                  }else{
-                      nextHover = nextHover.previousElementSibling.previousElementSibling;
-                  }
-              }
-          }else if(rectHover.classList.contains("active")){
-              var nextHover = rectHover;
-              while(nextHover != null && nextHover.classList.contains("active")){
-                  nextHover.classList.add("hover");
-                  if(nextHover.nextElementSibling == null){
-                      nextHover = null;
-                  }else{
-                      nextHover = nextHover.nextElementSibling.nextElementSibling;
-                  }
-              }
-          }
-      });
-
-      nRect[i].addEventListener('mouseout',function(e){
-          var rectHover = e.currentTarget;
-          if(rectHover.classList.contains("hover")){
-              var nextHover = rectHover.previousElementSibling.nextElementSibling;
-              while(nextHover != null){
-                  nextHover.classList.remove("hover");
-                  if(nextHover.previousElementSibling == null){
-                      nextHover = null;
-                  }else{
-                      nextHover = nextHover.previousElementSibling.previousElementSibling;
-                  }
-
-              }
-          }
-          else if (rectHover.classList.contains("active")){
-            var nextHover = rectHover;
-            while(nextHover != null){
-                nextHover.classList.remove("hover");
-                if(nextHover.nextElementSibling == null){
-                    nextHover = null;
-                }else{
-                    nextHover = nextHover.nextElementSibling.nextElementSibling;
+                while(currentRect.previousElementSibling ){
+                    var prev = currentRect.previousElementSibling;
+                    prev.classList.replace("reverse","activeR"); //barre reverse
+                    prev.previousElementSibling.classList.add("active"); // barre du haut
+                    currentRect = prev.previousElementSibling;
                 }
 
+                if(rectClick.classList.contains("active") || rectClick.classList.contains("hover")){
+                    var firstNextRect = rectClick.nextElementSibling.nextElementSibling
+                    firstNextRect.classList.remove("active");
+                    firstNextRect.classList.remove("hover");
+                    var secondNextRect = firstNextRect.nextElementSibling;
+                    secondNextRect.classList.replace("activeR","reverse");
+                    var newcurrentRect = secondNextRect;
+
+                    while(newcurrentRect.nextElementSibling) {
+                        var next = newcurrentRect.nextElementSibling;
+                        next.classList.remove("active");
+                        next.classList.remove("hover");
+                        next.nextElementSibling.classList.replace("activeR", "reverse");
+                        newcurrentRect = next.nextElementSibling;
+                    }
+                }
             }
-          }
-      });
-		}
+        });
+
+        nRect[i].addEventListener('mouseover',function(e){
+            var rectHover = e.currentTarget;
+
+            if(!(rectHover.classList.contains("reverse")) && !(rectHover.classList.contains("active")) && !(rectHover.classList.contains("activeR"))) {
+                var nextHover = rectHover.previousElementSibling.nextElementSibling;
+                while(nextHover != null && !nextHover.classList.contains("active")){
+                    nextHover.classList.add("hover");
+                    if(nextHover.previousElementSibling == null){
+                        nextHover = null;
+                    } else {
+                        nextHover = nextHover.previousElementSibling.previousElementSibling;
+                    }
+                }
+            } else if(rectHover.classList.contains("active")) {
+                var nextHover = rectHover;
+                while(nextHover != null && nextHover.classList.contains("active")){
+                    nextHover.classList.add("hover");
+                    if(nextHover.nextElementSibling == null){
+                        nextHover = null;
+                    }else{
+                        nextHover = nextHover.nextElementSibling.nextElementSibling;
+                    }
+                }
+            }
+        });
+
+        nRect[i].addEventListener('mouseout',function(e){
+            var rectHover = e.currentTarget;
+            if(rectHover.classList.contains("hover")){
+                var nextHover = rectHover.previousElementSibling.nextElementSibling;
+                while(nextHover != null){
+                    nextHover.classList.remove("hover");
+                    if(nextHover.previousElementSibling == null){
+                        nextHover = null;
+                    } else {
+                        nextHover = nextHover.previousElementSibling.previousElementSibling;
+                    }
+                }
+            } else if (rectHover.classList.contains("active")) {
+                var nextHover = rectHover;
+                while(nextHover != null){
+                    nextHover.classList.remove("hover");
+                    if(nextHover.nextElementSibling == null){
+                        nextHover = null;
+                    } else {
+                        nextHover = nextHover.nextElementSibling.nextElementSibling;
+                    }
+
+                }
+            }
+        });
+    }
+}
+
+/**
+ * Permet de déplacer la musique à l'endroit cliqué sur l'onde
+ * @param e baton sur lequel le clic a été déclenché
+ */
+Lecteur.prototype.setPosition = function(e) {
+    var rect = document.querySelectorAll('rect'); // tableau contenant toutes les barres
+    var targetNumber = parseInt(e.getAttribute('data-num')); // je récupère le numéro de la barre cliquée
+    var newPosition = ((targetNumber / rect.length) * this.audio.duration)*2; // calcule de la nouvelle position
+    this.audio.setPosition(newPosition); // affectation de la nouvelle position
+
+}
+
+/**
+ * Permet d'ajouter l'évènement au clic sur chaque rectangle représenté sur l'audiowaveform.
+ */
+Lecteur.prototype.newCurrentTime = function () {
+    var rect = document.querySelectorAll('rect');
+    for (var i = 0; i < rect.length; i++) {
+        rect[i].addEventListener(('click'), function (e) {
+            this.setPosition(e.currentTarget);
+        }.bind( this ), true);
+    }
 }
