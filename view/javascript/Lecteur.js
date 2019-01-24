@@ -388,7 +388,7 @@ Lecteur.prototype.initialisation = function() {
 
     //Initialisation Temps
     var totalTime = document.getElementsByClassName('total')[0];
-    console.log("Time :"+this.getCurrentMorceau().totalTime);
+    // console.log("Time :"+this.getCurrentMorceau().totalTime);
     var minutes = Math.floor(this.getCurrentMorceau().totalTime / 60);
     var seconds = this.getCurrentMorceau().totalTime - minutes * 60;
 

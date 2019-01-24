@@ -35,7 +35,7 @@
         <button class='share'></button>
     </div>
 </div>
-<script src="view/javascript/soundmanager2/soundmanager2.js"></script>
+<script src="view/javascript/soundmanager2/soundmanager2-nodebug-jsmin.js"></script>
 <script src="view/javascript/Morceau.js"></script>
 <script src="view/javascript/FileEcoute.js"></script>
 <script src="view/javascript/Lecteur.js"></script>
