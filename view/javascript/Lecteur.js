@@ -8,7 +8,6 @@ function Lecteur () {
     this.audio = null;
     this.volume = this.setVolume(75);
     this.listening = false;
-    // playList=false; // a voir si on l'intègre...
 }
 
 /**
