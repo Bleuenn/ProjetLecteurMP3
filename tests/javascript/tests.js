@@ -1,5 +1,6 @@
 "use strict";
-let expect = chai.expect;
+
+var expect = chai.expect;
 
 var morceau1 = new Morceau(1, "Avec le coeur et la raison", "Réel","Kery James", "view/img/reel.jpg", 0, 0, 146, 0, 0, [1, 2, 3], "musique/mp3/reel.mp3");
 var morceau2 = new Morceau(2,"CQFD","...IAM","IAM","view/img/iam.jpg", 0, 0, 231, 0, 0, [1, 2, 3], "musique/mp3/cqfd.mp3");
@@ -163,9 +164,8 @@ describe('Tests FileEcoute', function() {
     });
 
     it("should delete morceau", function() {
-		morceau3.setId(42);
-		fileEcoute1.deleteMorceau(42);
-        expect(fileEcoute1.getListeMorceau().join()).to.equal([morceau1, morceau2].join());
+		fileEcoute1.deleteMorceau(3);
+        expect(fileEcoute1.getListeMorceau().join()).to.equal([morceau1,morceau2].join());
     });
 
     it("should next morceau", function() {
@@ -209,7 +209,7 @@ describe('Tests Lecteur', function () {
     });
 
     it("should set Volume", function() {
-        lecteur.setVolume(100)
+        lecteur.setVolume(100);
         expect(lecteur.getVolume()).to.equal(100);
     });
 
