@@ -597,6 +597,14 @@ rect.hover , rect.active.hover {
         margin: 0 auto 0 auto;
     }
 
+    .controls .volume{
+        display: none;
+    }
+
+    #range{
+        display: none;
+    }
+
     .temps{
         padding: 0 0 5px 5px;
         order: 5;
@@ -624,10 +632,5 @@ rect.hover , rect.active.hover {
       fill: dimgray !important;
         stroke: white;
         stroke-width: 0.1;
-    }
-
-    #range {
-        bottom: 0;
-        right: calc(50% - 150px);
     }
 }
