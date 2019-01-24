@@ -5,8 +5,8 @@
 function Lecteur () {
     this.currentMorceau=null;
     this.currentTime=null;
-    this.volume=10;
     this.audio = null;
+    this.setVolume(15);
     this.listening = false;
     // playList=false; // a voir si on l'intègre...
 }
@@ -53,9 +53,16 @@ Lecteur.prototype.getVolume = function() {
  * @param {*} newVolume nouveau volume
  */
 Lecteur.prototype.setVolume = function(newVolume) {
+    var btnVolume = document.getElementsByClassName('volume')[0];
     this.volume=newVolume;
-    this.audio.setVolume(newVolume);
-}
+    if(this.audio !== null){
+        this.audio.setVolume(newVolume);
+    }
+    if (newVolume <= 2) { btnVolume.innerText = "";}
+    else if (newVolume <= 33) { btnVolume.innerText = "";}
+    else if (newVolume <= 66) { btnVolume.innerText = ""; }
+    else if (newVolume <= 100) { btnVolume.innerText = "";}
+};
 
 /**
  * Met la musique en pause
@@ -364,12 +371,7 @@ Lecteur.prototype.initialisation = function() {
         }
 
         range.addEventListener("mouseout", function (e) {
-            var btnVolume = document.getElementsByClassName('volume')[0];
-            if (range.value <= 2) { btnVolume.innerText = "";}
-            else if (range.value <= 33) { btnVolume.innerText = "";}
-            else if (range.value <= 66) { btnVolume.innerText = ""; }
-            else if (range.value <= 100) { btnVolume.innerText = "";}
-
+            range.style.display = "none";
         }, true);
 
         range.addEventListener('change', function(e) {
