@@ -6,7 +6,7 @@ function Lecteur () {
     this.currentMorceau=null;
     this.currentTime=null;
     this.audio = null;
-    this.setVolume(75);
+    this.volume = this.setVolume(75);
     this.listening = false;
     // playList=false; // a voir si on l'intègre...
 }
@@ -64,6 +64,7 @@ Lecteur.prototype.setVolume = function(newVolume) {
         else if (newVolume <= 66) { btnVolume.innerText = ""; }
         else if (newVolume <= 100) { btnVolume.innerText = "";}
     }
+    return newVolume;
 };
 
 /**
