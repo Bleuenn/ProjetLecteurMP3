@@ -533,7 +533,7 @@ Lecteur.prototype.colorSvg = function(){
 				}
 
 				if(rectClick.classList.contains("active") || rectClick.classList.contains("hover")){
-					var firstNextRect = rectClick.nextElementSibling.nextElementSibling
+					var firstNextRect = rectClick.nextElementSibling.nextElementSibling ;
 					firstNextRect.classList.remove("active");
 					firstNextRect.classList.remove("hover");
 					var secondNextRect = firstNextRect.nextElementSibling;
@@ -554,7 +554,7 @@ Lecteur.prototype.colorSvg = function(){
 		nRect[i].addEventListener('mouseover',function(e) {
 			var rectHover = e.currentTarget;
 			if(!(rectHover.classList.contains("reverse")) && !(rectHover.classList.contains("active")) && !(rectHover.classList.contains("activeR"))){
-				var nextHover = rectHover.previousElementSibling.nextElementSibling;
+				var nextHover = rectHover;
 				while(nextHover != null && !nextHover.classList.contains("active")){
 					nextHover.classList.add("hover");
 					if(nextHover.previousElementSibling == null){
@@ -579,7 +579,7 @@ Lecteur.prototype.colorSvg = function(){
 		nRect[i].addEventListener('mouseout',function(e){
 			var rectHover = e.currentTarget;
 			if(rectHover.classList.contains("hover")){
-				var nextHover = rectHover.previousElementSibling.nextElementSibling;
+				var nextHover = rectHover;
 				while(nextHover != null){
 					nextHover.classList.remove("hover");
 					if(nextHover.previousElementSibling == null){

@@ -7,14 +7,14 @@
  * @param cover chemin de la pochette
  * @param nblike nombre de like
  * @param nbPartage nombre de partage
- * @param totaltime temps totale de la musique (en seconde?)
+ * @param totalTime temps totale de la musique (en seconde?)
  * @param nbPlay nombre de lecture
  * @param nbComment nombre de commentaires
  * @param valuesWaveForm tableau contenant les différentes valeurs générée par audiowaveform
  * @param path chemin du fichier mp3
  * @constructor
  */
-function Morceau (id, nameMusique, album, nameArtiste, cover, nblike, nbPartage, totaltime, nbPlay, nbComment, valuesWaveForm, path) {
+function Morceau (id, nameMusique, album, nameArtiste, cover, nblike, nbPartage, totalTime, nbPlay, nbComment, valuesWaveForm, path) {
     this.id=id;
     this.name=nameMusique;
     this.album=album
@@ -22,7 +22,7 @@ function Morceau (id, nameMusique, album, nameArtiste, cover, nblike, nbPartage,
     this.cover = cover;
     this.nbLike=nblike;
     this.nbPartage=nbPartage;
-    this.totalTime=totaltime;
+    this.totalTime=totalTime;
     this.nbPlay=nbPlay;
     this.nbComment=nbComment;
     this.valuesWaveform=valuesWaveForm;
