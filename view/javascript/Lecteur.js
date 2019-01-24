@@ -519,19 +519,19 @@ Lecteur.prototype.colorSvg = function(){
 
 	for(var i = 0; i < nRect.length; i++) {
 
+		//action si clic de la souris sur les barres du haut et quand elles ne sont pas "active"
 		nRect[i].addEventListener('click',function(e){
 			var rectClick = e.currentTarget;
 
 			if(!(rectClick.classList.contains("reverse"))){
-
-				rectClick.nextElementSibling.classList.replace("reverse","activeR");
-				rectClick.classList.add("active");
+				rectClick.nextElementSibling.classList.replace("reverse","activeR");//barre reverse
+				rectClick.classList.add("active");// barre du haut
 				var currentRect = rectClick ;
 
 				while(currentRect.previousElementSibling ){
 					var prev = currentRect.previousElementSibling;
-					prev.classList.replace("reverse","activeR"); //barre reverse
-					prev.previousElementSibling.classList.add("active"); // barre du haut
+					prev.classList.replace("reverse","activeR");
+					prev.previousElementSibling.classList.add("active");
 					currentRect = prev.previousElementSibling;
 				}
 
@@ -554,8 +554,10 @@ Lecteur.prototype.colorSvg = function(){
 			}
 		});
 
+		//action si la souris passe par-dessus les barres du haut
 		nRect[i].addEventListener('mouseover',function(e) {
 			var rectHover = e.currentTarget;
+			//action quand les barres ne sont pas activent (elles sont grises)
 			if(!(rectHover.classList.contains("reverse")) && !(rectHover.classList.contains("active")) && !(rectHover.classList.contains("activeR"))){
 				var nextHover = rectHover;
 				while(nextHover != null && !nextHover.classList.contains("active")){
@@ -566,6 +568,7 @@ Lecteur.prototype.colorSvg = function(){
 						nextHover = nextHover.previousElementSibling.previousElementSibling;
 					}
 				}
+			//action quand les barres sont activent (elles sont oranges)
 			} else if (rectHover.classList.contains("active")) {
 				var nextHover = rectHover;
 				while(nextHover != null && nextHover.classList.contains("active")){
@@ -578,9 +581,10 @@ Lecteur.prototype.colorSvg = function(){
 				}
 			}
 		});
-
+		//action si la souris ne passe plus par dessus les barres du haut après y être passé
 		nRect[i].addEventListener('mouseout',function(e){
 			var rectHover = e.currentTarget;
+			//si la souris est passé par-dessus des barres qui n'étaient pas activent
 			if(rectHover.classList.contains("hover")){
 				var nextHover = rectHover;
 				while(nextHover != null){
@@ -592,6 +596,7 @@ Lecteur.prototype.colorSvg = function(){
 					}
 
 				}
+			//si la souris est passé par-dessus des barres étaient activent	
 			} else if (rectHover.classList.contains("active")) {
 				var nextHover = rectHover;
 				while(nextHover != null) {
