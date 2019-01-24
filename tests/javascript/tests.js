@@ -213,6 +213,26 @@ describe('Tests Lecteur', function () {
         expect(lecteur.getVolume()).to.equal(100);
     });
 
+    it("should getWidthWaveForm", function() {
+        expect(lecteur.getWidthWaveForm()).to.equal(0);
+    });
+
+    it("should getHeightWaveForm", function() {
+        expect(lecteur.getHeightWaveForm()).to.equal(0);
+    });
+
+    it("should get Max", function() {
+        expect(lecteur.getMax()).to.equal(3);
+    });
+
+    /*it("should devareOdd", function() {
+        expect(lecteur.devareOdd(lecteur.currentMorceau.getValuesWaveform()).join()).to.equal([0,2].join());
+    });*/
+
+    it("should getNombreBarresResponsive", function() {
+        expect(lecteur.getNombreBarresResponsive(700)).to.equal(100);
+    });
+
     /**
      * Création des éléments DOM
      */
