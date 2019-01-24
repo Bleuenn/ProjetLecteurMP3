@@ -234,7 +234,7 @@ Lecteur.prototype.drawSVG = function(values) {
 Lecteur.prototype.resizeBar = function() {
 	var svg = document.getElementById('svg');
 	svg.innerHTML ="";
-	this.drawSVG(this.currentMorceau.getValuesWaveform());
+	this.drawSVG(this.getNombreBarresResponsive());
   this.colorSvg();
   this.newCurrentTime();
 }
@@ -242,45 +242,74 @@ Lecteur.prototype.resizeBar = function() {
 /**
  * Cette fonction permet de calculer le nombre de barre que doit posséder le SVG
  * en fonction de la largeur de la fenêtre
- * @returns nombreBarre le nombre de barre en fonction de la largeur de l'écran
+ * @returns finalTab le nouveau tableau de valeur pour les barres à afficher
  */
-Lecteur.prototype.getNombreBarresResponsive = function(largeurEcran) {
-	var nombreDeBarres = largeurEcran / 7; // divisé par 7 pour avoir un ratio pour un juste milieu entre trop et pas assez de barres
-	return Math.round(nombreDeBarres);
-}
+Lecteur.prototype.getNombreBarresResponsive = function() {
+  var oTab = this.currentMorceau.getValuesWaveform(); // the tab stored in the database
+  var oNbBar = 400; //number of value in the tab stored in the database
+  var barSize = 7; //in pixel
+  var finalTab = []; //the tab that contains the value displayed on the screen
 
-/**
- * Joue la musique musique en paramètre.
- * @param chemin chemin de la musique.
- */
-Lecteur.prototype.player = function(chemin) {
-    console.log(this.audio);
-    if(this.audio !== null){
-        this.pause();
-        this.audio.stop();
-        this.audio.unload();
-        this.listening = false;
-        this.audio.destruct();
-        this.audio = null;
-    }
+  var waveformWidth = this.getWidthWaveForm(); //the width of the waveform
+  var nbBar = parseInt(waveformWidth / barSize); //the number of bar that are going to be displayed
 
-    this.audio = this.createSound(chemin, this);
-    this.audio.load();
+  var nbValuePerBar = oNbBar / nbBar; //the number of value required to math the number of one new value
+  nbValuePerBar = nbValuePerBar.toFixed(4); //Do a round on the value at 4 number after the point
 
-    var boutonLecteur = document.getElementsByClassName('play')[0];
-    boutonLecteur.addEventListener('click', function () {
+  //Check if the round don't make the application go over the length of the original Tab and if does
+  // reduce the value by 0.0001
+  if (nbValuePerBar * nbBar > 400) {
+    nbValuePerBar = nbValuePerBar - 0.0001;
+  }
 
-        if (!this.listening) {
-            this.play();
-        } else {
-            this.pause();
+  var intPartVPB = parseInt(nbValuePerBar);
+  var restVPB = nbValuePerBar - intPartVPB;
+  restVPB = parseFloat(restVPB).toFixed(4);
+  var restBisVPB = 0;
+  var oTabCursor = 0;
+  var iValue = 0;
+
+  //Lighter treatment when the case doesn't need to treat with rests to remain precise
+  if (nbValuePerBar >= 1) {
+    if (restVPB == 0) {
+      for (var i = 0; i < nbBar; i++) {
+        iValue = 0;
+        for (var y = 0; y < nbValuePerBar; y++) {
+          iValue += oTab[oTabCursor];
+          oTabCursor++;
         }
+        finalTab[i] = iValue / nbValuePerBar;
+      }
+//Heavier process processing using the rests
+    } else {
+      for (var i = 0; i < nbBar; i++) {
+        iValue = 0;
+        if (restBisVPB != 0) {
+          iValue += oTab[oTabCursor] * parseFloat(restBisVPB).toFixed(4);
+          intPartVPB = parseInt(nbValuePerBar - parseFloat(restBisVPB).toFixed(4));
+          restVPB = (nbValuePerBar - parseFloat(restBisVPB).toFixed(4)) - intPartVPB;
+          restVPB = parseFloat(restVPB).toFixed(4);
+          oTabCursor++;
+        }
+        for (var y = 0; y < intPartVPB; y++) {
+          iValue += oTab[oTabCursor];
+          console.log("i : " + oTabCursor);
+          oTabCursor++;
+        }
+        iValue += oTab[oTabCursor] * parseFloat(restVPB).toFixed(4);
+        restBisVPB = 1 - (parseFloat(restVPB).toFixed(4));
+        restBisVPB = parseFloat(restBisVPB).toFixed(4);
 
-        this.currentMorceau.addOnePlay();
-        var nbLecture = document.getElementsByClassName("nb-lectures")[0];
-        nbLecture.innerText = this.getCurrentMorceau().nbPlay;
-    }.bind(this));
-};
+        iValue = iValue / nbValuePerBar;
+        finalTab[i] = parseFloat(iValue.toFixed(4));
+      }
+    }
+  //When the number of bar required to fill the page if superior to the number of data stored in the database
+  } else {
+    finalTab = oTab; //The curve is displayed is made with the same data as the one stored in base
+  }
+  return finalTab;
+}
 
 /**
  * Affiche ou masque les boutons
@@ -349,7 +378,7 @@ Lecteur.prototype.initialisation = function() {
     // console.log("nblike: "+lecteur.currentMorceau.getNbLike());
     // console.log("values: "+lecteur.currentMorceau.getValuesWaveform());
 
-    this.drawSVG(this.currentMorceau.getValuesWaveform());
+    this.drawSVG(this.getNombreBarresResponsive());
     this.resizeBar();
 
     var btnVolume = document.getElementsByClassName('volume')[0];
