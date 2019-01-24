@@ -118,7 +118,6 @@ Lecteur.prototype.createSound = function(url, lecteur) {
                 },
                 onfinish: function() {
                     //fonction appelée à la fin de la musique.
-                    console.log("bonsoir");
                     lecteur.pause();
                 }
             });
@@ -214,6 +213,8 @@ Lecteur.prototype.drawSVG = function(values) {
 		rect.setAttributeNS(null, "width", largeurRect);
 		rect.setAttributeNS(null, "height", value);
 		rect.setAttributeNS(null, "data-num", i);
+		rect.style.stroke = "transparent";
+		rect.style.strokeWidth = 5;
 
 		// Création de l'effet mirroir
 		reverse.setAttributeNS(null, "class", "reverse");
@@ -222,6 +223,8 @@ Lecteur.prototype.drawSVG = function(values) {
 		reverse.setAttributeNS(null, "width", largeurRect);
 		reverse.setAttributeNS(null, "height", value / 2);
 		reverse.setAttributeNS(null, "data-num", i);
+		rect.style.stroke = "transparent";
+		rect.style.strokeWidth = 5;
 
 		svg.appendChild(rect);
 		svg.appendChild(reverse);
@@ -511,7 +514,7 @@ Lecteur.prototype.initialisation = function() {
 Lecteur.prototype.colorSvg = function(){
 	var nRect = document.querySelectorAll("rect");
 
-	for(var i = 0; i < nRect.length; i++){
+	for(var i = 0; i < nRect.length; i++) {
 
 		nRect[i].addEventListener('click',function(e){
 			var rectClick = e.currentTarget;
