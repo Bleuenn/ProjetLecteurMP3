@@ -15,7 +15,7 @@ var lecteur = new Lecteur();
 
 var delete_cookie = function( name )  {
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-  }
+}
 
 describe('Tests Morceau', function () {
 
@@ -213,49 +213,8 @@ describe('Tests Lecteur', function () {
         expect(lecteur.getVolume()).to.equal(100);
     });
 
-    it("should getWidthWaveForm", function() {
-        expect(lecteur.getWidthWaveForm()).to.equal(0);
-    });
-
-    it("should getHeightWaveForm", function() {
-        expect(lecteur.getHeightWaveForm()).to.equal(0);
-    });
-
     it("should get Max", function() {
         expect(lecteur.getMax()).to.equal(3);
     });
-
-    /*it("should devareOdd", function() {
-        expect(lecteur.devareOdd(lecteur.currentMorceau.getValuesWaveform()).join()).to.equal([0,2].join());
-    });*/
-
-    it("should getNombreBarresResponsive", function() {
-        expect(lecteur.getNombreBarresResponsive(700)).to.equal(100);
-    });
-
-    /**
-     * Création des éléments DOM
-     */
-    document.createElement('div').setAttribute('class', 'artiste');
-    document.createElement('div').setAttribute('class', 'titre');
-    document.createElement('div').setAttribute('class', 'total');
-    document.createElement('div').setAttribute('class', 'nb-lecture');
-    document.createElement('div').setAttribute('class', 'nb-commentaires');
-    document.createElement('div').setAttribute('class', 'like');
-    document.createElement('div').setAttribute('class', 'share');
-    document.createElement('div').setAttribute('class', 'volume');
-
-    it("should initialise", function () {
-        lecteur.setCurrentMorceau(morceau1);
-        lecteur.initialisation();
-        expect(document.getElementsByClassName('artiste')[0]).to.equal("Kery James");
-        expect(document.getElementsByClassName('titre')[0]).to.equal("Avec le coeur et la raison");
-        expect(document.getElementsByClassName('total')[0]).to.equal("2:26");
-        expect(document.getElementsByClassName('nb-lectures')[0]).to.equal(0);
-        expect(document.getElementsByClassName('nb-commentaires')[0]).to.equal(0);
-        expect(document.getElementsByClassName('like')[0]).to.equal(0);
-        expect(document.getElementsByClassName('share')[0]).to.equal(0);
-        expect(document.getElementsByClassName('volume')[0]).to.equal("");
-    })
 });
 
