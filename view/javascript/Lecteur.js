@@ -58,10 +58,12 @@ Lecteur.prototype.setVolume = function(newVolume) {
     if(this.audio !== null){
         this.audio.setVolume(newVolume);
     }
-    if (newVolume <= 2) { btnVolume.innerText = "";}
-    else if (newVolume <= 33) { btnVolume.innerText = "";}
-    else if (newVolume <= 66) { btnVolume.innerText = ""; }
-    else if (newVolume <= 100) { btnVolume.innerText = "";}
+    if(btnVolume !== undefined){
+        if (newVolume <= 2) { btnVolume.innerText = "";}
+        else if (newVolume <= 33) { btnVolume.innerText = "";}
+        else if (newVolume <= 66) { btnVolume.innerText = ""; }
+        else if (newVolume <= 100) { btnVolume.innerText = "";}
+    }
 };
 
 /**
