@@ -109,7 +109,7 @@ Lecteur.prototype.createSound = function(url, lecteur) {
 						if (curseur === undefined) {
 							curseur = allRect[allRect.length-1]; // si undefined on place le curseur à la fin
 						}
-							if (curseur.classList.contains("reverse")) {
+							if (curseur.classList.value === "reverse" ) {
 								curseur.classList.replace('reverse','activeR');
 								curseur.previousElementSibling.classList.add('active');
 							}
@@ -204,7 +204,7 @@ Lecteur.prototype.drawSVG = function(values) {
 			value = ((this.getHeightWaveForm() * values[i]) / maxHBar) * 0.66,
 			horizon = (height * 2) / 3; // permet de remonter les barres pour insérer l'effet mirroir en dessous
 
-		if (value === 0) {
+		if (value < 1) {
 			value = 1;
 		}
 
