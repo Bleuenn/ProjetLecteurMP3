@@ -59,6 +59,7 @@ table {
 
 body{
     bottom: 0;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -72,6 +73,7 @@ h2{
     color: #d65b27;
     border-bottom: solid #a3a6a3 1px;
     padding-bottom: 10px;
+    margin-bottom: 25px;
 }
 #add {
     margin: 15px;

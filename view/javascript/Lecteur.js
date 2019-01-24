@@ -6,7 +6,7 @@ function Lecteur () {
     this.currentMorceau=null;
     this.currentTime=null;
     this.audio = null;
-    this.setVolume(15);
+    this.setVolume(75);
     this.listening = false;
     // playList=false; // a voir si on l'intègre...
 }
@@ -391,6 +391,9 @@ Lecteur.prototype.initialisation = function() {
     // console.log("Time :"+this.getCurrentMorceau().totalTime);
     var minutes = Math.floor(this.getCurrentMorceau().totalTime / 60);
     var seconds = this.getCurrentMorceau().totalTime - minutes * 60;
+    if(seconds < 10){
+        seconds = '0'+seconds;
+    }
 
     totalTime.innerText = minutes+":"+seconds;
 
