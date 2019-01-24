@@ -449,95 +449,94 @@ Lecteur.prototype.initialisation = function() {
 Lecteur.prototype.colorSvg = function(){
 	var nRect = document.querySelectorAll("rect");
 
-		for(var i = 0; i < nRect.length; i++){
+	for(var i = 0; i < nRect.length; i++){
 
-			nRect[i].addEventListener('click',function(e){
+		nRect[i].addEventListener('click',function(e){
 			var rectClick = e.currentTarget;
 
-				if(!(rectClick.classList.contains("reverse"))){
+			if(!(rectClick.classList.contains("reverse"))){
 
-					rectClick.nextElementSibling.classList.replace("reverse","activeR");
-					rectClick.classList.add("active");
-					var currentRect = rectClick ;
+				rectClick.nextElementSibling.classList.replace("reverse","activeR");
+				rectClick.classList.add("active");
+				var currentRect = rectClick ;
 
-					while(currentRect.previousElementSibling ){
-						var prev = currentRect.previousElementSibling;
-						prev.classList.replace("reverse","activeR"); //barre reverse
-						prev.previousElementSibling.classList.add("active"); // barre du haut
-						currentRect = prev.previousElementSibling;
-					}
+				while(currentRect.previousElementSibling ){
+					var prev = currentRect.previousElementSibling;
+					prev.classList.replace("reverse","activeR"); //barre reverse
+					prev.previousElementSibling.classList.add("active"); // barre du haut
+					currentRect = prev.previousElementSibling;
+				}
 
-					if(rectClick.classList.contains("active") || rectClick.classList.contains("hover")){
-						var firstNextRect = rectClick.nextElementSibling.nextElementSibling
-						firstNextRect.classList.remove("active");
-                        firstNextRect.classList.remove("hover");
-						var secondNextRect = firstNextRect.nextElementSibling;
-						secondNextRect.classList.replace("activeR","reverse");
-						var newcurrentRect = secondNextRect;
+				if(rectClick.classList.contains("active") || rectClick.classList.contains("hover")){
+					var firstNextRect = rectClick.nextElementSibling.nextElementSibling
+					firstNextRect.classList.remove("active");
+					firstNextRect.classList.remove("hover");
+					var secondNextRect = firstNextRect.nextElementSibling;
+					secondNextRect.classList.replace("activeR","reverse");
+					var newcurrentRect = secondNextRect;
 
-						while(newcurrentRect.nextElementSibling) {
-							var next = newcurrentRect.nextElementSibling;
-							next.classList.remove("active");
-                            next.classList.remove("hover");
-							next.nextElementSibling.classList.replace("activeR", "reverse");
-							newcurrentRect = next.nextElementSibling;
-						}
+					while(newcurrentRect.nextElementSibling) {
+						var next = newcurrentRect.nextElementSibling;
+						next.classList.remove("active");
+						next.classList.remove("hover");
+						next.nextElementSibling.classList.replace("activeR", "reverse");
+						newcurrentRect = next.nextElementSibling;
 					}
 				}
-			});
-      nRect[i].addEventListener('mouseover',function(e){
-          var rectHover = e.currentTarget;
-          if(!(rectHover.classList.contains("reverse")) && !(rectHover.classList.contains("active")) && !(rectHover.classList.contains("activeR"))){
-              var nextHover = rectHover.previousElementSibling.nextElementSibling;
-              while(nextHover != null && !nextHover.classList.contains("active")){
-                  nextHover.classList.add("hover");
-                  if(nextHover.previousElementSibling == null){
-                      nextHover = null;
-                  }else{
-                      nextHover = nextHover.previousElementSibling.previousElementSibling;
-                  }
-              }
-          }else if(rectHover.classList.contains("active")){
-              var nextHover = rectHover;
-              while(nextHover != null && nextHover.classList.contains("active")){
-                  nextHover.classList.add("hover");
-                  if(nextHover.nextElementSibling == null){
-                      nextHover = null;
-                  }else{
-                      nextHover = nextHover.nextElementSibling.nextElementSibling;
-                  }
-              }
-          }
-      });
+			}
+		});
 
-      nRect[i].addEventListener('mouseout',function(e){
-          var rectHover = e.currentTarget;
-          if(rectHover.classList.contains("hover")){
-              var nextHover = rectHover.previousElementSibling.nextElementSibling;
-              while(nextHover != null){
-                  nextHover.classList.remove("hover");
-                  if(nextHover.previousElementSibling == null){
-                      nextHover = null;
-                  }else{
-                      nextHover = nextHover.previousElementSibling.previousElementSibling;
-                  }
+		nRect[i].addEventListener('mouseover',function(e) {
+			var rectHover = e.currentTarget;
+			if(!(rectHover.classList.contains("reverse")) && !(rectHover.classList.contains("active")) && !(rectHover.classList.contains("activeR"))){
+				var nextHover = rectHover.previousElementSibling.nextElementSibling;
+				while(nextHover != null && !nextHover.classList.contains("active")){
+					nextHover.classList.add("hover");
+					if(nextHover.previousElementSibling == null){
+						nextHover = null;
+					} else {
+						nextHover = nextHover.previousElementSibling.previousElementSibling;
+					}
+				}
+			} else if (rectHover.classList.contains("active")) {
+				var nextHover = rectHover;
+				while(nextHover != null && nextHover.classList.contains("active")){
+					nextHover.classList.add("hover");
+					if(nextHover.nextElementSibling == null){
+						nextHover = null;
+					} else {
+						nextHover = nextHover.nextElementSibling.nextElementSibling;
+					}
+				}
+			}
+		});
 
-              }
-          }
-          else if (rectHover.classList.contains("active")){
-            var nextHover = rectHover;
-            while(nextHover != null){
-                nextHover.classList.remove("hover");
-                if(nextHover.nextElementSibling == null){
-                    nextHover = null;
-                }else{
-                    nextHover = nextHover.nextElementSibling.nextElementSibling;
-                }
+		nRect[i].addEventListener('mouseout',function(e){
+			var rectHover = e.currentTarget;
+			if(rectHover.classList.contains("hover")){
+				var nextHover = rectHover.previousElementSibling.nextElementSibling;
+				while(nextHover != null){
+					nextHover.classList.remove("hover");
+					if(nextHover.previousElementSibling == null){
+						nextHover = null;
+					}else{
+						nextHover = nextHover.previousElementSibling.previousElementSibling;
+					}
 
-            }
-          }
-      });
-		}
+				}
+			} else if (rectHover.classList.contains("active")) {
+				var nextHover = rectHover;
+				while(nextHover != null) {
+					nextHover.classList.remove("hover");
+					if(nextHover.nextElementSibling == null){
+						nextHover = null;
+					} else {
+						nextHover = nextHover.nextElementSibling.nextElementSibling;
+					}
+				}
+			}
+  		});
+	}
 }
 
 /**
