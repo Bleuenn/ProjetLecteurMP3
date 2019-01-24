@@ -293,7 +293,6 @@ Lecteur.prototype.getNombreBarresResponsive = function() {
         }
         for (var y = 0; y < intPartVPB; y++) {
           iValue += oTab[oTabCursor];
-          console.log("i : " + oTabCursor);
           oTabCursor++;
         }
         iValue += oTab[oTabCursor] * parseFloat(restVPB).toFixed(4);
