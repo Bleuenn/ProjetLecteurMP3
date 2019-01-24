@@ -240,6 +240,40 @@ Lecteur.prototype.resizeBar = function() {
 }
 
 /**
+ * Joue la musique musique en paramètre.
+ * @param chemin chemin de la musique.
+ */
+Lecteur.prototype.player = function(chemin) {
+    console.log(this.audio);
+    if(this.audio !== null){
+        this.pause();
+        this.audio.stop();
+        this.audio.unload();
+        this.listening = false;
+        this.audio.destruct();
+        this.audio = null;
+    }
+
+    this.audio = this.createSound(chemin, this);
+    this.audio.load();
+
+    var boutonLecteur = document.getElementsByClassName('play')[0];
+    boutonLecteur.addEventListener('click', function () {
+
+        if (!this.listening) {
+            this.play();
+        } else {
+            this.pause();
+		}
+			this.currentMorceau.addOnePlay();
+        var nbLecture = document.getElementsByClassName("nb-lectures")[0];
+        nbLecture.innerText = this.getCurrentMorceau().nbPlay;
+    }.bind(this),true);
+};
+
+
+
+/**
  * Cette fonction permet de calculer le nombre de barre que doit posséder le SVG
  * en fonction de la largeur de la fenêtre
  * @returns finalTab le nouveau tableau de valeur pour les barres à afficher
